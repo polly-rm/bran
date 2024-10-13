@@ -1,0 +1,10 @@
+<html>
+<body>
+
+  <p>Hello,</p>
+  <p>Please click on the link to confirm your registration: <a href="https://{{ domain }}{% url 'users:activate' uidb64=uid token=token %}">https://{{ domain }}{% url 'users:activate' uidb64=uid token=token %}</a></p>
+  
+  {% include 'emails/_partials/signature.html' %}
+
+</body>
+</html>

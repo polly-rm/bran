@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form method="post">
+    {% csrf_token %}
+
+    <div class="row g-3">
+        <div class="col-md-12">
+            <label for="{{ form.email.auto_id }}" class="form-label">{{ form.email.label }} <span
+                    class="text-muted">(required)</span></label>
+            {{ form.email }}
+            {% for error in form.email.errors %}
+                <div class="invalid-feedback">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="col-md-12">
+            <label for="{{ form.password1.auto_id }}" class="form-label">{{ form.password1.label }} <span
+                    class="text-muted">(required)</span></label>
+            <div class="position-relative">
+                {{ form.password1 }}
+                <i class="bi bi-eye position-absolute register-eye-icon cursor-pointer" onclick="showPass1()"></i>
+            </div>
+            <div class="password">
+              <span id="eight_chars"><i class="bi bi-check hide"
+                                        id="eight_chars_check"></i>Your password must be at least 8 characters long.</span><br>
+                <span id="capital"><i class="bi bi-check hide"
+                                      id="capital_check"></i>Your password must contain at least one capital letter.</span><br>
+                <span id="digit"><i class="bi bi-check hide"
+                                    id="digit_check"></i>Your password must contain at least one digit.</span><br>
+            </div>
+            {% for error in form.password1.errors %}
+                <div class="invalid-feedback">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="col-md-12 register-floating">
+            <label for="{{ form.password2.auto_id }}" class="form-label">{{ form.password2.label }} <span
+                    class="text-muted">(required)</span></label>
+            <div class="position-relative">
+                {{ form.password2 }}
+                <i class="bi bi-eye position-absolute register-eye-icon cursor-pointer" onclick="showPass2()"></i>
+            </div>
+            {% for error in form.password2.errors %}
+                <div class="invalid-feedback">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </div>
+
+        <hr class="my-4">
+
+        <div class="form-check">
+{#            TODO: Add privacy policy #}
+            {{ form.check }}
+            <label class="form-check-label" for="{{ form.check.auto_id }}">I have read and aggree to the</label>&nbsp;<a href="#">Privacy Policy</a>.
+        </div>
+    
+{#    TODO: Add captcha #}
+{#        <div>#}
+{#            {{ form.captcha }}#}
+{#        </div>#}
+{#        {% for error in form.captcha.errors %}#}
+{#            <div class="invalid-captcha">#}
+{#                {{ error }}#}
+{#            </div>#}
+{#        {% endfor %}#}
+
+        <hr class="my-4">
+
+        <div class="col-md-12">
+            <button class="w-100 button-main-purple" type="submit">Register</button>
+        </div>
+    </div>
+</form>
+
+</body>
+</html>
