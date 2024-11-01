@@ -49,3 +49,19 @@ def email_account_activation(user, current_site, request):
     )
 
     send_mail(subject, html_content, user.email, EMAIL_HOST_USER)
+
+
+def email_contact_us(name, email, title, message):
+    subject = title
+    html_content = (
+        get_template('emails/contact_us_email.html').render(
+            {
+                'name': name,
+                'email': email,
+                'message': message
+            }
+        )
+    )
+
+    # TODO: Update the email that we should send it from
+    send_mail(subject, html_content, EMAIL_HOST_USER, EMAIL_HOST_USER)

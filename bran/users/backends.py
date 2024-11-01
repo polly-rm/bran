@@ -11,12 +11,6 @@ class UserAuthenticationBackend(BaseBackend):
             if user.password and user.check_password(password):
                 return user
 
-            if user.check_old_password(password):
-                user.set_password(password)
-                user.save()
-
-                return user
-
         except User.DoesNotExist:
             pass
 

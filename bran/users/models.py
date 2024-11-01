@@ -24,6 +24,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_superuser = models.BooleanField(
         default=False,
     )
+    is_active = models.BooleanField(
+        default=False,
+    )
     groups = models.ManyToManyField(
         Group,
         verbose_name="groups",
