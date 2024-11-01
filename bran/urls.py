@@ -20,7 +20,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.flatpages import views
 
-from bran.base.views import IndexTemplateView
+from bran.base.views import IndexTemplateView, generate_qr_code
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,5 +29,6 @@ urlpatterns = [
 
     # FlatPages
     path('cookies-policy/', views.flatpage, {'url': '/cookies-policy'}, name='cookies-policy'),
+    path('qr-code/', generate_qr_code, name="qr-code"),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

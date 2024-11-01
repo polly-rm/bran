@@ -4,7 +4,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LogoutView, PasswordResetView, PasswordResetConfirmView, PasswordChangeView, \
     PasswordResetDoneView
 from django.contrib.auth import login, update_session_auth_hash
-from django.contrib.sites.shortcuts import get_current_site
 
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import redirect, get_object_or_404, render
@@ -50,8 +49,7 @@ class UserRegisterView(FormView):
 
     def form_valid(self, form):
         user = form.save()
-        current_site = get_current_site(self.request)
-        email_account_activation(user, current_site, self.request)
+        email_account_activation(user, self.request)
 
         return redirect(reverse('users:register-done', kwargs={'pk': user.pk}))
 
@@ -63,8 +61,7 @@ class UserRegisterSuccessView(View):
 
     def post(self, request, *args, **kwargs):
         user = get_object_or_404(User, pk=self.kwargs['pk'])
-        current_site = get_current_site(self.request)
-        email_account_activation(user, current_site, self.request)
+        email_account_activation(user, self.request)
 
         return HttpResponseRedirect(self.request.path_info)
 

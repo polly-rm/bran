@@ -1,9 +1,31 @@
+import qrcode
+
+from io import BytesIO
+
+from django.http import HttpResponse
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.views.generic import FormView
 
 from bran.base.emails import email_contact_us
 from bran.base.forms import ContactForm
+from bran.settings import CURRENT_DOMAIN
+
+
+def generate_qr_code(request):
+    # URL for the Django website (adjust with your actual URL)
+    url = f'{CURRENT_DOMAIN}/'
+
+    # Generate the QR code
+    qr = qrcode.make(url)
+
+    # Save the QR code to an in-memory file
+    buffer = BytesIO()
+    qr.save(buffer, format="PNG")
+    buffer.seek(0)
+
+    # Return the QR code as an HTTP response
+    return HttpResponse(buffer, content_type="image/png")
 
 
 class IndexTemplateView(FormView):

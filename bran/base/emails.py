@@ -5,7 +5,7 @@ from django.utils.encoding import force_bytes
 
 from bran.base.models import SendEmail
 from bran.users.utils.tokens import account_activation_token
-from bran.settings import EMAIL_HOST_USER
+from bran.settings import EMAIL_HOST_USER, CURRENT_DOMAIN
 
 
 def send_mail(subject, message, to, from_email=None, attachments=None, html=True, fail_silently=False):
@@ -34,13 +34,13 @@ def send_mail(subject, message, to, from_email=None, attachments=None, html=True
     return is_sent
 
 
-def email_account_activation(user, current_site, request):
+def email_account_activation(user, request):
     subject = 'Account Activation'
     html_content = (
         get_template('emails/users/register_verification.html').render(
             {
                 'user': user.email,
-                'domain': current_site.domain,
+                'domain': CURRENT_DOMAIN,
                 'request': request,
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
                 'token': account_activation_token.make_token(user),
