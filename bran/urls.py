@@ -19,8 +19,16 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.flatpages import views
+from django.contrib.sitemaps.views import sitemap
 
+from bran.base.sitemaps import StaticSitemap, SendEmailSitemap
 from bran.base.views import IndexTemplateView, generate_qr_code
+
+
+sitemaps = {
+    'static': StaticSitemap,
+    'send_email': SendEmailSitemap,
+}
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,6 +37,9 @@ urlpatterns = [
 
     # FlatPages
     path('cookies-policy/', views.flatpage, {'url': '/cookies-policy'}, name='cookies-policy'),
+
+    # Other
     path('qr-code/', generate_qr_code, name="qr-code"),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
