@@ -3,14 +3,18 @@ from django.template.loader import get_template
 from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_bytes
 
+from bran import settings
 from bran.base.models import SendEmail
 from bran.users.utils.tokens import account_activation_token
 from bran.settings import EMAIL_HOST_USER, CURRENT_DOMAIN
 
 
-def send_mail(subject, message, to, from_email=None, attachments=None, html=True, fail_silently=False):
+def send_mail(subject, message, to, from_email=None, message_to_save=None, attachments=None, html=True,
+              fail_silently=False):
     if not isinstance(to, (list, tuple)):
         to = [to]
+
+    from_email = from_email or settings.EMAIL_HOST_USER
 
     msg = EmailMessage(subject=subject, body=message, to=to, from_email=from_email)
 
@@ -27,7 +31,7 @@ def send_mail(subject, message, to, from_email=None, attachments=None, html=True
         email_from=from_email,
         email_to=', '.join(to),
         subject=subject,
-        message=message,
+        message=message_to_save,
         is_sent=is_sent
     )
 
@@ -63,5 +67,4 @@ def email_contact_us(name, email, title, message):
         )
     )
 
-    # TODO: Update the email that we should send it from
-    send_mail(subject, html_content, EMAIL_HOST_USER, EMAIL_HOST_USER)
+    send_mail(subject, html_content, EMAIL_HOST_USER, from_email=email, message_to_save=message)

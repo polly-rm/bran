@@ -24,3 +24,10 @@ class SendEmail(TimeStampedModel):
     )
     message = models.TextField()
     is_sent = models.BooleanField()
+
+    def __str__(self):
+        return f'Message from {self.email_from}'
+
+    class Meta:
+        verbose_name = 'Email'
+        verbose_name_plural = 'Emails'

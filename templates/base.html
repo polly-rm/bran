@@ -9,11 +9,13 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
     <title>Bran Logistics</title>
-    <meta content="Efficient 24/7 logistics solutions including delivery, courier and house removal services. We ensure timely and reliable same-day transport across all regions of UK." name="description">
-    <meta content="logistics, transport, transportation, courier, delivery, house removals, 24/7, same-day delivery, Bournemouth, United Kingdom, England, 3.5T luton van, tail lift, curtain sider" name="keywords">
+    <meta content="Efficient 24/7 logistics solutions including delivery, courier and house removal services. We ensure timely and reliable same-day transport across all regions of UK."
+          name="description">
+    <meta content="logistics, transport, transportation, courier, delivery, house removals, 24/7, same-day delivery, Bournemouth, United Kingdom, England, 3.5T luton van, tail lift, curtain sider"
+          name="keywords">
 
     <!-- Favicons -->
-    <link href="{% static 'img/favicon.png' %}" rel="icon">
+    <link href="{% static 'img/fav-icon-new.jpg' %}" rel="icon">
     <link href="{% static 'img/apple-touch-icon.png' %}" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
@@ -42,8 +44,8 @@
     <div class="container d-flex align-items-center">
         {#        <h1 class="logo me-auto"><a href="#">Bran P&T</a></h1>#}
         <!-- Uncomment below if you prefer to use an image logo -->
-        <a href="index.html" class="logo me-auto">
-            <img src="{% static 'img/logo-white.png' %}" alt="" class="img-fluid">
+        <a href="{% url 'index' %}" class="logo me-auto">
+            <img id="logo" src="{% static 'img/logo-new.png' %}" alt="logo" class="img-fluid">
         </a>
 
         {% include '_partials/navigation.html' %}
@@ -82,11 +84,11 @@
     window.cookieconsent.initialise({
         "palette": {
             "popup": {
-                "background": "#ffffff",
-                "text": "#000000"
+                "background": "#000000",
+                "text": "#ffffff"
             },
             "button": {
-                "background": "#303030",
+                "background": "#D32F2F",
                 "text": "#ffffff",
             }
         },
@@ -96,12 +98,12 @@
             "link": "Read more",
             "href": "{% url 'cookies-policy' %}",
         },
-        onPopupOpen: function() {
+        onPopupOpen: function () {
             // Select the cookie consent button and add custom styles
             var button = document.querySelector('.cc-btn');
             if (button) {
-                button.style.borderRadius = "4px"; // Add border-radius
-                button.style.padding = "5px 20px"; // Add padding
+                button.style.borderRadius = "50px"; // Add border-radius
+                button.style.padding = "7px 20px"; // Add padding
             }
         }
     });
