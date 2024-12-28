@@ -1,3 +1,5 @@
+import os
+
 import qrcode
 
 from io import BytesIO
@@ -7,6 +9,7 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.views.generic import FormView
 
+from bran import settings
 from bran.base.emails import email_contact_us
 from bran.base.forms import ContactForm
 from bran.settings import CURRENT_DOMAIN
@@ -26,6 +29,12 @@ def generate_qr_code(request):
 
     # Return the QR code as an HTTP response
     return HttpResponse(buffer, content_type="image/png")
+
+
+def robots_txt(request):
+    robots_path = os.path.join(settings.BASE_DIR, 'robots.txt')
+    with open(robots_path, 'r') as f:
+        return HttpResponse(f.read(), content_type="text/plain")
 
 
 class IndexTemplateView(FormView):
