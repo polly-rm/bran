@@ -190,3 +190,5 @@ CURRENT_DOMAIN = os.environ.get('CURRENT_DOMAIN')
 
 CSRF_COOKIE_SECURE = True  # Ensure this is set for HTTPS requests.
 CSRF_USE_SESSIONS = False  # (Optional) Control how CSRF token is stored.
+CSRF_TRUSTED_ORIGINS = ['https://www.branlogistics.co.uk']
+
