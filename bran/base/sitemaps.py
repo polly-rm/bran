@@ -1,4 +1,6 @@
 from django.contrib.sitemaps import Sitemap
+from django.views import View
+from django.contrib.sitemaps.views import sitemap
 
 from bran.base.models import SendEmail
 
@@ -25,3 +27,13 @@ class SendEmailSitemap(Sitemap):
     def lastmod(self, obj):
         return obj.updated_at  # Last updated time of the SendEmail entry
 
+
+class CustomSitemapView(View):
+    sitemaps = None
+    section = None
+
+    def get(self, request, *args, **kwargs):
+        response = sitemap(request, self.sitemaps, self.section)
+        # Modify or remove the X-Robots-Tag header
+        response.headers["X-Robots-Tag"] = "index, follow"
+        return response
