@@ -1892,15 +1892,19 @@ section {
 
     .container-mobile {
         position: absolute;
-        top: 70px;
+        top: 65px;
     }
 
     .contact-btn-mobile {
         position: absolute;
-        bottom: 90px;
+        bottom: 95px;
         left: 50%;
         transform: translateX(-50%);
         display: inline-block !important;
     }
+
+    #header .logo img {
+    max-height: 55px;
+}
 }
 
