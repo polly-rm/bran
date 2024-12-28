@@ -1884,3 +1884,23 @@ section {
 .email-link:hover {
     color: var(--main-gold) !important;
 }
+
+@media (max-width: 768px) {
+    .contact-btn-mobile-hide {
+        display: none;
+    }
+
+    .container-mobile {
+        position: absolute;
+        top: 70px;
+    }
+
+    .contact-btn-mobile {
+        position: absolute;
+        bottom: 90px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: inline-block !important;
+    }
+}
+

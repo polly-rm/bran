@@ -5,23 +5,28 @@
 
 {% block content %}
     <!-- Title -->
-    <section id="hero" class="d-flex align-items-center">
-        <div class="container">
+    <section id="hero" class="d-flex align-items-center position-relative">
+        <div class="container container-mobile">
             <div class="row">
                 <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1"
                      data-aos="fade-up" data-aos-delay="200">
-                    <h1>BRAN LOGISTICS</h1>
+                    <h1 class="mb-4">BRAN LOGISTICS</h1>
                     <h2>Whether you need same-day, next-day, or urgent delivery services across the UK, we’ve got you
                         covered. Our courier services ensure your items arrive on time and in excellent condition.</h2>
-                    <div class="d-flex justify-content-center justify-content-lg-start">
-                        <a href="#contact" class="btn-get-started scrollto">Contact us</a>
+                    <div class="contact-btn-mobile-hide">
+                        <a href="#contact" class="btn-get-started scrollto" style="min-width: 135px !important;">Contact
+                            us</a>
                     </div>
                 </div>
-{#                <img src="{% static 'img/main.jpg' %}" alt="background">#}
-{#                <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">#}
-{#                    <img src="{% static 'img/title-img.png' %}" class="img-fluid animated" alt="delivery-img">#}
-{#                </div>#}
+                {#                <img src="{% static 'img/main.jpg' %}" alt="background">#}
+                {#                <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">#}
+                {#                    <img src="{% static 'img/title-img.png' %}" class="img-fluid animated" alt="delivery-img">#}
+                {#                </div>#}
             </div>
+        </div>
+
+        <div class="contact-btn-mobile" style="display: none">
+            <a href="#contact" class="btn-get-started scrollto" style="min-width: 135px !important;">Contact us</a>
         </div>
     </section>
     <!-- End Title -->
@@ -219,29 +224,13 @@
 
                     <div class="col-lg-4 col-md-6 portfolio-item filter-card">
                         <div class="portfolio-img">
-                            <img src="{% static 'img/vehicles/luton-curtain-side.png' %}" class="img-fluid" alt="luton-van">
-                        </div>
-                        <div class="portfolio-info">
-                            <h4>Luton Curtain Side Van</h4>
-                            <a href="{% static 'img/vehicles/luton-curtain-side.png' %}" data-gallery="portfolioGallery"
-                               class="portfolio-lightbox preview-link"
-                               title="<b>Luton Curtain Side Van</b>
-                                      <br>
-                                      Length: 4.0m&nbsp;&nbsp;&nbsp;&nbsp;Width: 2.0m&nbsp;&nbsp;&nbsp;&nbsp;Height: 2.0m&nbsp;&nbsp;&nbsp;&nbsp;Payload: 800kg">
-                                <i class="bx bx-plus" style=""></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-                        <div class="portfolio-img">
                             <img src="{% static 'img/vehicles/panel-van.png' %}" class="img-fluid" alt="luton-van">
                         </div>
                         <div class="portfolio-info">
-                            <h4>Panel Van</h4>
+                            <h4>Panel Vans 4m, 4m+</h4>
                             <a href="{% static 'img/vehicles/panel-van.png' %}" data-gallery="portfolioGallery"
                                class="portfolio-lightbox preview-link"
-                               title="<b>Panel Van</b>
+                               title="<b>Panel Vans 4m, 4m+</b>
                                       <br>
                                       Length: 4.4m+&nbsp;&nbsp;&nbsp;&nbsp;Width: 2.1m+&nbsp;&nbsp;&nbsp;&nbsp;Height: 1.8m+&nbsp;&nbsp;&nbsp;&nbsp;Payload: 600kg+">
                                 <i class="bx bx-plus" style=""></i>
@@ -261,6 +250,23 @@
                                title="<b>Luton Box Van</b>
                                       <br>
                                       Length: 4.0-4.5m&nbsp;&nbsp;&nbsp;&nbsp;Width: 2.0-2.2m&nbsp;&nbsp;&nbsp;&nbsp;Height: 2.0-2.4m&nbsp;&nbsp;&nbsp;&nbsp;Payload: 1000-2000kg">
+                                <i class="bx bx-plus" style=""></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+                        <div class="portfolio-img">
+                            <img src="{% static 'img/vehicles/luton-curtian.jpg' %}" class="img-fluid"
+                                 alt="luton-van">
+                        </div>
+                        <div class="portfolio-info">
+                            <h4>Luton Curtain Side Van</h4>
+                            <a href="{% static 'img/vehicles/luton-curtian.jpg' %}" data-gallery="portfolioGallery"
+                               class="portfolio-lightbox preview-link"
+                               title="<b>Luton Curtain Side Van</b>
+                                      <br>
+                                      Length: 4.0m&nbsp;&nbsp;&nbsp;&nbsp;Width: 2.0m&nbsp;&nbsp;&nbsp;&nbsp;Height: 2.0m&nbsp;&nbsp;&nbsp;&nbsp;Payload: 800kg">
                                 <i class="bx bx-plus" style=""></i>
                             </a>
                         </div>
@@ -417,7 +423,8 @@
                             <div class="email">
                                 <i class="bi bi-envelope"></i>
                                 <h4>Email:</h4>
-                                <p><a style="color: var(--dark-grey);" class="email-link" href="mailto:contact@branlogistics.co.uk">contact@branlogistics.co.uk</a></p>
+                                <p><a style="color: var(--dark-grey);" class="email-link"
+                                      href="mailto:contact@branlogistics.co.uk">contact@branlogistics.co.uk</a></p>
                             </div>
 
                             <div class="phone">
