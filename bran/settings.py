@@ -189,6 +189,5 @@ RECAPTCHA_PRIVATE_KEY = os.environ.get('RECAPTCHA_PRIVATE_KEY')
 CURRENT_DOMAIN = os.environ.get('CURRENT_DOMAIN')
 
 CSRF_COOKIE_SECURE = True  # Ensure this is set for HTTPS requests.
-CSRF_USE_SESSIONS = False  # (Optional) Control how CSRF token is stored.
-CSRF_TRUSTED_ORIGINS = ['https://www.branlogistics.co.uk']
+CSRF_TRUSTED_ORIGINS = ['https://branlogistics.co.uk']
 
