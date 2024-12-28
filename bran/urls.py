@@ -27,7 +27,7 @@ from bran.base.views import IndexTemplateView, generate_qr_code
 
 sitemaps = {
     'static': StaticSitemap,
-    'send_email': SendEmailSitemap,
+    # 'send_email': SendEmailSitemap,
 }
 
 urlpatterns = [
