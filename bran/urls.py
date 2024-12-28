@@ -21,13 +21,12 @@ from django.conf.urls.static import static
 from django.contrib.flatpages import views
 from django.contrib.sitemaps.views import sitemap
 
-from bran.base.sitemaps import StaticSitemap, SendEmailSitemap, CustomSitemapView
+from bran.base.sitemaps import StaticSitemap, SendEmailSitemap
 from bran.base.views import IndexTemplateView, generate_qr_code, robots_txt
 
 sitemaps = {
     'static': StaticSitemap,
     # 'send_email': SendEmailSitemap,
-    'custom': CustomSitemapView,
 }
 
 urlpatterns = [
