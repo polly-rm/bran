@@ -1,6 +1,5 @@
-from django.contrib.auth.hashers import (
-    PBKDF2PasswordHasher, SHA1PasswordHasher,
-)
+from django.contrib.auth.hashers import PBKDF2PasswordHasher
+import hashlib
 
 
 class PBKDF2WrappedSHA1PasswordHasher(PBKDF2PasswordHasher):
@@ -10,5 +9,5 @@ class PBKDF2WrappedSHA1PasswordHasher(PBKDF2PasswordHasher):
         return super().encode(sha1_hash, salt, iterations)
 
     def encode(self, password, salt, iterations=None):
-        _, _, sha1_hash = SHA1PasswordHasher().encode(password, salt).split('$', 2)
+        sha1_hash = hashlib.sha1(password.encode()).hexdigest()
         return self.encode_sha1_hash(sha1_hash, salt, iterations)
