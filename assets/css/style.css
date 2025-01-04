@@ -130,7 +130,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #header.header-scrolled, #header.header-inner-pages {
-    background: var(--dark-black) !important;
+    background: rgb(24, 24, 24, 0.9) !important;
 }
 
 #header .logo {
@@ -1681,7 +1681,8 @@ section {
 --------------------------------------------------------------*/
 #footer {
     font-size: 14px;
-    background: black;
+    /*background: black;*/
+    background: var(--main-black);
 }
 
 #footer .footer-newsletter {
@@ -1753,7 +1754,8 @@ section {
     line-height: 1;
     text-transform: uppercase;
     font-weight: 600;
-    color: var(--dark-grey);
+    /*color: var(--dark-grey);*/
+    color: var(--main-black);
 }
 
 #footer .footer-top .footer-contact p {
@@ -1761,13 +1763,15 @@ section {
     line-height: 24px;
     margin-bottom: 0;
     font-family: "Jost", sans-serif;
-    color: #BEBEBE;
+    /*color: #BEBEBE;*/
+    color: #5e5e5e;
 }
 
 #footer .footer-top h4 {
     font-size: 16px;
     font-weight: bold;
-    color: var(--dark-grey);
+    /*color: var(--dark-grey);*/
+    color: var(--main-black);
     position: relative;
     padding-bottom: 12px;
 }
@@ -1800,7 +1804,8 @@ section {
 }
 
 #footer .footer-top .footer-links ul a {
-    color: #BEBEBE;
+    /*color: #BEBEBE;*/
+    color: #777777;
     transition: 0.3s;
     display: inline-block;
     line-height: 1;
@@ -1835,7 +1840,8 @@ section {
 #footer .footer-bottom {
     padding-top: 25px;
     padding-bottom: 25px;
-    color: #BEBEBE;
+    /*color: #BEBEBE;*/
+    color: white;
 }
 
 #footer .copyright {
