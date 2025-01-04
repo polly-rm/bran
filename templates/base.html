@@ -34,7 +34,7 @@
     <!-- Template Main CSS File -->
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
     <!-- Cookieconsent CSS File -->
-    <link rel="stylesheet" href="{% static 'cookieconsent/build/cookieconsent.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/cookieconsent.min.css' %}">
 </head>
 
 <body>
@@ -78,13 +78,13 @@
 
 <!-- Csrf and Cookieconsent JS Files -->
 <script src="{% static 'js/csrf.js' %}"></script>
-<script src="{% static 'cookieconsent/build/cookieconsent.min.js' %}" data-cfasync="false"></script>
+<script src="{% static 'js/cookieconsent.min.js' %}" data-cfasync="false"></script>
 
 <script>
     window.cookieconsent.initialise({
         "palette": {
             "popup": {
-                "background": "#000000",
+                "background": "rgb(42, 46, 49)",
                 "text": "#ffffff"
             },
             "button": {
