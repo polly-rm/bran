@@ -139,7 +139,7 @@ class ParcelForm(forms.Form):
             attrs={
                 'type': 'number',
                 'class': 'form-control',
-                'min': 0,
+                'step': '0.01',
                 'placeholder': 'Weight (kg)',
             },
         ),
@@ -154,7 +154,7 @@ class ParcelForm(forms.Form):
             attrs={
                 'type': 'number',
                 'class': 'form-control',
-                'min': 0,
+                'step': '0.01',
                 'placeholder': 'Length (cm)',
             },
         ),
@@ -169,7 +169,7 @@ class ParcelForm(forms.Form):
             attrs={
                 'type': 'number',
                 'class': 'form-control',
-                'min': 0,
+                'step': '0.01',
                 'placeholder': 'Width (cm)',
             },
         ),
@@ -184,7 +184,7 @@ class ParcelForm(forms.Form):
             attrs={
                 'type': 'number',
                 'class': 'form-control',
-                'min': 0,
+                'step': '0.01',
                 'placeholder': 'Height (cm)',
             },
         ),
