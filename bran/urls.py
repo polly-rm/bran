@@ -33,6 +33,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', IndexTemplateView.as_view(), name='index'),
     path('users/', include('bran.users.urls', namespace='users')),
+    path('quote/', include('bran.quotes.urls', namespace='quotes')),
 
     # FlatPages
     path('cookies-policy/', views.flatpage, {'url': '/cookies-policy'}, name='cookies-policy'),

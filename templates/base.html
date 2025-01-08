@@ -35,6 +35,8 @@
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
     <!-- Cookieconsent CSS File -->
     <link rel="stylesheet" href="{% static 'css/cookieconsent.min.css' %}">
+    {% block stylesheets %}
+    {% endblock stylesheets %}
 </head>
 
 <body>
@@ -64,6 +66,9 @@
 
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
         class="bi bi-arrow-up-short"></i></a>
+
+<!-- Jquery -->
+<script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
 
 <!-- Vendor JS Files -->
 <script src="{% static 'vendor/aos/aos.js' %}"></script>

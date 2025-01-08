@@ -1530,7 +1530,7 @@ section {
 .error {
     color: darkred;
     font-size: 14px;
-    padding-top: 10px;
+    padding-top: 6px;
     width: 100%;
 }
 
@@ -1639,7 +1639,7 @@ section {
 --------------------------------------------------------------*/
 .breadcrumbs {
     padding: 15px 0;
-    background: #f3f5fa;
+    background: var(--light-grey);
     min-height: 40px;
     margin-top: 72px;
 }
@@ -1653,7 +1653,7 @@ section {
 .breadcrumbs h2 {
     font-size: 28px;
     font-weight: 600;
-    color: #37517e;
+    color: var(--main-black);
 }
 
 .breadcrumbs ol {
@@ -1672,7 +1672,7 @@ section {
 .breadcrumbs ol li + li::before {
     display: inline-block;
     padding-right: 10px;
-    color: #4668a2;
+    color: var(--main-black);
     content: "/";
 }
 
@@ -1910,7 +1910,17 @@ section {
     }
 
     #header .logo img {
-    max-height: 55px;
+        max-height: 55px;
+    }
 }
+
+.hide {
+    display: none;
+}
+
+.param-unit {
+    top: 50%;
+    transform: translateY(-50%);
+    right: 17px;
 }
 

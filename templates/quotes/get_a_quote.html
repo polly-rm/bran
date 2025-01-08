@@ -1,0 +1,205 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block stylesheets %}
+    <link rel="stylesheet"
+          href="{% static 'tempusdominus-bootstrap-4/build/css/tempusdominus-bootstrap-4.min.css' %}"/>
+{% endblock %}
+
+{% block content %}
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs" style="padding-top: 4rem">
+        <div class="container">
+            <ol>
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li>Get a quote</li>
+            </ol>
+            <h2>Get a Quote</h2>
+        </div>
+    </section>
+    <!-- End Breadcrumbs -->
+
+    <section class="inner-page contact">
+        <div class="container d-flex justify-content-center">
+            <div class="col-lg-8 mt-5 mt-lg-0 d-flex align-items-stretch">
+                <form action="{% url 'quotes:get-a-quote' %}" method="post" class="php-email-form">
+                    {% csrf_token %}
+
+                    <div class="row">
+                        <div class="form-group">
+                            <label for="name">{{ form.name.label }}</label>
+                            {{ form.name }}
+                            {% for error in form.name.errors %}
+                                <div class="error">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="contact_telephone">{{ form.contact_telephone.label }}</label>
+                            {{ form.contact_telephone }}
+                            {% for error in form.contact_telephone.errors %}
+                                <div class="error">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="email">{{ form.email.label }}</label>
+                            {{ form.email }}
+                            {% for error in form.email.errors %}
+                                <div class="error">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="name">{{ form.postcode_from.label }}</label>
+                            {{ form.postcode_from }}
+                            {% for error in form.postcode_from.errors %}
+                                <div class="error">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group">
+                            <label for="name">{{ form.postcode_to.label }}</label>
+                            {{ form.postcode_to }}
+                            {% for error in form.postcode_to.errors %}
+                                <div class="error">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="name">{{ form.time_to_collect_from.label }}</label>
+                            <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+                                {{ form.time_to_collect_from }}
+                                <div class="input-group-append" data-target="#datetimepicker1"
+                                     data-toggle="datetimepicker">
+                                    <div class="input-group-text" style="height: 100%"><i class="bi bi-calendar-check"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            {% for error in form.time_to_collect_from.errors %}
+                                <div class="error">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="name" style="visibility: hidden">{{ form.time_to_collect_to.label }}</label>
+                            <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
+                                {{ form.time_to_collect_to }}
+                                <div class="input-group-append" data-target="#datetimepicker2"
+                                     data-toggle="datetimepicker">
+                                    <div class="input-group-text" style="height: 100%"><i class="bi bi-calendar-check"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            {% for error in form.time_to_collect_to.errors %}
+                                <div class="error">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="name">{{ form.time_to_deliver_from.label }}</label>
+                            <div class="input-group date" id="datetimepicker3" data-target-input="nearest">
+                                {{ form.time_to_deliver_from }}
+                                <div class="input-group-append" data-target="#datetimepicker3"
+                                     data-toggle="datetimepicker">
+                                    <div class="input-group-text" style="height: 100%"><i class="bi bi-calendar-check"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            {% for error in form.time_to_deliver_from.errors %}
+                                <div class="error">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="name" style="visibility: hidden">{{ form.time_to_deliver_to.label }}</label>
+                            <div class="input-group date" id="datetimepicker4" data-target-input="nearest">
+                                {{ form.time_to_deliver_to }}
+                                <div class="input-group-append" data-target="#datetimepicker4"
+                                     data-toggle="datetimepicker">
+                                    <div class="input-group-text" style="height: 100%"><i class="bi bi-calendar-check"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            {% for error in form.time_to_deliver_to.errors %}
+                                <div class="error">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+
+                        <div class="form-group mt-4 mb-5">
+                            <label>Parcels Details</label>
+                            {% include 'quotes/_partials/parcel_formset.html' %}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="name" class="d-flex align-items-center gap-2">
+                                <input type="checkbox" id="toggleCheckbox"> {{ form.additional_info.label }}</label>
+                            {{ form.additional_info }}
+                            {% for error in form.additional_info.errors %}
+                                <div class="error">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit">Quote Me</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </section>
+
+{% endblock content %}
+
+
+{% block javascript %}
+    <script src="{% static 'moment/moment.js' %}"></script>
+    <script src="{% static 'tempusdominus-bootstrap-4/build/js/tempusdominus-bootstrap-4.min.js' %}"></script>
+    <script src="{% static 'js/quotes/formatNumberInputs.js' %}"></script>
+    <script src="{% static 'js/quotes/datetimepicker.js' %}"></script>
+    <script src="{% static 'js/quotes/toggleCheckbox.js' %}"></script>
+
+    <!-------- Single parameters cargo formset -------->
+    <script>
+        (function ($) {
+            preventNegativeNums();
+            preventDecimalsInCount();
+            preventMoreDecimalPlaces();
+            showUnit();
+
+            $(function () {
+
+                var $template = $('#empty-form'),
+                    $formset = $('#formset'),
+                    formCount = {{ formset.total_form_count }},
+                    minCount = {{ formset.initial_form_count }},
+                    maxCount = {{ formset.max_num }};
+
+                $('body').on('click', '#add-more', function (e) {
+                    e.preventDefault();
+
+                    formCount++;
+
+                    var templateHtml = $template.html();
+                    templateHtml = templateHtml.replace(/__prefix__/g, formCount - 1);
+
+                    $formset.append(templateHtml);
+
+                    $('#id_parcel-TOTAL_FORMS').val(formCount);
+
+                    var $lastForm = $('.form', $formset).last();
+
+                    preventNegativeNums();
+                    preventDecimalsInCount();
+                    preventMoreDecimalPlaces();
+                    showUnit();
+                });
+
+                $('body').on('click', '.delete-tip', function (e) {
+                    e.preventDefault();
+
+                    $(this).closest('.cargo-form').remove();
+                    formCount--;
+                });
+            });
+        })(jQuery);
+    </script>
+    <!-------- End Single parameters cargo formset -------->
+
+{% endblock javascript %}

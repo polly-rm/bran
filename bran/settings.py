@@ -15,7 +15,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = (os.getenv('DEBUG'))
+DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'
 
 ALLOWED_HOSTS = ['*']
 
@@ -37,6 +37,7 @@ LOCAL_APPS = [
     'bran.base',
     'bran.users',
     'bran.pages',
+    'bran.quotes',
 ]
 
 THIRD_PARTY_APPS = [
@@ -54,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
+    'bran.base.middleware.RobotsHeaderMiddleware',
 ]
 
 SITE_ID = 1
@@ -177,8 +179,8 @@ EMAIL_HOST = os.getenv('EMAIL_HOST')
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = int(os.getenv('EMAIL_PORT'))
-EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS')
-DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
+#EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS')
+#DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
 
 # Recaptcha config
 
@@ -189,5 +191,6 @@ RECAPTCHA_PRIVATE_KEY = os.environ.get('RECAPTCHA_PRIVATE_KEY')
 CURRENT_DOMAIN = os.environ.get('CURRENT_DOMAIN')
 
 CSRF_COOKIE_SECURE = True  # Ensure this is set for HTTPS requests.
-CSRF_TRUSTED_ORIGINS = ['https://branlogistics.co.uk']
+CSRF_USE_SESSIONS = False  # (Optional) Control how CSRF token is stored.
+CSRF_TRUSTED_ORIGINS = ['https://www.branlogistics.co.uk', 'https://branlogistics.co.uk/']
 
