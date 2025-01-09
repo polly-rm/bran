@@ -1912,6 +1912,10 @@ section {
     #header .logo img {
         max-height: 55px;
     }
+
+    .time-to-label-mobile {
+        display: none;
+    }
 }
 
 .hide {
@@ -1924,3 +1928,8 @@ section {
     right: 17px;
 }
 
+.mandatory::before {
+    content: "*";
+    color: var(--dark-gold);
+    margin-right: 5px;
+}

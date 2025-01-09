@@ -10,6 +10,7 @@ class QuoteForm(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
+                'placeholder': 'Your Name'
             }
         ),
         validators=[
@@ -22,6 +23,7 @@ class QuoteForm(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
+                'placeholder': 'Your Telephone'
             }
         )
     )
@@ -30,7 +32,8 @@ class QuoteForm(forms.Form):
         label='Email',
         widget=forms.EmailInput(
             attrs={
-                'class': 'form-control'
+                'class': 'form-control',
+                'placeholder': 'Your Email'
             }
         )
     )
@@ -54,6 +57,32 @@ class QuoteForm(forms.Form):
             attrs={
                 'class': 'form-control',
                 'placeholder': 'From (Postcode)'
+            }
+        ),
+        validators=[
+            MaxLengthValidator(50, message="This field cannot be more than 50 characters long.")
+        ]
+    )
+    company_from = forms.CharField(
+        required=False,
+        label='Collect from Company',
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': 'Company Name'
+            }
+        ),
+        validators=[
+            MaxLengthValidator(50, message="This field cannot be more than 50 characters long.")
+        ]
+    )
+    company_to = forms.CharField(
+        required=False,
+        label='Deliver to Company',
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': 'Company Name'
             }
         ),
         validators=[

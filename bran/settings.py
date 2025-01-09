@@ -74,6 +74,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                'bran.base.context_processors.google_maps_api_key',
             ],
         },
     },
@@ -194,3 +196,4 @@ CSRF_COOKIE_SECURE = True  # Ensure this is set for HTTPS requests.
 CSRF_USE_SESSIONS = False  # (Optional) Control how CSRF token is stored.
 CSRF_TRUSTED_ORIGINS = ['https://www.branlogistics.co.uk', 'https://branlogistics.co.uk/']
 
+GOOGLE_MAPS_API_KEY = os.getenv('GOOGLE_MAPS_API_KEY')

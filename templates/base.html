@@ -35,8 +35,12 @@
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
     <!-- Cookieconsent CSS File -->
     <link rel="stylesheet" href="{% static 'css/cookieconsent.min.css' %}">
+
     {% block stylesheets %}
     {% endblock stylesheets %}
+
+    <!-- Load Google Maps API with a callback -->
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&libraries=places&callback=initAutocomplete" async defer></script>
 </head>
 
 <!-- Tawk.to Script-->

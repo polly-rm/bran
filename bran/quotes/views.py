@@ -22,9 +22,6 @@ class GetQuote(FormView):
             return self.forms_invalid(form, formset)
 
     def forms_valid(self, form, formset):
-        print(form.cleaned_data)
-        print(formset.cleaned_data)
-
         email_get_quote(form.cleaned_data, formset.cleaned_data)
         messages.success(self.request, 'Your quote request was sent successfully!')
 

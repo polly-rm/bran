@@ -19,57 +19,77 @@
                 <li><a href="{% url 'index' %}">Home</a></li>
                 <li>Get a quote</li>
             </ol>
-            <h2>Get a Quote</h2>
+            <h2>Get A Quote</h2>
         </div>
     </section>
     <!-- End Breadcrumbs -->
 
     <section class="inner-page contact">
-        <div class="container d-flex justify-content-center">
+        <div class="container d-flex justify-content-center align-items-center flex-column">
+            <div class="section-title">
+                <h2>Same Day Quote</h2>
+                <p>Input Your parcel details, delivery and personal information and receive immediate delivery estimate
+                    with Bran Logistics.</p>
+            </div>
+
             <div class="col-lg-8 mt-5 mt-lg-0 d-flex align-items-stretch">
                 <form action="{% url 'quotes:get-a-quote' %}" method="post" class="php-email-form">
                     {% csrf_token %}
 
                     <div class="row">
                         <div class="form-group">
-                            <label for="name">{{ form.name.label }}</label>
+                            <label for="name" class="mandatory">{{ form.name.label }}</label>
                             {{ form.name }}
                             {% for error in form.name.errors %}
                                 <div class="error">{{ error }}</div>
                             {% endfor %}
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="contact_telephone">{{ form.contact_telephone.label }}</label>
+                            <label for="contact_telephone" class="mandatory">{{ form.contact_telephone.label }}</label>
                             {{ form.contact_telephone }}
                             {% for error in form.contact_telephone.errors %}
                                 <div class="error">{{ error }}</div>
                             {% endfor %}
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="email">{{ form.email.label }}</label>
+                            <label for="email" class="mandatory">{{ form.email.label }}</label>
                             {{ form.email }}
                             {% for error in form.email.errors %}
                                 <div class="error">{{ error }}</div>
                             {% endfor %}
                         </div>
 
-                        <div class="form-group">
-                            <label for="name">{{ form.postcode_from.label }}</label>
+                        <div class="form-group col-md-6">
+                            <label for="name" class="mandatory">{{ form.postcode_from.label }}</label>
                             {{ form.postcode_from }}
                             {% for error in form.postcode_from.errors %}
                                 <div class="error">{{ error }}</div>
                             {% endfor %}
                         </div>
-                        <div class="form-group">
-                            <label for="name">{{ form.postcode_to.label }}</label>
+                        <div class="form-group col-md-6">
+                            <label for="name">{{ form.company_from.label }}</label>
+                            {{ form.company_from }}
+                            {% for error in form.company_from.errors %}
+                                <div class="error">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="name" class="mandatory">{{ form.postcode_to.label }}</label>
                             {{ form.postcode_to }}
                             {% for error in form.postcode_to.errors %}
                                 <div class="error">{{ error }}</div>
                             {% endfor %}
                         </div>
+                        <div class="form-group col-md-6">
+                            <label for="name">{{ form.company_to.label }}</label>
+                            {{ form.company_to }}
+                            {% for error in form.company_to.errors %}
+                                <div class="error">{{ error }}</div>
+                            {% endfor %}
+                        </div>
 
                         <div class="form-group col-md-6">
-                            <label for="name">{{ form.time_to_collect_from.label }}</label>
+                            <label for="name" class="mandatory">{{ form.time_to_collect_from.label }}</label>
                             <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
                                 {{ form.time_to_collect_from }}
                                 <div class="input-group-append" data-target="#datetimepicker1"
@@ -83,7 +103,8 @@
                             {% endfor %}
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="name" style="visibility: hidden">{{ form.time_to_collect_to.label }}</label>
+                            <label for="name" style="visibility: hidden"
+                                   class="mandatory time-to-label-mobile">{{ form.time_to_collect_to.label }}</label>
                             <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
                                 {{ form.time_to_collect_to }}
                                 <div class="input-group-append" data-target="#datetimepicker2"
@@ -97,7 +118,7 @@
                             {% endfor %}
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="name">{{ form.time_to_deliver_from.label }}</label>
+                            <label for="name" class="mandatory">{{ form.time_to_deliver_from.label }}</label>
                             <div class="input-group date" id="datetimepicker3" data-target-input="nearest">
                                 {{ form.time_to_deliver_from }}
                                 <div class="input-group-append" data-target="#datetimepicker3"
@@ -111,7 +132,8 @@
                             {% endfor %}
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="name" style="visibility: hidden">{{ form.time_to_deliver_to.label }}</label>
+                            <label for="name" style="visibility: hidden"
+                                   class="mandatory time-to-label-mobile">{{ form.time_to_deliver_to.label }}</label>
                             <div class="input-group date" id="datetimepicker4" data-target-input="nearest">
                                 {{ form.time_to_deliver_to }}
                                 <div class="input-group-append" data-target="#datetimepicker4"
@@ -126,7 +148,7 @@
                         </div>
 
                         <div class="form-group mt-4 mb-5">
-                            <label>Parcels Details</label>
+                            <label class="mandatory">Parcels Details</label>
                             {% include 'quotes/_partials/parcel_formset.html' %}
                         </div>
 
@@ -140,7 +162,7 @@
                         </div>
 
                         <div class="text-center">
-                            <button type="submit">Quote Me</button>
+                            <button type="submit" id="submit-btn">Quote Me</button>
                         </div>
                     </div>
                 </form>
@@ -158,6 +180,8 @@
     <script src="{% static 'js/quotes/formatNumberInputs.js' %}"></script>
     <script src="{% static 'js/quotes/datetimepicker.js' %}"></script>
     <script src="{% static 'js/quotes/toggleCheckbox.js' %}"></script>
+    <script src="{% static 'js/quotes/displayErrors.js' %}"></script>
+    <script src="{% static 'js/quotes/googleMapsApi.js' %}"></script>
 
     <!-------- Single parameters cargo formset -------->
     <script>

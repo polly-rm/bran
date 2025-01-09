@@ -61,6 +61,7 @@
                         <div class="error">{{ error }}</div>
                     {% endfor %}
                 {% endif %}
+                <div id="error-message" class="error" style="display: none;">Parcel details fields are required.</div>
             </div>
 
         {% endfor %}
@@ -100,7 +101,7 @@
                     <div class="position-absolute param-unit hide">{% trans 'kg' %}</div>
                     <div class="error-message error-space">{{ p_form.weight.errors }}</div>
                 </div>
-                <div class="col-md-1">
+                <div class="col-md-1" style="text-align: right">
                     <button class="input-group-text delete-tip" style="height: 100%"><i class="bi bi-trash"></i>
                     </button>
                 </div>

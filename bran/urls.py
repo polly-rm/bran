@@ -22,7 +22,7 @@ from django.contrib.flatpages import views
 from django.contrib.sitemaps.views import sitemap
 
 from bran.base.sitemaps import StaticSitemap, SendEmailSitemap
-from bran.base.views import IndexTemplateView, generate_qr_code, robots_txt
+from bran.base.views import IndexTemplateView, generate_qr_code, robots_txt, autocomplete
 
 sitemaps = {
     'static': StaticSitemap,
@@ -42,5 +42,6 @@ urlpatterns = [
     path('qr-code/', generate_qr_code, name="qr-code"),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
     path('robots.txt', robots_txt),
+    path('api/autocomplete/', autocomplete, name='autocomplete'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
