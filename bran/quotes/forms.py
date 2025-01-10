@@ -154,7 +154,7 @@ class ParcelForm(forms.Form):
                 'type': 'number',
                 'class': 'form-control',
                 'min': 1,
-                'placeholder': 'Count'
+                'placeholder': 'Items'
             },
         ),
         error_messages={
