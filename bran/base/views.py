@@ -1,10 +1,11 @@
 import os
-
 import qrcode
+import requests
 
 from io import BytesIO
 
 from django.http import HttpResponse
+from django.http import JsonResponse
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.views.generic import FormView
@@ -37,6 +38,17 @@ def robots_txt(request):
         return HttpResponse(f.read(), content_type="text/plain")
 
 
+def autocomplete(request):
+    query = request.GET.get('input')
+    api_url = f"https://maps.googleapis.com/maps/api/place/autocomplete/json"
+    params = {
+        'input': query,
+        'key': settings.GOOGLE_MAPS_API_KEY,
+    }
+    response = requests.get(api_url, params=params)
+    return JsonResponse(response.json())
+
+
 class IndexTemplateView(FormView):
     form_class = ContactForm
     template_name = 'index.html'
@@ -60,5 +72,3 @@ class IndexTemplateView(FormView):
         messages.success(self.request, 'Your message was sent successfully!')
 
         return HttpResponseRedirect(self.request.path_info)
-
-

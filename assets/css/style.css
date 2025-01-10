@@ -416,7 +416,7 @@ h1, h2, h3, h4, h5, h6 {
 
 #hero h1 {
     margin: 0 0 10px 0;
-    font-size: 48px;
+    font-size: 42px;
     font-weight: 700;
     line-height: 56px;
     color: var(--main-black);
@@ -427,7 +427,7 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--main-black);
     /*color: white;*/
     margin-bottom: 50px;
-    font-size: 24px;
+    font-size: 22px;
 }
 
 #hero .btn-get-started {
@@ -1530,7 +1530,7 @@ section {
 .error {
     color: darkred;
     font-size: 14px;
-    padding-top: 10px;
+    padding-top: 6px;
     width: 100%;
 }
 
@@ -1639,7 +1639,7 @@ section {
 --------------------------------------------------------------*/
 .breadcrumbs {
     padding: 15px 0;
-    background: #f3f5fa;
+    background: var(--light-grey);
     min-height: 40px;
     margin-top: 72px;
 }
@@ -1653,7 +1653,7 @@ section {
 .breadcrumbs h2 {
     font-size: 28px;
     font-weight: 600;
-    color: #37517e;
+    color: var(--main-black);
 }
 
 .breadcrumbs ol {
@@ -1672,7 +1672,7 @@ section {
 .breadcrumbs ol li + li::before {
     display: inline-block;
     padding-right: 10px;
-    color: #4668a2;
+    color: var(--main-black);
     content: "/";
 }
 
@@ -1910,7 +1910,26 @@ section {
     }
 
     #header .logo img {
-    max-height: 55px;
-}
+        max-height: 55px;
+    }
+
+    .time-to-label-mobile {
+        display: none;
+    }
 }
 
+.hide {
+    display: none;
+}
+
+.param-unit {
+    top: 50%;
+    transform: translateY(-50%);
+    right: 17px;
+}
+
+.mandatory::before {
+    content: "*";
+    color: var(--dark-gold);
+    margin-right: 5px;
+}

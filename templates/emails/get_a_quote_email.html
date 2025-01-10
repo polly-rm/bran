@@ -1,0 +1,35 @@
+<html>
+<body style="font-size: 14px">
+
+  <p>You have a new quote request on Bran Logistics from:</p>
+  <p><b>Name:</b> {{ form_data.name }}</p>
+  <p><b>Contact telephone:</b> {{ form_data.contact_telephone }}</p>
+  <p><b>Email:</b> {{ form_data.email }}</p>
+  <br>
+
+  <p>Transport details:</p>
+  <p><b>Collect from:</b> {{ form_data.postcode_from }}</p>
+  {% if form_data.company_from %}<p><b>Company to collect from:</b> {{ form_data.company_from }}</p>{% endif %}
+  <p><b>Deliver to:</b> {{ form_data.postcode_to }}</p>
+  {% if form_data.company_to %}<p><b>Company to collect to:</b> {{ form_data.company_to }}</p>{% endif %}
+  <p><b>Date and time to collect:</b> {{ form_data.time_to_collect_from }} {% if form_data.time_to_collect_to %}- {{ form_data.time_to_collect_to }}{% endif %}</p>
+  <p><b>Date and time to deliver:</b> {{ form_data.time_to_deliver_from }} {% if form_data.time_to_deliver_to %}- {{ form_data.time_to_deliver_to }}{% endif %}</p>
+  <br>
+
+  <p>Parcel details:</p>
+  {% for parcel in formset_data %}
+      {% if parcel.count %}
+          <p>
+            <b>Parcel {{ forloop.counter }}:</b>
+            Count: {{ parcel.count }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dimensions: {{ parcel.length }}cm x {{ parcel.width }}cm x {{ parcel.height }}cm&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Weight: {{ parcel.weight }}kg
+          </p>
+      {% endif %}
+  {% endfor %}
+
+  {% if form_data.additional_info %}
+    <br>
+    <p><b>Additional information:</b> {{ form_data.additional_info }}</p>
+  {% endif %}
+
+</body>
+</html>

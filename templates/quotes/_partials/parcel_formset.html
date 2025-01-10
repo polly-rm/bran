@@ -1,0 +1,129 @@
+{% load i18n static %}
+
+
+{{ formset.management_form }}
+
+<div id="cargo-list">
+    <div id="formset" class="hidden">
+        {% for p_form in formset %}
+            <div class="cargo-form mb-3">
+                <div class="row">
+                    <div class="col-md-2 count">
+                        {{ p_form.count }}
+                    </div>
+                    <div class="col-md-2 length position-relative">
+                        {{ p_form.length }}
+                        <div class="position-absolute param-unit hide">{% trans 'cm' %}</div>
+                    </div>
+                    <div class="col-md-2 width position-relative">
+                        {{ p_form.width }}
+                        <div class="position-absolute param-unit hide">{% trans 'cm' %}</div>
+                    </div>
+                    <div class="col-md-2 height position-relative">
+                        {{ p_form.height }}
+                        <div class="position-absolute param-unit hide">{% trans 'cm' %}</div>
+                    </div>
+                    <div class="col-md-2 weight position-relative">
+                        {{ p_form.weight }}
+                        <div class="position-absolute param-unit hide">{% trans 'kg' %}</div>
+                    </div>
+                    <div class="col-md-1" style="text-align: right">
+                        <button class="input-group-text delete-tip" type="button" style="height: 100%"><i
+                                class="bi bi-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                {% if p_form.count.errors %}
+                    {% for error in p_form.count.errors %}
+                        <div class="error">{{ error }}</div>
+                    {% endfor %}
+                {% endif %}
+                {% if p_form.length.errors %}
+                    {% for error in p_form.length.errors %}
+                        <div class="error">{{ error }}</div>
+                    {% endfor %}
+                {% endif %}
+                {% if p_form.width.errors %}
+                    {% for error in p_form.width.errors %}
+                        <div class="error">{{ error }}</div>
+                    {% endfor %}
+                {% endif %}
+                {% if p_form.height.errors %}
+                    {% for error in p_form.height.errors %}
+                        <div class="error">{{ error }}</div>
+                    {% endfor %}
+                {% endif %}
+                {% if p_form.weight.errors %}
+                    {% for error in p_form.weight.errors %}
+                        <div class="error">{{ error }}</div>
+                    {% endfor %}
+                {% endif %}
+                <div id="error-message" class="error" style="display: none;">Parcel details fields are required.</div>
+            </div>
+
+        {% endfor %}
+    </div>
+</div>
+
+<div class="col-md-12 mt-4">
+    <button id="add-more" type="button" class="input-group-text" style="font-size: 14px; padding: 10px 17px">+ Add a parcel</button>
+</div>
+
+
+<template id="empty-form">
+    {% with p_form=formset.empty_form %}
+        <div class="cargo-form mb-3">
+            <div class="row">
+                <div class="col-md-2 count">
+                    {{ p_form.count }}
+                    <div class="error-message error-space">{{ p_form.count.errors }}</div>
+                </div>
+                <div class="col-md-2 length position-relative">
+                    {{ p_form.length }}
+                    <div class="position-absolute param-unit hide">{% trans 'cm' %}</div>
+                    <div class="error-message error-space">{{ p_form.length.errors }}</div>
+                </div>
+                <div class="col-md-2 width position-relative">
+                    {{ p_form.width }}
+                    <div class="position-absolute param-unit hide">{% trans 'cm' %}</div>
+                    <div class="error-message error-space">{{ p_form.width.errors }}</div>
+                </div>
+                <div class="col-md-2 height position-relative">
+                    {{ p_form.height }}
+                    <div class="position-absolute param-unit hide">{% trans 'cm' %}</div>
+                    <div class="error-message error-space">{{ p_form.height.errors }}</div>
+                </div>
+                <div class="col-md-2 weight position-relative">
+                    {{ p_form.weight }}
+                    <div class="position-absolute param-unit hide">{% trans 'kg' %}</div>
+                    <div class="error-message error-space">{{ p_form.weight.errors }}</div>
+                </div>
+                <div class="col-md-1" style="text-align: right">
+                    <button class="input-group-text delete-tip" style="height: 100%"><i class="bi bi-trash"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    {% endwith %}
+</template>
+
+
+<style>
+    /* Hiding the arrows */
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    input[type="number"] {
+        -moz-appearance: textfield;
+    }
+
+    .col-md-2 {
+        min-width: 18.3% !important;
+    }
+</style>
