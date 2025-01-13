@@ -14,8 +14,7 @@
                     <h2>Whether you need same-day, next-day, or urgent delivery services across the UK, we’ve got you
                         covered. Our courier services ensure your items arrive on time and in excellent condition.</h2>
                     <div class="contact-btn-mobile-hide">
-                        <a href="#contact" class="btn-get-started scrollto" style="min-width: 135px !important;">Contact
-                            us</a>
+                        <a href="{% url 'quotes:get-a-quote' %}" class="btn-get-started scrollto" style="min-width: 135px !important;">Get a Quote</a>
                     </div>
                 </div>
                 {#                <img src="{% static 'img/main.jpg' %}" alt="background">#}
@@ -440,14 +439,14 @@
 
                             <div class="row">
                                 <div class="form-group col-md-6">
-                                    <label for="name">{{ form.name.label }}</label>
+                                    <label for="name" class="mandatory">{{ form.name.label }}</label>
                                     {{ form.name }}
                                     {% for error in form.name.errors %}
                                         <div class="error">{{ error }}</div>
                                     {% endfor %}
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="name">{{ form.email.label }}</label>
+                                    <label for="email" class="mandatory">{{ form.email.label }}</label>
                                     {{ form.email }}
                                     {% for error in form.email.errors %}
                                         <div class="error">{{ error }}</div>
@@ -455,14 +454,14 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="name">{{ form.subject.label }}</label>
+                                <label for="subject" class="mandatory">{{ form.subject.label }}</label>
                                 {{ form.subject }}
                                 {% for error in form.subject.errors %}
                                     <div class="error">{{ error }}</div>
                                 {% endfor %}
                             </div>
                             <div class="form-group">
-                                <label for="name">{{ form.message.label }}</label>
+                                <label for="message" class="mandatory">{{ form.message.label }}</label>
                                 {{ form.message }}
                                 {% for error in form.message.errors %}
                                     <div class="error">{{ error }}</div>
