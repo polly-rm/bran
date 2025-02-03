@@ -35,6 +35,7 @@
             <div class="col-lg-8 mt-5 mt-lg-0 d-flex align-items-stretch">
                 <form action="{% url 'quotes:get-a-quote' %}" method="post" class="php-email-form">
                     {% csrf_token %}
+                    {{ form.honeypot }}
 
                     <div class="row">
                         <div class="form-group">

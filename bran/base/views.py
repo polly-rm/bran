@@ -4,7 +4,7 @@ import requests
 
 from io import BytesIO
 
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseForbidden
 from django.http import JsonResponse
 from django.contrib import messages
 from django.http import HttpResponseRedirect
@@ -63,6 +63,9 @@ class IndexTemplateView(FormView):
         return initial
 
     def form_valid(self, form):
+        if form.cleaned_data.get('honeypot'):
+            return HttpResponseForbidden('Spam detected!')
+
         name = form.cleaned_data.get('name')
         email = form.cleaned_data.get('email')
         subject = form.cleaned_data.get('subject')

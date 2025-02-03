@@ -51,3 +51,8 @@ class ContactForm(forms.Form):
     captcha = ReCaptchaField(
         widget=ReCaptchaV2Checkbox()
     )
+    honeypot = forms.CharField(
+        required=False,
+        widget=forms.HiddenInput()
+    )
+

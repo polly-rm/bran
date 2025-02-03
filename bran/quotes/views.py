@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponseForbidden
 from django.views.generic import FormView
 
 from bran.base.emails import email_get_quote
@@ -22,6 +22,9 @@ class GetQuote(FormView):
             return self.forms_invalid(form, formset)
 
     def forms_valid(self, form, formset):
+        if form.cleaned_data.get('honeypot'):
+            return HttpResponseForbidden('Spam detected!')
+
         email_get_quote(form.cleaned_data, formset.cleaned_data)
         messages.success(self.request, 'Your quote request was sent successfully!')
 
