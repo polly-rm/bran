@@ -1,6 +1,8 @@
 from django import forms
 from django.core.validators import MaxLengthValidator
 from django.forms import formset_factory
+from django_recaptcha.fields import ReCaptchaField
+from django_recaptcha.widgets import ReCaptchaV2Checkbox
 
 
 class QuoteForm(forms.Form):
@@ -142,6 +144,9 @@ class QuoteForm(forms.Form):
                 'class': 'form-control hide'
             },
         )
+    )
+    captcha = ReCaptchaField(
+        widget=ReCaptchaV2Checkbox()
     )
 
 

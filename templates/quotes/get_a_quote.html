@@ -89,7 +89,8 @@
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label for="time_to_collect_from" class="mandatory">{{ form.time_to_collect_from.label }}</label>
+                            <label for="time_to_collect_from"
+                                   class="mandatory">{{ form.time_to_collect_from.label }}</label>
                             <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
                                 {{ form.time_to_collect_from }}
                                 <div class="input-group-append" data-target="#datetimepicker1"
@@ -118,7 +119,8 @@
                             {% endfor %}
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="time_to_deliver_from" class="mandatory">{{ form.time_to_deliver_from.label }}</label>
+                            <label for="time_to_deliver_from"
+                                   class="mandatory">{{ form.time_to_deliver_from.label }}</label>
                             <div class="input-group date" id="datetimepicker3" data-target-input="nearest">
                                 {{ form.time_to_deliver_from }}
                                 <div class="input-group-append" data-target="#datetimepicker3"
@@ -157,6 +159,13 @@
                                 <input type="checkbox" id="toggleCheckbox"> {{ form.additional_info.label }}</label>
                             {{ form.additional_info }}
                             {% for error in form.additional_info.errors %}
+                                <div class="error">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+
+                        <div class="form-group">
+                            {{ form.captcha }}
+                            {% for error in form.captcha.errors %}
                                 <div class="error">{{ error }}</div>
                             {% endfor %}
                         </div>
