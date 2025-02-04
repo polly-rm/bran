@@ -198,3 +198,4 @@ CSRF_USE_SESSIONS = False  # (Optional) Control how CSRF token is stored.
 CSRF_TRUSTED_ORIGINS = ['https://www.branlogistics.co.uk', 'https://branlogistics.co.uk/']
 
 GOOGLE_MAPS_API_KEY = os.getenv('GOOGLE_MAPS_API_KEY')
+GOOGLE_MAPS_DISTANCE_API_KEY = os.getenv('GOOGLE_MAPS_DISTANCE_API_KEY')
