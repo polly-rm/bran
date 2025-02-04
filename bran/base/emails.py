@@ -71,13 +71,14 @@ def email_contact_us(name, email, title, message):
     send_mail(subject, html_content, EMAIL_HOST_USER, from_email=email, message_to_save=message)
 
 
-def email_get_quote(form_data, formset_data):
+def email_get_quote(form_data, formset_data, distance):
     subject = 'Quote Request'
     html_content = (
         get_template('emails/get_a_quote_email.html').render(
             {
                 'form_data': form_data,
                 'formset_data': formset_data,
+                'distance': distance,
             }
         )
     )

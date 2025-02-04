@@ -15,7 +15,10 @@
   <p><b>Date and time to collect:</b> {{ form_data.time_to_collect_from }} {% if form_data.time_to_collect_to %}- {{ form_data.time_to_collect_to }}{% endif %}</p>
   <p><b>Date and time to deliver:</b> {{ form_data.time_to_deliver_from }} {% if form_data.time_to_deliver_to %}- {{ form_data.time_to_deliver_to }}{% endif %}</p>
   <br>
-
+  {% if distance %}
+  <p>Distance: {{ distance.distance_text }} (~{{ distance.duration_text }})</p>
+  <br>
+  {% endif %}
   <p>Parcel details:</p>
   {% for parcel in formset_data %}
       {% if parcel.count %}

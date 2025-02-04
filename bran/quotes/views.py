@@ -2,8 +2,10 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect, HttpResponseForbidden
 from django.views.generic import FormView
 
+from bran.base.common import get_driving_distance
 from bran.base.emails import email_get_quote, email_automatic_answer
 from bran.quotes.forms import QuoteForm, ParcelFormset
+from bran.settings import GOOGLE_MAPS_API_KEY
 
 
 class GetQuote(FormView):
@@ -25,7 +27,9 @@ class GetQuote(FormView):
         if form.cleaned_data.get('honeypot'):
             return HttpResponseForbidden('Spam detected!')
 
-        email_get_quote(form.cleaned_data, formset.cleaned_data)
+        distance = self.get_distance(form)
+
+        email_get_quote(form.cleaned_data, formset.cleaned_data, distance)
         email_automatic_answer(form.cleaned_data.get('email'))
         messages.success(self.request, 'Your quote request was sent successfully!')
 
@@ -44,3 +48,10 @@ class GetQuote(FormView):
             context['form'] = QuoteForm()
 
         return context
+
+    @staticmethod
+    def get_distance(form):
+        postcode_from = form.cleaned_data.get('postcode_from')
+        postcode_to = form.cleaned_data.get('postcode_to')
+
+        return get_driving_distance(postcode_from, postcode_to, GOOGLE_MAPS_API_KEY)
