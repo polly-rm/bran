@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect, HttpResponseForbidden
 from django.views.generic import FormView
 
-from bran.base.emails import email_get_quote
+from bran.base.emails import email_get_quote, email_automatic_answer
 from bran.quotes.forms import QuoteForm, ParcelFormset
 
 
@@ -26,6 +26,7 @@ class GetQuote(FormView):
             return HttpResponseForbidden('Spam detected!')
 
         email_get_quote(form.cleaned_data, formset.cleaned_data)
+        email_automatic_answer(form.cleaned_data.get('email'))
         messages.success(self.request, 'Your quote request was sent successfully!')
 
         return HttpResponseRedirect(self.request.path_info)

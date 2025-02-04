@@ -11,7 +11,7 @@ from django.http import HttpResponseRedirect
 from django.views.generic import FormView
 
 from bran import settings
-from bran.base.emails import email_contact_us
+from bran.base.emails import email_contact_us, email_automatic_answer
 from bran.base.forms import ContactForm
 from bran.settings import CURRENT_DOMAIN
 
@@ -72,6 +72,7 @@ class IndexTemplateView(FormView):
         message = form.cleaned_data.get('message')
 
         email_contact_us(name, email, subject, message)
+        email_automatic_answer(email)
         messages.success(self.request, 'Your message was sent successfully!')
 
         return HttpResponseRedirect(self.request.path_info)

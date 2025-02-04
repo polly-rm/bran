@@ -22,7 +22,10 @@ class SendEmail(TimeStampedModel):
     subject = models.CharField(
         max_length=256
     )
-    message = models.TextField()
+    message = models.TextField(
+        null=True,
+        blank=True,
+    )
     is_sent = models.BooleanField()
 
     def __str__(self):

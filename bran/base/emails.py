@@ -27,13 +27,14 @@ def send_mail(subject, message, to, from_email=None, message_to_save=None, attac
 
     is_sent = msg.send(fail_silently=fail_silently)
 
-    SendEmail.objects.create(
-        email_from=from_email,
-        email_to=', '.join(to),
-        subject=subject,
-        message=message_to_save,
-        is_sent=is_sent
-    )
+    if message_to_save:
+        SendEmail.objects.create(
+            email_from=from_email,
+            email_to=', '.join(to),
+            subject=subject,
+            message=message_to_save,
+            is_sent=is_sent
+        )
 
     return is_sent
 
@@ -81,4 +82,14 @@ def email_get_quote(form_data, formset_data):
         )
     )
 
-    send_mail(subject, html_content, EMAIL_HOST_USER, from_email=form_data.get('email'), message_to_save=f'Quote request from {form_data["email"]}')
+    send_mail(subject, html_content, EMAIL_HOST_USER, from_email=form_data.get('email'),
+              message_to_save=f'Quote request from {form_data["email"]}')
+
+
+def email_automatic_answer(email):
+    subject = 'We’ll Get Back to You Soon!'
+    html_content = (
+        get_template('emails/automatic_email.html').render({})
+    )
+
+    send_mail(subject, html_content, email, from_email=f'Bran Logistics <{EMAIL_HOST_USER}>')
