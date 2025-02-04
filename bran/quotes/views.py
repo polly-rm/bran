@@ -5,7 +5,7 @@ from django.views.generic import FormView
 from bran.base.common import get_driving_distance
 from bran.base.emails import email_get_quote, email_automatic_answer
 from bran.quotes.forms import QuoteForm, ParcelFormset
-from bran.settings import GOOGLE_MAPS_API_KEY
+from bran.settings import GOOGLE_MAPS_DISTANCE_API_KEY
 
 
 class GetQuote(FormView):
@@ -54,4 +54,4 @@ class GetQuote(FormView):
         postcode_from = form.cleaned_data.get('postcode_from')
         postcode_to = form.cleaned_data.get('postcode_to')
 
-        return get_driving_distance(postcode_from, postcode_to, GOOGLE_MAPS_API_KEY)
+        return get_driving_distance(postcode_from, postcode_to, GOOGLE_MAPS_DISTANCE_API_KEY)
