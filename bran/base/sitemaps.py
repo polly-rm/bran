@@ -14,6 +14,12 @@ class StaticSitemap(Sitemap):
         if item == 'index':
             return '/'  # URL for the homepage
 
+    def get_urls(self, site=None, **kwargs):
+        urls = super().get_urls(site=site, **kwargs)
+        for url in urls:
+            url['location'] = 'https://branlogistics.co.uk/'
+        return urls
+
 
 class SendEmailSitemap(Sitemap):
     changefreq = "monthly"  # Change frequency of the SendEmail entries
@@ -24,4 +30,3 @@ class SendEmailSitemap(Sitemap):
 
     def lastmod(self, obj):
         return obj.updated_at  # Last updated time of the SendEmail entry
-
