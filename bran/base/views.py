@@ -1,6 +1,7 @@
 import os
 import qrcode
 import requests
+import time
 
 from io import BytesIO
 
@@ -11,6 +12,7 @@ from django.http import HttpResponseRedirect
 from django.views.generic import FormView
 
 from bran import settings
+from bran.base.common import check_for_spam
 from bran.base.emails import email_contact_us, email_automatic_answer
 from bran.base.forms import ContactForm
 from bran.settings import CURRENT_DOMAIN
@@ -54,7 +56,7 @@ class IndexTemplateView(FormView):
     template_name = 'index.html'
 
     def get_initial(self):
-        initial = super().get_initial()
+        initial = {'timestamp': str(time.time())}
         user = self.request.user
 
         if user.is_authenticated:
@@ -62,10 +64,16 @@ class IndexTemplateView(FormView):
 
         return initial
 
-    def form_valid(self, form):
-        if form.cleaned_data.get('honeypot'):
-            return HttpResponseForbidden('Spam detected!')
+    def post(self, request, *args, **kwargs):
+        form = self.get_form()
+        check_for_spam(request)
 
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+    def form_valid(self, form):
         name = form.cleaned_data.get('name')
         email = form.cleaned_data.get('email')
         subject = form.cleaned_data.get('subject')

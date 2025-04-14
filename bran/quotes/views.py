@@ -1,8 +1,10 @@
+import time
+
 from django.contrib import messages
 from django.http import HttpResponseRedirect, HttpResponseForbidden
 from django.views.generic import FormView
 
-from bran.base.common import get_driving_distance
+from bran.base.common import get_driving_distance, check_for_spam
 from bran.base.emails import email_get_quote, email_automatic_answer
 from bran.quotes.forms import QuoteForm, ParcelFormset
 from bran.settings import GOOGLE_MAPS_DISTANCE_API_KEY
@@ -14,9 +16,15 @@ class GetQuote(FormView):
 
     FORMSET_PREFIX = 'parcel'
 
+    def get_initial(self):
+        initial = {'timestamp': str(time.time())}
+
+        return initial
+
     def post(self, request, *args, **kwargs):
         form = self.get_form(self.get_form_class())
         formset = ParcelFormset(request.POST, prefix=self.FORMSET_PREFIX)
+        check_for_spam(request)
 
         if form.is_valid() and formset.is_valid():
             return self.forms_valid(form, formset)

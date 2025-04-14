@@ -148,8 +148,11 @@ class QuoteForm(forms.Form):
     captcha = ReCaptchaField(
         widget=ReCaptchaV2Checkbox()
     )
-    honeypot = forms.CharField(
+    middle_name = forms.CharField(
         required=False,
+        widget=forms.HiddenInput()
+    )
+    timestamp = forms.CharField(
         widget=forms.HiddenInput()
     )
 

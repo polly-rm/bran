@@ -14,7 +14,8 @@
                     <h2>Whether you need same-day, next-day, or urgent delivery services across the UK, we’ve got you
                         covered. Our courier services ensure your items arrive on time and in excellent condition.</h2>
                     <div class="contact-btn-mobile-hide">
-                        <a href="{% url 'quotes:get-a-quote' %}" class="btn-get-started scrollto" style="min-width: 135px !important;">Get a Quote</a>
+                        <a href="{% url 'quotes:get-a-quote' %}" class="btn-get-started scrollto"
+                           style="min-width: 135px !important;">Get a Quote</a>
                     </div>
                 </div>
                 {#                <img src="{% static 'img/main.jpg' %}" alt="background">#}
@@ -25,7 +26,8 @@
         </div>
 
         <div class="contact-btn-mobile" style="display: none">
-            <a href="{% url 'quotes:get-a-quote' %}" class="btn-get-started scrollto" style="min-width: 135px !important;">Get a Quote</a>
+            <a href="{% url 'quotes:get-a-quote' %}" class="btn-get-started scrollto"
+               style="min-width: 135px !important;">Get a Quote</a>
         </div>
     </section>
     <!-- End Title -->
@@ -436,7 +438,8 @@
                     <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
                         <form action="{% url 'index' %}#contact" method="post" class="php-email-form">
                             {% csrf_token %}
-                            {{ form.honeypot }}
+                            {{ form.middle_name }}
+                            {{ form.timestamp }}
 
                             <div class="row">
                                 <div class="form-group col-md-6">
