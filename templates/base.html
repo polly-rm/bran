@@ -8,8 +8,8 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Bran Logistics</title>
-    <meta content="Efficient 24/7 logistics solutions including delivery, courier and house removal services. We ensure timely and reliable same-day transport across all regions of UK."
+    <title>Efficient Urgent Delivery and Courier Services</title>
+    <meta content="Efficient 24/7 logistics solutions including delivery and house removal services. We ensure timely and reliable same-day transport across all regions of UK."
           name="description">
     <meta content="bran, branlogistics, bran logistics, logistics, logistic, transport, transportation, courier, delivery, house removals, urgent, overnight, swb, mwb, small van, 24/7, same-day delivery, Bournemouth, United Kingdom, England, uk, luton van, tail lift, van, curtain sider"
           name="keywords">
@@ -35,12 +35,14 @@
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
     <!-- Cookieconsent CSS File -->
     <link rel="stylesheet" href="{% static 'css/cookieconsent.min.css' %}">
+    <link rel="canonical" href="https://branlogistics.co.uk/"/>
 
     {% block stylesheets %}
     {% endblock stylesheets %}
 
     <!-- Load Google Maps API with a callback -->
-    <script src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&libraries=places&callback=initAutocomplete" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&libraries=places&callback=initAutocomplete"
+            async defer></script>
 </head>
 
 <!-- Tawk.to Script-->
@@ -55,7 +57,8 @@
         <!-- Uncomment below if you prefer to use an image logo -->
         <a href="{% url 'index' %}" class="logo me-auto">
             <img id="logo" src="{% static 'img/logo-new.png' %}" alt="logo" class="img-fluid">
-            <img id="logo" src="{% static 'img/logo-black-no-background.png' %}" alt="logo" class="img-fluid" style="display: none">
+            <img id="logo" src="{% static 'img/logo-black-no-background.png' %}" alt="logo" class="img-fluid"
+                 style="display: none">
         </a>
 
         {% include '_partials/navigation.html' %}
