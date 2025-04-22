@@ -1937,3 +1937,15 @@ section {
 .service-title {
     font-size: 24px;
 }
+
+@media (min-width: 768px) {
+    .title-mobile-wide {
+        padding-top: 3rem;
+    }
+}
+
+@media (min-width: 992px) {
+    .title-box-wide {
+        width: 55%;
+    }
+}
