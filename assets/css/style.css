@@ -411,7 +411,7 @@ h1, h2, h3, h4, h5, h6 {
 /*}*/
 
 #hero .container {
-    padding-top: 72px;
+    padding-top: 65px;
 }
 
 #hero h1 {
@@ -1932,4 +1932,8 @@ section {
     content: "*";
     color: var(--dark-gold);
     margin-right: 5px;
+}
+
+.service-title {
+    font-size: 24px;
 }
