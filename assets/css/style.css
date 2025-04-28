@@ -149,7 +149,8 @@ a:hover {
 }
 
 #header .logo img {
-    max-height: 70px
+    max-height: 70px;
+    width: auto;
 }
 
 .navbar {
@@ -360,7 +361,7 @@ a:hover {
 }
 
 #hero .container {
-    padding-top: 65px
+    padding-top: 65px;
 }
 
 #hero h1 {
@@ -417,7 +418,7 @@ a:hover {
     }
 
     #hero, #hero .hero-img {
-        text-align: center
+        text-align: center;
     }
 
     #hero {
@@ -432,22 +433,24 @@ a:hover {
     #hero .hero-img img {
         width: 50%
     }
-}
 
-@media (max-width: 768px) {
-    #hero h1 {
-        font-size: 28px;
-        line-height: 36px
+    .contact-btn-mobile-hide, .time-to-label-mobile {
+        display: none
     }
 
-    #hero h2 {
-        font-size: 18px;
-        line-height: 24px;
-        margin-bottom: 30px
+    .container-mobile {
+        position: absolute;
+        top: 65px;
+        left: 50%;
+        transform: translateX(-50%);
     }
 
-    #hero .hero-img img {
-        width: 70%
+    .contact-btn-mobile {
+        position: absolute;
+        bottom: 95px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: inline-block !important
     }
 }
 
@@ -605,7 +608,7 @@ section {
 
 .why-us .img {
     background-size: contain;
-    background-position: center center
+    background-position: center;
 }
 
 .why-us .accordion-list {
@@ -692,9 +695,34 @@ section {
         max-width: 60%;
         margin: 0 auto 30px
     }
+
+    .breadcrumbs {
+        margin-top: 68px
+    }
 }
 
 @media (max-width: 575px) {
+    #hero {
+        background-image: url('../img/main-mobile.png');
+    }
+
+    @supports (background-image:url("../img-webp/main-mobile.webp")) {
+        #hero {
+            background-image: url('../img-webp/main-mobile.webp')
+        }
+    }
+
+    #hero h1 {
+        font-size: 28px;
+        line-height: 36px
+    }
+
+    #hero h2 {
+        font-size: 18px;
+        line-height: 24px;
+        margin-bottom: 30px
+    }
+
     #hero .hero-img img {
         width: 80%
     }
@@ -1396,12 +1424,6 @@ section {
     margin-top: 72px
 }
 
-@media (max-width: 992px) {
-    .breadcrumbs {
-        margin-top: 68px
-    }
-}
-
 .breadcrumbs h2 {
     font-size: 28px;
     font-weight: 600;
@@ -1628,23 +1650,6 @@ section {
         flex-direction: column
     }
 
-    .contact-btn-mobile-hide, .time-to-label-mobile {
-        display: none
-    }
-
-    .container-mobile {
-        position: absolute;
-        top: 65px
-    }
-
-    .contact-btn-mobile {
-        position: absolute;
-        bottom: 95px;
-        left: 50%;
-        transform: translateX(-50%);
-        display: inline-block !important
-    }
-
     #header .logo img {
         max-height: 55px
     }
@@ -1669,6 +1674,16 @@ section {
 @media (min-width: 768px) {
     .title-mobile-wide {
         padding-top: 3rem
+    }
+
+    #hero h1 {
+        font-size: 42px;
+        font-weight: 700;
+        line-height: 56px
+    }
+
+    #hero h2 {
+        font-size: 22px
     }
 }
 
