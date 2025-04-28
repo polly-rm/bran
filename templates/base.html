@@ -22,13 +22,41 @@
           rel="stylesheet">
 
     <!-- Vendor CSS Files -->
-    <link href="{% static 'vendor/aos/aos.css' %}" rel="stylesheet">
-    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-    <link href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
-    <link href="{% static 'vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
-    <link href="{% static 'vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
-    <link href="{% static 'vendor/remixicon/remixicon.css' %}" rel="stylesheet">
-    <link href="{% static 'vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendor/aos/aos.css' %}" rel="stylesheet" media="print"
+          onload="this.onload=null;this.media='all';">
+    <noscript>
+        <link href="{% static 'vendor/aos/aos.css' %}" rel="stylesheet">
+    </noscript>
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" media="print"
+          onload="this.onload=null;this.media='all';">
+    <noscript>
+        <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    </noscript>
+    <link href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet" media="print"
+          onload="this.onload=null;this.media='all';">
+    <noscript>
+        <link href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+    </noscript>
+    <link href="{% static 'vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet" media="print"
+          onload="this.onload=null;this.media='all';">
+    <noscript>
+        <link href="{% static 'vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+    </noscript>
+    <link href="{% static 'vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet" media="print"
+          onload="this.onload=null;this.media='all';">
+    <noscript>
+        <link href="{% static 'vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+    </noscript>
+    <link href="{% static 'vendor/remixicon/remixicon.css' %}" rel="stylesheet" media="print"
+          onload="this.onload=null;this.media='all';">
+    <noscript>
+        <link href="{% static 'vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+    </noscript>
+    <link href="{% static 'vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet" media="print"
+          onload="this.onload=null;this.media='all';">
+    <noscript>
+        <link href="{% static 'vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+    </noscript>
 
     <!-- Template Main CSS File -->
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
@@ -40,6 +68,7 @@
     {% endblock stylesheets %}
 
     <!-- Load Google Maps API with a callback -->
+    <script>function initAutocomplete() {}</script>
     <script src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&libraries=places&callback=initAutocomplete"
             async defer></script>
 
@@ -59,7 +88,7 @@
 </head>
 
 <!-- Tawk.to Script-->
-<script src="{% static 'js/takwToChat.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/takwToChat.js' %}" type="text/javascript" defer></script>
 
 <body>
 
@@ -69,9 +98,10 @@
         {#        <h1 class="logo me-auto"><a href="#">Bran P&T</a></h1>#}
         <!-- Uncomment below if you prefer to use an image logo -->
         <a href="{% url 'index' %}" class="logo me-auto">
-            <img id="logo" src="{% static 'img/logo-new.png' %}" alt="logo" class="img-fluid">
-            <img id="logo" src="{% static 'img/logo-black-no-background.png' %}" alt="logo" class="img-fluid"
-                 style="display: none">
+            <picture id="logo">
+                <source srcset="{% static 'img-webp/logo-new.webp' %}" type="image/webp">
+                <img src="{% static 'img/logo-new.jpg' %}" alt="Logo" class="img-fluid">
+            </picture>
         </a>
 
         {% include '_partials/navigation.html' %}
@@ -95,19 +125,19 @@
 <script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
 
 <!-- Vendor JS Files -->
-<script src="{% static 'vendor/aos/aos.js' %}"></script>
-<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-<script src="{% static 'vendor/glightbox/js/glightbox.min.js' %}"></script>
-<script src="{% static 'vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
-<script src="{% static 'vendor/swiper/swiper-bundle.min.js' %}"></script>
-<script src="{% static 'vendor/waypoints/noframework.waypoints.js' %}"></script>
+<script src="{% static 'vendor/aos/aos.js' %}" defer></script>
+<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}" defer></script>
+<script src="{% static 'vendor/glightbox/js/glightbox.min.js' %}" defer></script>
+<script src="{% static 'vendor/isotope-layout/isotope.pkgd.min.js' %}" defer></script>
+<script src="{% static 'vendor/swiper/swiper-bundle.min.js' %}" defer></script>
+<script src="{% static 'vendor/waypoints/noframework.waypoints.js' %}" defer></script>
 
 <!-- Template Main JS File -->
-<script src="{% static 'js/main.js' %}"></script>
+<script src="{% static 'js/main.js' %}" defer></script>
 
 <!-- Csrf and Cookieconsent JS Files -->
-<script src="{% static 'js/csrf.js' %}"></script>
-<script src="{% static 'js/cookieconsent.min.js' %}" data-cfasync="false"></script>
+<script src="{% static 'js/csrf.js' %}" defer></script>
+<script src="{% static 'js/cookieconsent.min.js' %}" data-cfasync="false" defer></script>
 
 <script>
     window.cookieconsent.initialise({

@@ -40,21 +40,22 @@
 
                     <div class="row">
                         <div class="form-group">
-                            <label for="name" class="mandatory">{{ form.name.label }}</label>
+                            <label for="{{ form.name.id_for_label }}" class="mandatory">{{ form.name.label }}</label>
                             {{ form.name }}
                             {% for error in form.name.errors %}
                                 <div class="error">{{ error }}</div>
                             {% endfor %}
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="contact_telephone" class="mandatory">{{ form.contact_telephone.label }}</label>
+                            <label for="{{ form.contact_telephone.id_for_label }}"
+                                   class="mandatory">{{ form.contact_telephone.label }}</label>
                             {{ form.contact_telephone }}
                             {% for error in form.contact_telephone.errors %}
                                 <div class="error">{{ error }}</div>
                             {% endfor %}
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="email" class="mandatory">{{ form.email.label }}</label>
+                            <label for="{{ form.email.id_for_label }}" class="mandatory">{{ form.email.label }}</label>
                             {{ form.email }}
                             {% for error in form.email.errors %}
                                 <div class="error">{{ error }}</div>
@@ -62,28 +63,30 @@
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label for="postcode_from" class="mandatory">{{ form.postcode_from.label }}</label>
+                            <label for="{{ form.postcode_from.id_for_label }}"
+                                   class="mandatory">{{ form.postcode_from.label }}</label>
                             {{ form.postcode_from }}
                             {% for error in form.postcode_from.errors %}
                                 <div class="error">{{ error }}</div>
                             {% endfor %}
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="company_from">{{ form.company_from.label }}</label>
+                            <label for="{{ form.company_from.id_for_label }}">{{ form.company_from.label }}</label>
                             {{ form.company_from }}
                             {% for error in form.company_from.errors %}
                                 <div class="error">{{ error }}</div>
                             {% endfor %}
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="postcode_to" class="mandatory">{{ form.postcode_to.label }}</label>
+                            <label for="{{ form.postcode_to.id_for_label }}"
+                                   class="mandatory">{{ form.postcode_to.label }}</label>
                             {{ form.postcode_to }}
                             {% for error in form.postcode_to.errors %}
                                 <div class="error">{{ error }}</div>
                             {% endfor %}
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="company_to">{{ form.company_to.label }}</label>
+                            <label for="{{ form.company_to.id_for_label }}">{{ form.company_to.label }}</label>
                             {{ form.company_to }}
                             {% for error in form.company_to.errors %}
                                 <div class="error">{{ error }}</div>
@@ -91,7 +94,7 @@
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label for="time_to_collect_from"
+                            <label for="{{ form.time_to_collect_from.id_for_label }}"
                                    class="mandatory">{{ form.time_to_collect_from.label }}</label>
                             <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
                                 {{ form.time_to_collect_from }}
@@ -106,7 +109,7 @@
                             {% endfor %}
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="time_to_collect_to" style="visibility: hidden"
+                            <label for="{{ form.time_to_collect_to.id_for_label }}" style="visibility: hidden"
                                    class="mandatory time-to-label-mobile">{{ form.time_to_collect_to.label }}</label>
                             <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
                                 {{ form.time_to_collect_to }}
@@ -121,7 +124,7 @@
                             {% endfor %}
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="time_to_deliver_from"
+                            <label for="{{ form.time_to_deliver_from.id_for_label }}"
                                    class="mandatory">{{ form.time_to_deliver_from.label }}</label>
                             <div class="input-group date" id="datetimepicker3" data-target-input="nearest">
                                 {{ form.time_to_deliver_from }}
@@ -136,7 +139,7 @@
                             {% endfor %}
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="time_to_deliver_to" style="visibility: hidden"
+                            <label for="{{ form.time_to_deliver_to.id_for_label }}" style="visibility: hidden"
                                    class="mandatory time-to-label-mobile">{{ form.time_to_deliver_to.label }}</label>
                             <div class="input-group date" id="datetimepicker4" data-target-input="nearest">
                                 {{ form.time_to_deliver_to }}
@@ -157,7 +160,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="additional_info" class="d-flex align-items-center gap-2">
+                            <label for="{{ form.additional_info.id_for_label }}"
+                                   class="d-flex align-items-center gap-2">
                                 <input type="checkbox" id="toggleCheckbox"> {{ form.additional_info.label }}</label>
                             {{ form.additional_info }}
                             {% for error in form.additional_info.errors %}
@@ -192,7 +196,6 @@
     <script src="{% static 'js/quotes/datetimepicker.js' %}"></script>
     <script src="{% static 'js/quotes/toggleCheckbox.js' %}"></script>
     <script src="{% static 'js/quotes/displayErrors.js' %}"></script>
-    <script src="{% static 'js/quotes/googleMapsApi.js' %}"></script>
 
     <!-------- Single parameters cargo formset -------->
     <script>
