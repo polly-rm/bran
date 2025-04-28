@@ -18,10 +18,6 @@
                            style="min-width: 135px !important;">Get a Quote</a>
                     </div>
                 </div>
-                {#                <img src="{% static 'img/main.jpg' %}" alt="background">#}
-                {#                <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">#}
-                {#                    <img src="{% static 'img/title-img.png' %}" class="img-fluid animated" alt="delivery-img">#}
-                {#                </div>#}
             </div>
         </div>
 
@@ -174,7 +170,10 @@
                 <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
                     <div class="col-lg-4 col-md-6 portfolio-item filter-card">
                         <div class="portfolio-img">
-                            <img src="{% static 'img/vehicles/small-van.png' %}" class="img-fluid" alt="small-van">
+                            <picture>
+                                <source srcset="{% static 'img-webp/vehicles/small-van.webp' %}" type="image/webp">
+                                <img src="{% static 'img/vehicles/small-van.png' %}" alt="Small Van" class="img-fluid">
+                            </picture>
                         </div>
                         <div class="portfolio-info">
                             <h4>Small Van</h4>
@@ -192,7 +191,10 @@
 
                     <div class="col-lg-4 col-md-6 portfolio-item filter-card">
                         <div class="portfolio-img">
-                            <img src="{% static 'img/vehicles/swb.png' %}" class="img-fluid" alt="swb">
+                            <picture>
+                                <source srcset="{% static 'img-webp/vehicles/swb.webp' %}" type="image/webp">
+                                <img src="{% static 'img/vehicles/swb.png' %}" alt="SWB" class="img-fluid">
+                            </picture>
                         </div>
                         <div class="portfolio-info">
                             <h4>SWB</h4>
@@ -210,8 +212,10 @@
 
                     <div class="col-lg-4 col-md-6 portfolio-item filter-card">
                         <div class="portfolio-img">
-                            <img src="{% static 'img/vehicles/mwb.png' %}" class="img-fluid"
-                                 alt="mwb">
+                            <picture>
+                                <source srcset="{% static 'img-webp/vehicles/mwb.webp' %}" type="image/webp">
+                                <img src="{% static 'img/vehicles/mwb.png' %}" alt="MWB" class="img-fluid">
+                            </picture>
                         </div>
                         <div class="portfolio-info">
                             <h4>MWB</h4>
@@ -229,7 +233,10 @@
 
                     <div class="col-lg-4 col-md-6 portfolio-item filter-card">
                         <div class="portfolio-img">
-                            <img src="{% static 'img/vehicles/panel-van.png' %}" class="img-fluid" alt="panel-van">
+                            <picture>
+                                <source srcset="{% static 'img-webp/vehicles/panel-van.webp' %}" type="image/webp">
+                                <img src="{% static 'img/vehicles/panel-van.png' %}" alt="Panel Van" class="img-fluid">
+                            </picture>
                         </div>
                         <div class="portfolio-info">
                             <h4>Panel Vans 4m, 4m+</h4>
@@ -247,8 +254,10 @@
 
                     <div class="col-lg-4 col-md-6 portfolio-item filter-card">
                         <div class="portfolio-img">
-                            <img src="{% static 'img/vehicles/luton-box.png' %}" class="img-fluid"
-                                 alt="luton-box">
+                            <picture>
+                                <source srcset="{% static 'img-webp/vehicles/luton-box.webp' %}" type="image/webp">
+                                <img src="{% static 'img/vehicles/luton-box.png' %}" alt="Luton Box" class="img-fluid">
+                            </picture>
                         </div>
                         <div class="portfolio-info">
                             <h4>Luton Box Van</h4>
@@ -266,12 +275,14 @@
 
                     <div class="col-lg-4 col-md-6 portfolio-item filter-card">
                         <div class="portfolio-img">
-                            <img src="{% static 'img/vehicles/luton-curtian.jpg' %}" class="img-fluid"
-                                 alt="luton-curtain">
+                            <picture>
+                                <source srcset="{% static 'img-webp/vehicles/luton-curtian.webp' %}" type="image/webp">
+                                <img src="{% static 'img/vehicles/luton-curtian.png' %}" alt="Luton Curtain" class="img-fluid">
+                            </picture>
                         </div>
                         <div class="portfolio-info">
                             <h4>Luton Curtain Side Van</h4>
-                            <a href="{% static 'img/vehicles/luton-curtian.jpg' %}" data-gallery="portfolioGallery"
+                            <a href="{% static 'img/vehicles/luton-curtian.png' %}" data-gallery="portfolioGallery"
                                class="portfolio-lightbox preview-link"
                                title="<b>Luton Curtain Side Van</b>">
 
@@ -443,7 +454,7 @@
                             </div>
 
                             <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10659.719154679498!2d-1.8785!3d50.720806!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4873a1743afcbfa3%3A0x9c4cbf60fbb71e96!2sBournemouth%2C%20UK!5e0!3m2!1sen!2sbg!4v1539943755621"
-                                    style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe>
+                                    style="border:0; width: 100%; height: 290px;" allowfullscreen title="Google Maps location of Bran Logistics"></iframe>
                         </div>
                     </div>
 
@@ -455,14 +466,14 @@
 
                             <div class="row">
                                 <div class="form-group col-md-6">
-                                    <label for="name" class="mandatory">{{ form.name.label }}</label>
+                                    <label for="{{ form.name.id_for_label }}" class="mandatory">{{ form.name.label }}</label>
                                     {{ form.name }}
                                     {% for error in form.name.errors %}
                                         <div class="error">{{ error }}</div>
                                     {% endfor %}
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="email" class="mandatory">{{ form.email.label }}</label>
+                                    <label for="{{ form.email.id_for_label }}" class="mandatory">{{ form.email.label }}</label>
                                     {{ form.email }}
                                     {% for error in form.email.errors %}
                                         <div class="error">{{ error }}</div>
@@ -470,14 +481,14 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="subject" class="mandatory">{{ form.subject.label }}</label>
+                                <label for="{{ form.subject.id_for_label }}" class="mandatory">{{ form.subject.label }}</label>
                                 {{ form.subject }}
                                 {% for error in form.subject.errors %}
                                     <div class="error">{{ error }}</div>
                                 {% endfor %}
                             </div>
                             <div class="form-group">
-                                <label for="message" class="mandatory">{{ form.message.label }}</label>
+                                <label for="{{ form.message.id_for_label }}" class="mandatory">{{ form.message.label }}</label>
                                 {{ form.message }}
                                 {% for error in form.message.errors %}
                                     <div class="error">{{ error }}</div>
