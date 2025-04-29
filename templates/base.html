@@ -16,7 +16,6 @@
 
     <!-- Favicons -->
     <link href="{% static 'img/fav-icon.ico' %}" rel="icon" type="image/x-icon">
-    <link href="{% static 'img/fav-icon.ico' %}" rel="icon" type="image/x-icon">
 
     <!-- Preconnect Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -68,7 +67,23 @@
     <!-- Cookieconsent CSS File -->
     <link rel="stylesheet" href="{% static 'css/cookieconsent.min.css' %}">
     <link rel="canonical" href="https://branlogistics.co.uk/"/>
+
+    <!-- Preloads -->
     <link rel="preload" as="image" href="{% static 'img-webp/logo-new.webp' %}" type="image/webp">
+    <link rel="preload" as="image" href="{% static 'img-webp/main.webp' %}" type="image/webp">
+    <link rel="preload" as="image" href="{% static 'img-webp/main-mobile.webp' %}" type="image/webp">
+    <link rel="preload" as="font" type="font/woff"
+          href="{% static 'vendor/bootstrap-icons/fonts/bootstrap-icons.woff' %}" crossorigin="anonymous">
+    <link rel="preload" as="font" type="font/woff2"
+          href="{% static 'vendor/bootstrap-icons/fonts/bootstrap-icons.woff2' %}" crossorigin="anonymous">
+    <link rel="preload" as="font" type="font/woff"
+          href="{% static 'vendor/boxicons/fonts/boxicons.woff' %}" crossorigin="anonymous">
+    <link rel="preload" as="font" type="font/woff2"
+          href="{% static 'vendor/boxicons/fonts/boxicons.woff2' %}" crossorigin="anonymous">
+    <link rel="preload" as="font" type="font/woff"
+          href="{% static 'vendor/remixicon/remixicon.woff' %}" crossorigin="anonymous">
+    <link rel="preload" as="font" type="font/woff2"
+          href="{% static 'vendor/remixicon/remixicon.woff2' %}" crossorigin="anonymous">
 
     {% block stylesheets %}
     {% endblock stylesheets %}
