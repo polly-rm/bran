@@ -703,15 +703,15 @@ section {
 }
 
 @media (max-width: 575px) {
-    #hero {
-        background-image: url('../img/main-mobile.png');
-    }
+    /*#hero {*/
+    /*    background-image: url('../img/main-mobile.png');*/
+    /*}*/
 
-    @supports (background-image:url("../img-webp/main-mobile.webp")) {
-        #hero {
-            background-image: url('../img-webp/main-mobile.webp')
-        }
-    }
+    /*@supports (background-image:url("../img-webp/main-mobile.webp")) {*/
+    /*    #hero {*/
+    /*        background-image: url('../img-webp/main-mobile.webp')*/
+    /*    }*/
+    /*}*/
 
     #hero h1 {
         font-size: 28px;
@@ -1688,11 +1688,11 @@ section {
     }
 }
 
-@media (min-width: 992px) {
-    .title-box-wide {
-        width: 55%
-    }
-}
+/*@media (min-width: 992px) {*/
+/*    .title-box-wide {*/
+/*        width: 55%*/
+/*    }*/
+/*}*/
 
 body, #header, #navbar {
     overflow-anchor: none;
