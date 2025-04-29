@@ -121,7 +121,8 @@ a:hover {
     transition: .5s;
     z-index: 997;
     padding: 15px 0;
-    background-color: var(--main-black)
+    background-color: var(--main-black);
+    max-height: 110px;
 }
 
 #header.header-inner-pages, #header.header-scrolled {
@@ -1692,3 +1693,11 @@ section {
         width: 55%
     }
 }
+
+body, #header, #navbar {
+    overflow-anchor: none;
+}
+
+ #navbar {
+     max-height: 83px;
+ }
