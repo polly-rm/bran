@@ -4,29 +4,37 @@
 
 {% block stylesheets %}
     <link rel="preload" href="{% static 'img-webp/main.webp' %}" as="image">
+{#    <link rel="preload" as="image" href="{% static 'img-webp/main-mobile.webp' %}" type="image/webp">#}
 {% endblock stylesheets %}
 
 
 {% block content %}
     <!-- Title -->
-    <section id="hero" class="d-flex align-items-center position-relative">
+    <section id="hero" class="position-relative d-flex align-items-center position-relative">
+        <picture>
+            <source srcset="{% static 'img-webp/main.webp' %}" type="image/webp" class="position-absolute main-img">
+            <img src="{% static 'img/main.png' %}" alt="cover" class="img-fluid position-absolute main-img" height="676"
+                 width="auto">
+        </picture>
+        {#        <img src="{% static 'img-webp/main-mobile.webp' %}" alt="main" class="position-absolute d-none main-img-mobile"#}
+        {#             style="top: 0; left: 0; z-index: 0; width: 100%; height: auto; object-fit: cover">#}
+
         <div class="container container-mobile">
-            <div class="row">
-                <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1 title-box-wide">
-                    <h1 class="mb-4 title-mobile-wide">Same Day Courier in UK</h1>
-                    <h2>Whether you need same-day, next-day, or urgent delivery services across the UK, we’ve got you
-                        covered. Our courier services ensure your items arrive on time and in excellent condition.</h2>
-                    <div class="contact-btn-mobile-hide">
+            <div class="row" style="height: 100%">
+                <div class="col-lg-6 d-flex flex-column justify-content-between pt-4 pt-lg-0 order-2 order-lg-1 title-box-wide">
+                    <div>
+                        <h1 class="mb-4 title-mobile-wide">Same Day Courier in UK</h1>
+                        <h2>Whether you need same-day, next-day, or urgent delivery services across the UK, we’ve got
+                            you
+                            covered. Our courier services ensure your items arrive on time and in excellent
+                            condition.</h2>
+                    </div>
+                    <div>
                         <a href="{% url 'quotes:get-a-quote' %}" class="btn-get-started scrollto"
                            style="min-width: 135px !important;">Get a Quote</a>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="contact-btn-mobile" style="display: none">
-            <a href="{% url 'quotes:get-a-quote' %}" class="btn-get-started scrollto"
-               style="min-width: 135px !important;">Get a Quote</a>
         </div>
     </section>
     <!-- End Title -->
