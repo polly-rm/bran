@@ -69,6 +69,7 @@
     <link rel="canonical" href="https://branlogistics.co.uk/"/>
 
     <!-- Preloads -->
+    <link rel="preload" as="image" href="{% static 'img-webp/main.webp' %}" type="image/webp">
     <link rel="preload" as="image" href="{% static 'img-webp/logo-new.webp' %}" type="image/webp">
     <link rel="preload" as="font" type="font/woff"
           href="{% static 'vendor/bootstrap-icons/fonts/bootstrap-icons.woff' %}" crossorigin="anonymous">
@@ -93,8 +94,8 @@
             async defer></script>
 
     <!-- Google tag (gtag.js) -->
-    <script async defer src="https://www.googletagmanager.com/gtag/js?id=G-8DRMYL34FD"></script>
-    <script defer>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8DRMYL34FD"></script>
+    <script>
         window.dataLayer = window.dataLayer || [];
 
         function gtag() {
@@ -143,7 +144,7 @@
 {#        class="bi bi-arrow-up-short"></i></a>#}
 
 <!-- Jquery -->
-<script src="{% static 'jquery/dist/jquery.min.js' %}" defer></script>
+<script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
 
 <!-- Vendor JS Files -->
 <script src="{% static 'vendor/aos/aos.js' %}" defer></script>
@@ -160,7 +161,7 @@
 <script src="{% static 'js/csrf.js' %}" defer></script>
 <script src="{% static 'js/cookieconsent.min.js' %}" data-cfasync="false" defer></script>
 
-<script defer>
+<script>
     window.cookieconsent.initialise({
         "palette": {
             "popup": {
@@ -190,7 +191,7 @@
     });
 </script>
 
-<script defer>
+<script>
     document.addEventListener('DOMContentLoaded', function () {
         {% for message in messages %}
             var toastElement = document.getElementById('toast-{{ forloop.counter }}');
