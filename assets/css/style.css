@@ -1666,7 +1666,7 @@ section {
 }
 
 .service-title {
-    font-size: 24px
+    font-size: 24px;
 }
 
 @media (min-width: 768px) {
@@ -1697,4 +1697,11 @@ body, #header, #navbar {
 
 #navbar {
     max-height: 83px;
+}
+
+.van-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 0;
 }

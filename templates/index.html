@@ -6,23 +6,21 @@
 {% block content %}
     <!-- Title -->
     <section id="hero" class="position-relative d-flex align-items-center position-relative">
-{#        <picture>#}
-{#            <source srcset="{% static 'img-webp/main.webp' %}" type="image/webp">#}
-{#            <img fetchpriority="high" src="{% static 'img/main.png' %}" alt="cover" class="img-fluid position-absolute main-img" height="676"#}
-{#                 width="auto">#}
-{#        </picture>#}
-        {#        <img src="{% static 'img-webp/main-mobile.webp' %}" alt="main" class="position-absolute d-none main-img-mobile"#}
-        {#             style="top: 0; left: 0; z-index: 0; width: 100%; height: auto; object-fit: cover">#}
+        <picture>
+            <source srcset="{% static 'img-webp/main.webp' %}" type="image/webp">
+            <img fetchpriority="high" src="{% static 'img/main.png' %}" alt="cover" class="img-fluid position-absolute main-img" height="676"
+                 width="auto">
+        </picture>
 
         <div class="container container-mobile">
             <div class="row" style="height: 100%">
                 <div class="col-lg-6 d-flex flex-column justify-content-between pt-4 pt-lg-0 order-2 order-lg-1 title-box-wide">
                     <div>
-{#                        <h1 class="mb-4 title-mobile-wide">Same Day Courier in UK</h1>#}
-{#                        <h2>Whether you need same-day, next-day, or urgent delivery services across the UK, we’ve got#}
-{#                            you#}
-{#                            covered. Our courier services ensure your items arrive on time and in excellent#}
-{#                            condition.</h2>#}
+                        <h1 class="mb-4 title-mobile-wide">Same Day Courier in UK</h1>
+                        <h2>Whether you need same-day, next-day, or urgent delivery services across the UK, we’ve got
+                            you
+                            covered. Our courier services ensure your items arrive on time and in excellent
+                            condition.</h2>
                     </div>
                     <div>
                         <a href="{% url 'quotes:get-a-quote' %}" class="btn-get-started scrollto"
@@ -183,7 +181,7 @@
                             </picture>
                         </div>
                         <div class="portfolio-info">
-                            <h3 class="service-title">Small Van</h3>
+                            <h3 class="van-title">Small Van</h3>
                             <a href="{% static 'img/vehicles/small-van.png' %}" data-gallery="portfolioGallery"
                                class="portfolio-lightbox preview-link"
                                title="<b>Small Van</b>
@@ -205,7 +203,7 @@
                             </picture>
                         </div>
                         <div class="portfolio-info">
-                            <h3 class="service-title">SWB</h3>
+                            <h3 class="van-title">SWB</h3>
                             <a href="{% static 'img/vehicles/swb.png' %}" data-gallery="portfolioGallery"
                                class="portfolio-lightbox preview-link"
                                title="<b>Short Wheelbase</b>
@@ -227,7 +225,7 @@
                             </picture>
                         </div>
                         <div class="portfolio-info">
-                            <h3 class="service-title">MWB</h3>
+                            <h3 class="van-title">MWB</h3>
                             <a href="{% static 'img/vehicles/mwb.png' %}" data-gallery="portfolioGallery"
                                class="portfolio-lightbox preview-link"
                                title="<b>Medium Wheelbase</b>
@@ -249,7 +247,7 @@
                             </picture>
                         </div>
                         <div class="portfolio-info">
-                            <h3 class="service-title">Panel Vans 4m, 4m+</h3>
+                            <h3 class="van-title">Panel Vans 4m, 4m+</h3>
                             <a href="{% static 'img/vehicles/panel-van.png' %}" data-gallery="portfolioGallery"
                                class="portfolio-lightbox preview-link"
                                title="<b>Panel Vans 4m, 4m+</b>
@@ -271,7 +269,7 @@
                             </picture>
                         </div>
                         <div class="portfolio-info">
-                            <h3 class="service-title">Luton Box Van</h3>
+                            <h3 class="van-title">Luton Box Van</h3>
                             <a href="{% static 'img/vehicles/luton-box.png' %}" data-gallery="portfolioGallery"
                                class="portfolio-lightbox preview-link"
                                title="<b>Luton Box Van</b>
@@ -293,7 +291,7 @@
                             </picture>
                         </div>
                         <div class="portfolio-info">
-                            <h3 class="service-title">Luton Curtain Side Van</h3>
+                            <h3 class="van-title">Luton Curtain Side Van</h3>
                             <a href="{% static 'img/vehicles/luton-curtian.png' %}" data-gallery="portfolioGallery"
                                class="portfolio-lightbox preview-link"
                                title="<b>Luton Curtain Side Van</b>">
