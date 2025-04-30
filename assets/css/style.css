@@ -301,7 +301,7 @@ a:hover {
 }
 
 .navbar-mobile ul {
-    display: block;
+    display: block !important;
     position: absolute;
     top: 55px;
     right: 15px;
@@ -417,7 +417,7 @@ a:hover {
     }
 
     .navbar ul {
-        display: none
+        display: none;
     }
 
     #hero, #hero .hero-img {
@@ -1693,10 +1693,6 @@ section {
 
 body, #header, #navbar {
     overflow-anchor: none;
-}
-
-#navbar {
-    max-height: 83px;
 }
 
 .van-title {
