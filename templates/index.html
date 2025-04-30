@@ -4,7 +4,7 @@
 
 {% block stylesheets %}
     <link rel="preload" href="{% static 'img-webp/main.webp' %}" as="image" type="image/webp">
-{#    <link rel="preload" as="image" href="{% static 'img-webp/main-mobile.webp' %}" type="image/webp">#}
+    {#    <link rel="preload" as="image" href="{% static 'img-webp/main-mobile.webp' %}" type="image/webp">#}
 {% endblock stylesheets %}
 
 
@@ -13,7 +13,8 @@
     <section id="hero" class="position-relative d-flex align-items-center position-relative">
         <picture>
             <source srcset="{% static 'img-webp/main.webp' %}" type="image/webp">
-            <img fetchpriority="high" src="{% static 'img/main.png' %}" alt="cover" class="img-fluid position-absolute main-img" height="676"
+            <img fetchpriority="high" src="{% static 'img/main.png' %}" alt="cover"
+                 class="img-fluid position-absolute main-img" height="676"
                  width="auto">
         </picture>
         {#        <img src="{% static 'img-webp/main-mobile.webp' %}" alt="main" class="position-absolute d-none main-img-mobile"#}
@@ -537,11 +538,152 @@
     </main>
     <!-- End Main -->
 
-    {#    <style>#}
-    {#        .form-control {#}
-    {#            background-color: var(--light-grey) !important;#}
-    {#        }#}
-    {#    </style>#}
+    <style>
+        #hero {
+            width: 100%;
+            height: 68vh;
+            position: relative;
+            background-color: #f5f5f5;
+            z-index: 1;
+        }
+
+        #hero .main-img {
+            top: 50px;
+            left: 0;
+            z-index: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        #hero .container {
+            padding-top: 65px;
+            z-index: 2;
+        }
+
+        #hero h1 {
+            margin: 0 0 10px;
+            font-size: 42px;
+            font-weight: 700;
+            line-height: 56px
+        }
+
+        #hero h2 {
+            margin-bottom: 50px;
+            font-size: 22px
+        }
+
+        #hero .btn-get-started {
+            font-size: 18px;
+            padding: 10px 28px 11px;
+            border-radius: 50px;
+            transition: .5s;
+            margin: 10px 0 0;
+            color: #fff;
+            background: var(--main-gold)
+        }
+
+        #hero .btn-watch-video {
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            transition: .5s;
+            margin: 10px 0 0 25px;
+            color: #fff;
+            line-height: 1
+        }
+
+        #hero .btn-watch-video i {
+            line-height: 0;
+            color: #fff;
+            font-size: 32px;
+            transition: .3s;
+            margin-right: 8px
+        }
+
+        #hero .animated {
+            animation: 2s ease-in-out infinite alternate-reverse both up-down
+        }
+
+        @media (max-width: 991px) {
+            #hero, #hero .hero-img {
+                text-align: center;
+            }
+
+            #hero {
+                height: 100vh
+            }
+
+            #hero .animated {
+                -webkit-animation: none;
+                animation: none
+            }
+
+            #hero .hero-img img {
+                width: 50%
+            }
+        }
+
+        @media (max-width: 992px) {
+            #hero .main-img {
+                top: 0 !important;
+            }
+        }
+
+        @media (max-width: 575px) {
+            #hero h1 {
+                font-size: 28px;
+                line-height: 36px
+            }
+
+            #hero h2 {
+                font-size: 18px;
+                line-height: 24px;
+                margin-bottom: 30px
+            }
+
+            #hero .hero-img img {
+                width: 80%
+            }
+
+            #hero .btn-get-started {
+                font-size: 16px;
+                padding: 10px 24px 11px
+            }
+        }
+
+        @media (min-width: 768px) {
+            .title-mobile-wide {
+                padding-top: 3rem
+            }
+
+            #hero h1 {
+                font-size: 42px;
+                font-weight: 700;
+                line-height: 56px
+            }
+
+            #hero h2 {
+                font-size: 22px
+            }
+        }
+
+        @media (max-width: 991px) {
+            .container-mobile {
+                position: absolute;
+                top: 65px;
+                left: 50%;
+                transform: translateX(-50%);
+                height: 80%;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .title-box-wide {
+                width: 55%
+            }
+        }
+    </style>
 {% endblock content %}
 
 

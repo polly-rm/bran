@@ -93,8 +93,8 @@
             async defer></script>
 
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8DRMYL34FD"></script>
-    <script>
+    <script async defer src="https://www.googletagmanager.com/gtag/js?id=G-8DRMYL34FD"></script>
+    <script defer>
         window.dataLayer = window.dataLayer || [];
 
         function gtag() {
@@ -143,7 +143,7 @@
 {#        class="bi bi-arrow-up-short"></i></a>#}
 
 <!-- Jquery -->
-<script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
+<script src="{% static 'jquery/dist/jquery.min.js' %}" defer></script>
 
 <!-- Vendor JS Files -->
 <script src="{% static 'vendor/aos/aos.js' %}" defer></script>
@@ -160,7 +160,7 @@
 <script src="{% static 'js/csrf.js' %}" defer></script>
 <script src="{% static 'js/cookieconsent.min.js' %}" data-cfasync="false" defer></script>
 
-<script>
+<script defer>
     window.cookieconsent.initialise({
         "palette": {
             "popup": {
@@ -190,7 +190,7 @@
     });
 </script>
 
-<script>
+<script defer>
     document.addEventListener('DOMContentLoaded', function () {
         {% for message in messages %}
             var toastElement = document.getElementById('toast-{{ forloop.counter }}');
