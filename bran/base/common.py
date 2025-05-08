@@ -40,11 +40,3 @@ def check_for_spam(request):
     # 1. Honeypot check
     if request.POST.get('middle_name'):
         return HttpResponseForbidden('Spam detected (honeypot filled)')
-
-    # 2. Time-based check
-    try:
-        timestamp = float(request.POST.get('timestamp', 0))
-        if time.time() - timestamp < 3:
-            return HttpResponseForbidden('Spam detected (submitted too fast)')
-    except (TypeError, ValueError):
-        return HttpResponseForbidden('Invalid timestamp')

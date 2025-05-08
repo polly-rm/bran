@@ -152,9 +152,6 @@ class QuoteForm(forms.Form):
         required=False,
         widget=forms.HiddenInput()
     )
-    timestamp = forms.CharField(
-        widget=forms.HiddenInput()
-    )
 
 
 class ParcelForm(forms.Form):
