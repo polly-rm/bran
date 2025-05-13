@@ -5,7 +5,7 @@
 
 {% block content %}
     <!-- Title -->
-    <section id="hero" class="position-relative d-flex align-items-center position-relative">
+    <section id="hero">
         <div class="container container-mobile">
             <div class="row" style="height: 100%">
                 <div class="col-lg-6 d-flex flex-column justify-content-between pt-4 pt-lg-0 order-2 order-lg-1 title-box-wide">
@@ -26,9 +26,7 @@
 
         <picture>
             <source srcset="{% static 'img-webp/main.webp' %}" type="image/webp">
-            <img fetchpriority="high" src="{% static 'img/main.png' %}" alt="cover"
-                 class="img-fluid position-absolute main-img" height="676"
-                 style="max-width: 100%">
+            <img fetchpriority="high" src="{% static 'img/main.png' %}" alt="cover" class="img-fluid main-img" height="676">
         </picture>
     </section>
     <!-- End Title -->
