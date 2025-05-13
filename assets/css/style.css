@@ -422,33 +422,8 @@ a:hover {
         display: none;
     }
 
-    #hero, #hero .hero-img {
-        text-align: center;
-    }
-
-    #hero {
-        height: 100vh
-    }
-
-    #hero .animated {
-        -webkit-animation: none;
-        animation: none
-    }
-
-    #hero .hero-img img {
-        width: 50%
-    }
-
     .contact-btn-mobile-hide, .time-to-label-mobile {
         display: none
-    }
-
-    .container-mobile {
-        position: absolute;
-        top: 65px;
-        left: 50%;
-        transform: translateX(-50%);
-        height: 80%;
     }
 
     .contact-btn-mobile {
@@ -685,10 +660,6 @@ section {
 }
 
 @media (max-width: 992px) {
-    #hero .main-img {
-        top: 0 !important;
-    }
-
     .why-us .img {
         min-height: 400px
     }
@@ -712,26 +683,6 @@ section {
 }
 
 @media (max-width: 575px) {
-    #hero h1 {
-        font-size: 28px;
-        line-height: 36px
-    }
-
-    #hero h2 {
-        font-size: 18px;
-        line-height: 24px;
-        margin-bottom: 30px
-    }
-
-    #hero .hero-img img {
-        width: 80%
-    }
-
-    #hero .btn-get-started {
-        font-size: 16px;
-        padding: 10px 24px 11px
-    }
-
     .why-us .img {
         min-height: 200px
     }
@@ -1669,28 +1620,6 @@ section {
 
 .service-title {
     font-size: 24px;
-}
-
-@media (min-width: 768px) {
-    .title-mobile-wide {
-        padding-top: 3rem
-    }
-
-    #hero h1 {
-        font-size: 42px;
-        font-weight: 700;
-        line-height: 56px
-    }
-
-    #hero h2 {
-        font-size: 22px
-    }
-}
-
-@media (min-width: 992px) {
-    .title-box-wide {
-        width: 55%
-    }
 }
 
 body, #header, #navbar {
