@@ -25,8 +25,12 @@
         </div>
 
         <picture>
-            <source srcset="{% static 'img-webp/main.webp' %}" type="image/webp">
-            <img fetchpriority="high" src="{% static 'img/main.png' %}" alt="cover" class="img-fluid main-img" height="676" width="1835">
+            <source type="image/webp"
+                    srcset="{% static 'img-webp/main-600.webp' %} 600w, {% static 'img-webp/main-1200.webp' %} 1200w, {% static 'img-webp/main.webp' %} 1835w"
+                    sizes="(max-width: 600px) 600px, (max-width: 1200px) 1200px, 1835px">
+            <img fetchpriority="high" src="{% static 'img/main.png' %}" alt="cover" class="img-fluid main-img"
+                 height="676" srcset=" {% static 'img/main-600.png' %} 600w, {% static 'img/main-1200.png' %} 1200w, {% static 'img/main.png' %} 1835w"
+                 sizes="(max-width: 600px) 600px, (max-width: 1200px) 1200px, 1835px">
         </picture>
     </section>
     <!-- End Title -->
@@ -176,7 +180,7 @@
                             <picture>
                                 <source srcset="{% static 'img-webp/vehicles/small-van.webp' %}" type="image/webp">
                                 <img src="{% static 'img/vehicles/small-van.png' %}" alt="Small Van" class="img-fluid"
-                                     height="312" width="416">
+                                     height="312" width="416" loading="lazy">
                             </picture>
                         </div>
                         <div class="portfolio-info">
@@ -198,7 +202,7 @@
                             <picture>
                                 <source srcset="{% static 'img-webp/vehicles/swb.webp' %}" type="image/webp">
                                 <img src="{% static 'img/vehicles/swb.png' %}" alt="SWB" class="img-fluid" height="312"
-                                     width="416">
+                                     width="416" loading="lazy">
                             </picture>
                         </div>
                         <div class="portfolio-info">
@@ -220,7 +224,7 @@
                             <picture>
                                 <source srcset="{% static 'img-webp/vehicles/mwb.webp' %}" type="image/webp">
                                 <img src="{% static 'img/vehicles/mwb.png' %}" alt="MWB" class="img-fluid" height="312"
-                                     width="416">
+                                     width="416" loading="lazy">
                             </picture>
                         </div>
                         <div class="portfolio-info">
@@ -242,7 +246,7 @@
                             <picture>
                                 <source srcset="{% static 'img-webp/vehicles/panel-van.webp' %}" type="image/webp">
                                 <img src="{% static 'img/vehicles/panel-van.png' %}" alt="Panel Van" class="img-fluid"
-                                     height="312" width="416">
+                                     height="312" width="416" loading="lazy">
                             </picture>
                         </div>
                         <div class="portfolio-info">
@@ -264,7 +268,7 @@
                             <picture>
                                 <source srcset="{% static 'img-webp/vehicles/luton-box.webp' %}" type="image/webp">
                                 <img src="{% static 'img/vehicles/luton-box.png' %}" alt="Luton Box" class="img-fluid"
-                                     height="312" width="416">
+                                     height="312" width="416" loading="lazy">
                             </picture>
                         </div>
                         <div class="portfolio-info">
@@ -286,7 +290,7 @@
                             <picture>
                                 <source srcset="{% static 'img-webp/vehicles/luton-curtian.webp' %}" type="image/webp">
                                 <img src="{% static 'img/vehicles/luton-curtian.png' %}" alt="Luton Curtain"
-                                     class="img-fluid" height="312" width="416">
+                                     class="img-fluid" height="312" width="416" loading="lazy">
                             </picture>
                         </div>
                         <div class="portfolio-info">
