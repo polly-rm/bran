@@ -69,9 +69,12 @@
     <link rel="canonical" href="https://branlogistics.co.uk/"/>
 
     <!-- Preloads -->
-    <link rel="preload" as="image" href="{% static 'img-webp/main.webp' %}" type="image/webp">
-    <link rel="preload" as="image" href="{% static 'img-webp/main-600.webp' %}" type="image/webp">
-    <link rel="preload" as="image" href="{% static 'img-webp/main-1200.webp' %}" type="image/webp">
+    <link rel="preload"
+          as="image"
+          href="{% static 'img-webp/main-1200.webp' %}"
+          type="image/webp"
+          imagesrcset="{% static 'img-webp/main-600.webp' %} 600w, {% static 'img-webp/main-1200.webp' %} 1200w, {% static 'img-webp/main.webp' %} 1835w"
+          imagesizes="(max-width: 600px) 600px, (max-width: 1200px) 1200px, 1835px">
     <link rel="preload" as="image" href="{% static 'img-webp/logo-new.webp' %}" type="image/webp">
     <link rel="preload" as="font" type="font/woff"
           href="{% static 'vendor/bootstrap-icons/fonts/bootstrap-icons.woff' %}" crossorigin="anonymous">
