@@ -1,0 +1,61 @@
+@font-face {
+    font-family: 'boxicons';
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+
+    src: url('../fonts/boxicons.eot');
+    src: url('../fonts/boxicons.eot') format('embedded-opentype'),
+    url('../fonts/boxicons.woff2') format('woff2'),
+    url('../fonts/boxicons.woff') format('woff'),
+    url('../fonts/boxicons.ttf') format('truetype'),
+    url('../fonts/boxicons.svg?#boxicons') format('svg');
+}
+
+.bx {
+    font-family: 'boxicons' !important;
+    font-weight: normal;
+    font-style: normal;
+    font-variant: normal;
+    line-height: 1;
+
+    display: inline-block;
+
+    text-transform: none;
+
+    speak: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.bxs-package:before {
+    content: "\edb2";
+}
+
+.bxs-moon:before {
+    content: "\eda3";
+}
+
+.bxs-calendar-check:before {
+    content: "\ec57";
+}
+
+.bx-layer:before {
+    content: "\ea90";
+}
+
+.bx-plus:before {
+    content: "\eb21";
+}
+
+.bx-help-circle:before {
+    content: "\ea6f";
+}
+
+.bx-chevron-down:before {
+    content: "\e9ac";
+}
+
+.bx-chevron-up:before {
+    content: "\e9b9";
+}
