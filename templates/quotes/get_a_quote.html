@@ -198,49 +198,51 @@
     <script src="{% static 'js/quotes/googleMapsApi.js' %}"></script>
 
     <!-------- Single parameters cargo formset -------->
-    <script>
-        (function ($) {
-            preventNegativeNums();
-            preventDecimalsInCount();
-            preventMoreDecimalPlaces();
-            showUnit();
+    <script defer>
+        document.addEventListener('DOMContentLoaded', function () {
+            (function ($) {
+                preventNegativeNums();
+                preventDecimalsInCount();
+                preventMoreDecimalPlaces();
+                showUnit();
 
-            $(function () {
+                $(function () {
 
-                var $template = $('#empty-form'),
-                    $formset = $('#formset'),
-                    formCount = {{ formset.total_form_count }},
-                    minCount = {{ formset.initial_form_count }},
-                    maxCount = {{ formset.max_num }};
+                    var $template = $('#empty-form'),
+                        $formset = $('#formset'),
+                        formCount = {{ formset.total_form_count }},
+                        minCount = {{ formset.initial_form_count }},
+                        maxCount = {{ formset.max_num }};
 
-                $('body').on('click', '#add-more', function (e) {
-                    e.preventDefault();
+                    $('body').on('click', '#add-more', function (e) {
+                        e.preventDefault();
 
-                    formCount++;
+                        formCount++;
 
-                    var templateHtml = $template.html();
-                    templateHtml = templateHtml.replace(/__prefix__/g, formCount - 1);
+                        var templateHtml = $template.html();
+                        templateHtml = templateHtml.replace(/__prefix__/g, formCount - 1);
 
-                    $formset.append(templateHtml);
+                        $formset.append(templateHtml);
 
-                    $('#id_parcel-TOTAL_FORMS').val(formCount);
+                        $('#id_parcel-TOTAL_FORMS').val(formCount);
 
-                    var $lastForm = $('.form', $formset).last();
+                        var $lastForm = $('.form', $formset).last();
 
-                    preventNegativeNums();
-                    preventDecimalsInCount();
-                    preventMoreDecimalPlaces();
-                    showUnit();
+                        preventNegativeNums();
+                        preventDecimalsInCount();
+                        preventMoreDecimalPlaces();
+                        showUnit();
+                    });
+
+                    $('body').on('click', '.delete-tip', function (e) {
+                        e.preventDefault();
+
+                        $(this).closest('.cargo-form').remove();
+                        formCount--;
+                    });
                 });
-
-                $('body').on('click', '.delete-tip', function (e) {
-                    e.preventDefault();
-
-                    $(this).closest('.cargo-form').remove();
-                    formCount--;
-                });
-            });
-        })(jQuery);
+            })(jQuery);
+        });
     </script>
     <!-------- End Single parameters cargo formset -------->
 

@@ -57,11 +57,11 @@
     <noscript>
         <link href="{% static 'vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
     </noscript>
-{#    <link href="{% static 'vendor/remixicon/remixicon.css' %}" rel="stylesheet" media="print"#}
-{#          onload="this.onload=null;this.media='all';">#}
-{#    <noscript>#}
-{#        <link href="{% static 'vendor/remixicon/remixicon.css' %}" rel="stylesheet">#}
-{#    </noscript>#}
+    {#    <link href="{% static 'vendor/remixicon/remixicon.css' %}" rel="stylesheet" media="print"#}
+    {#          onload="this.onload=null;this.media='all';">#}
+    {#    <noscript>#}
+    {#        <link href="{% static 'vendor/remixicon/remixicon.css' %}" rel="stylesheet">#}
+    {#    </noscript>#}
     <link href="{% static 'vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet" media="print"
           onload="this.onload=null;this.media='all';">
     <noscript>
@@ -100,10 +100,10 @@
           href="{% static 'vendor/boxicons/fonts/boxicons.woff' %}" crossorigin="anonymous">
     <link rel="preload" as="font" type="font/woff2"
           href="{% static 'vendor/boxicons/fonts/boxicons.woff2' %}" crossorigin="anonymous">
-{#    <link rel="preload" as="font" type="font/woff"#}
-{#          href="{% static 'vendor/remixicon/remixicon.woff' %}" crossorigin="anonymous">#}
-{#    <link rel="preload" as="font" type="font/woff2"#}
-{#          href="{% static 'vendor/remixicon/remixicon.woff2' %}" crossorigin="anonymous">#}
+    {#    <link rel="preload" as="font" type="font/woff"#}
+    {#          href="{% static 'vendor/remixicon/remixicon.woff' %}" crossorigin="anonymous">#}
+    {#    <link rel="preload" as="font" type="font/woff2"#}
+    {#          href="{% static 'vendor/remixicon/remixicon.woff2' %}" crossorigin="anonymous">#}
 
     {% block stylesheets %}
     {% endblock stylesheets %}
@@ -111,7 +111,7 @@
     <!-- Load Google Maps API with a callback -->
     <script>function initAutocomplete() {
     }</script>
-    <script src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&libraries=places&callback=initAutocomplete"
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.51&key={{ google_maps_api_key }}&libraries=places&callback=initAutocomplete"
             async defer></script>
 
     <!-- Google tag (gtag.js) -->
@@ -165,7 +165,7 @@
 {#        class="bi bi-arrow-up-short"></i></a>#}
 
 <!-- Jquery -->
-<script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
+<script src="{% static 'jquery/dist/jquery.min.js' %}" defer></script>
 
 <!-- Vendor JS Files -->
 <script src="{% static 'vendor/aos/aos.js' %}" defer></script>
@@ -183,31 +183,35 @@
 <script src="{% static 'js/cookieconsent.min.js' %}" data-cfasync="false" defer></script>
 
 <script>
-    window.cookieconsent.initialise({
-        "palette": {
-            "popup": {
-                "background": "rgb(42, 46, 49)",
-                "text": "#ffffff"
-            },
-            "button": {
-                "background": "#D32F2F",
-                "text": "#ffffff",
-            }
-        },
-        "content": {
-            "message": "This site uses cookies. By continuing to use its services, you accept the cookies we use.",
-            "dismiss": "I agree",
-            "link": "Read more",
-            "href": "{% url 'cookies-policy' %}",
-        },
-        onPopupOpen: function () {
-            // Select the cookie consent button and add custom styles
-            var button = document.querySelector('.cc-btn');
-            if (button) {
-                button.style.borderRadius = "50px"; // Add border-radius
-                button.style.padding = "7px 20px"; // Add padding
-                button.style.marginRight = "70px";
-            }
+    window.addEventListener('load', function () {
+        if (window.cookieconsent) {
+            window.cookieconsent.initialise({
+                "palette": {
+                    "popup": {
+                        "background": "rgb(42, 46, 49)",
+                        "text": "#ffffff"
+                    },
+                    "button": {
+                        "background": "#D32F2F",
+                        "text": "#ffffff",
+                    }
+                },
+                "content": {
+                    "message": "This site uses cookies. By continuing to use its services, you accept the cookies we use.",
+                    "dismiss": "I agree",
+                    "link": "Read more",
+                    "href": "{% url 'cookies-policy' %}",
+                },
+                onPopupOpen: function () {
+                    // Select the cookie consent button and add custom styles
+                    var button = document.querySelector('.cc-btn');
+                    if (button) {
+                        button.style.borderRadius = "50px"; // Add border-radius
+                        button.style.padding = "7px 20px"; // Add padding
+                        button.style.marginRight = "70px";
+                    }
+                }
+            });
         }
     });
 </script>
