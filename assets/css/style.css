@@ -27,6 +27,10 @@ body {
     color: #444
 }
 
+h1 {
+    font-size: 42px;
+}
+
 #hero .btn-get-started, .cta .cta-btn, .pricing .buy-btn, .pricing h4, h1, h2, h3, h4, h5, h6 {
     font-family: Jost, sans-serif
 }
