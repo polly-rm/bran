@@ -525,10 +525,10 @@
                                 {% endfor %}
                             </div>
                             <div class="form-group">
-{#                                {{ form.captcha }}#}
-{#                                {% for error in form.captcha.errors %}#}
-{#                                    <div class="error">{{ error }}</div>#}
-{#                                {% endfor %}#}
+                                {{ form.captcha }}
+                                {% for error in form.captcha.errors %}
+                                    <div class="error">{{ error }}</div>
+                                {% endfor %}
                             </div>
                             <div class="text-center">
                                 <button type="submit">Send Message</button>
