@@ -65,11 +65,8 @@ class IndexTemplateView(FormView):
         return initial
 
     def post(self, request, *args, **kwargs):
-        spam_response = check_for_spam(request)
-        if spam_response:
-            return spam_response
-
         form = self.get_form()
+        check_for_spam(request)
 
         if form.is_valid():
             return self.form_valid(form)
@@ -87,3 +84,5 @@ class IndexTemplateView(FormView):
         messages.success(self.request, 'Your message was sent successfully!')
 
         return HttpResponseRedirect(self.request.path_info)
+
+
