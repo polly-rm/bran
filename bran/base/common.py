@@ -39,7 +39,7 @@ def get_driving_distance(origin, destination, api_key):
 def check_for_spam(request):
     # 1. Honeypot check
     if request.POST.get('middle_name'):
-        return HttpResponseForbidden('Spam detected (honeypot filled)')
+        return HttpResponseForbidden('Spam detected!')
 
     if request.POST.get('name') == 'RobertGurse':
-        return HttpResponseForbidden('Spam detected (forbidden name)')
+        return HttpResponseForbidden('Spam detected!')
