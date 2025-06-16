@@ -3,6 +3,16 @@
 {% load static %}
 
 
+{% block title %}
+    <title>Courier Bournemouth | Same Day Parcel Delivery | Bran Logistics</title>
+{% endblock title %}
+
+{% block meta_description %}
+    <meta content="Need a same day courier in Bournemouth? We deliver parcels fast, locally and nationwide. Affordable, secure, and professional service – 24/7."
+          name="description">
+{% endblock meta_description %}
+
+
 {% block content %}
     <!-- Title -->
     <section id="hero">
@@ -515,10 +525,10 @@
                                 {% endfor %}
                             </div>
                             <div class="form-group">
-                                {{ form.captcha }}
-                                {% for error in form.captcha.errors %}
-                                    <div class="error">{{ error }}</div>
-                                {% endfor %}
+{#                                {{ form.captcha }}#}
+{#                                {% for error in form.captcha.errors %}#}
+{#                                    <div class="error">{{ error }}</div>#}
+{#                                {% endfor %}#}
                             </div>
                             <div class="text-center">
                                 <button type="submit">Send Message</button>

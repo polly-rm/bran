@@ -1,0 +1,502 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block title %}
+    <title>Same Day Delivery in Bournemouth and Poole | Bran Logistics</title>
+{% endblock title %}
+
+{% block meta_description %}
+    <meta content="Urgent same day delivery across Dorset, including Bournemouth, Poole and Christchurch. Fast local courier service with nationwide coverage and POD.."
+          name="description">
+{% endblock meta_description %}
+
+
+{% block content %}
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs" style="padding-top: 4rem">
+        <div class="container">
+            <ol>
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li>Same day delivery</li>
+            </ol>
+            <h2>Same Day Delivery</h2>
+        </div>
+    </section>
+    <!-- End Breadcrumbs -->
+
+
+
+{#    <!-- Title -->#}
+{#    <section id="hero" style="padding-top: 0!important;">#}
+{#        <picture style="opacity: 0.3">#}
+{#            <source type="image/webp"#}
+{#                    srcset="{% static 'img-webp/main-600.webp' %} 600w, {% static 'img-webp/main-1200.webp' %} 1200w, {% static 'img-webp/main.webp' %} 1835w"#}
+{#                    sizes="(max-width: 600px) 600px, (max-width: 1200px) 1200px, 1835px">#}
+{#            <img fetchpriority="high" loading="eager"#}
+{#                 decoding="async" src="{% static 'img/main.png' %}" alt="same day delivery bournemouth"#}
+{#                 class="img-fluid main-img" height="676"#}
+{#                 srcset=" {% static 'img/main-600.png' %} 600w, {% static 'img/main-1200.png' %} 1200w, {% static 'img/main.png' %} 1835w"#}
+{#                 sizes="(max-width: 600px) 600px, (max-width: 1200px) 1200px, 1835px">#}
+{#        </picture>#}
+{##}
+{#        <div class="container container-mobile" style="padding-top: 40px!important;">#}
+{#            <div class="row" style="height: 100%">#}
+{#                <div class="col-lg-10 d-flex flex-column justify-content-between pt-4 pt-lg-0">#}
+{#                    <div>#}
+{#                        <h1 class="mb-4" style="font-size: 42px!important;">Same Day Delivery in Bournemouth, Poole and#}
+{#                            Christchurch</h1>#}
+{#                        <h2 style="font-size: 22px!important;">#}
+{#                            When you need a parcel collected and delivered fast, you want a local courier you can rely#}
+{#                            on. At#}
+{#                            Bran Logistics, we provide urgent delivery and same day courier services across Bournemouth,#}
+{#                            Poole#}
+{#                            and Christchurch, with coverage extending nationwide.<br>#}
+{##}
+{#                            <br>Our team are lightning fast, so, no matter whether it is an expensive item, important#}
+{#                            documents#}
+{#                            or#}
+{#                            something that just has to arrive today, we’ll get it there safely and on time.<br>#}
+{##}
+{#                            <br>Our team is based in the BCP area, so we can often collect within the hour. With years#}
+{#                            of#}
+{#                            experience#}
+{#                            handling everything from delicate electronics to legal papers, we understand that fast#}
+{#                            delivery#}
+{#                            needs to be handled with care.<br>#}
+{##}
+{#                            <br>All of our drivers are trained, professional and fully insured, and every delivery comes#}
+{#                            with a#}
+{#                            Proof#}
+{#                            of Delivery (POD) so you know your item has arrived safely.#}
+{#                        </h2>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </section>#}
+{#    <!-- End Title -->#}
+
+{#        <!-- Title 2 -->#}
+{#        <section id="hero" style="padding-top: 0!important; background: white!important; height: 53vh!important;">#}
+{#            <div class="container container-mobile" style="padding-top: 0px!important;">#}
+{#                <div class="row" style="height: 100%">#}
+{#                    <div class="col-lg-12 d-flex flex-column justify-content-between pt-4 pt-lg-0 position-relative">#}
+{#                        <div>#}
+{#                            <h1 class="mb-4">Same Day Delivery in Bournemouth, Poole and Christchurch</h1>#}
+{#                            <p>#}
+{#                                When you need a parcel collected and delivered fast, you want a local courier you can rely#}
+{#                                on. At#}
+{#                                Bran Logistics, we provide urgent delivery and same day courier services across Bournemouth,#}
+{#                                Poole#}
+{#                                and Christchurch, with coverage extending nationwide.</p>#}
+{#                        </div>#}
+{#                    </div>#}
+{##}
+{#                    <div class="col-lg-6">#}
+{#                        <p>Our team are lightning fast, so, no matter whether it is an expensive item, important#}
+{#                            documents#}
+{#                            or#}
+{#                            something that just has to arrive today, we’ll get it there safely and on time.#}
+{#                        </p>#}
+{##}
+{#                        <p>Our team is based in the BCP area, so we can often collect within the hour. With years#}
+{#                            of#}
+{#                            experience#}
+{#                            handling everything from delicate electronics to legal papers, we understand that fast#}
+{#                            delivery#}
+{#                            needs to be handled with care.</p>#}
+{##}
+{#                        <p>All of our drivers are trained, professional and fully insured, and every delivery comes#}
+{#                            with a#}
+{#                            Proof#}
+{#                            of Delivery (POD) so you know your item has arrived safely.</p>#}
+{#                    </div>#}
+{##}
+{#                    <div class="order-1 order-lg-2 hero-img position-absolute" data-aos="zoom-in" data-aos-delay="200"#}
+{#                         style="right: 0!important; bottom: 0; width: 55%">#}
+{#                        <img src="{% static 'img/hero-img.png' %}" class="img-fluid animated" alt="">#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </section>#}
+{#        <!-- End Title 2 -->#}
+
+{#        <!-- Title 3 -->#}
+{#        <section class="inner-page contact">#}
+{#            <div class="container d-flex justify-content-center align-items-center flex-column">#}
+{#                <div class="section-title">#}
+{#                    <h1 style="font-size: 42px;"><strong>Same Day Delivery in Bournemouth, Poole and Christchurch</strong>#}
+{#                    </h1>#}
+{#                </div>#}
+{##}
+{#                <div class="row content">#}
+{#                    <div class="col-lg-12">#}
+{#                        <p>When you need a parcel collected and delivered fast, you want a local courier you can rely on. At#}
+{#                            Bran Logistics, we provide urgent delivery and same day courier services across Bournemouth,#}
+{#                            Poole#}
+{#                            and Christchurch, with coverage extending nationwide.</p>#}
+{##}
+{#                        <p>Our team are lightning fast, so, no matter whether it is an expensive item, important documents#}
+{#                            or#}
+{#                            something that just has to arrive today, we’ll get it there safely and on time.</p>#}
+{##}
+{#                        <p>Our team is based in the BCP area, so we can often collect within the hour. With years of#}
+{#                            experience#}
+{#                            handling everything from delicate electronics to legal papers, we understand that fast delivery#}
+{#                            needs to be handled with care.</p>#}
+{##}
+{#                        <p>All of our drivers are trained, professional and fully insured, and every delivery comes with a#}
+{#                            Proof#}
+{#                            of Delivery (POD) so you know your item has arrived safely.</p>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </section>#}
+{#        <!-- End Title 3 -->#}
+
+{#        <!-- Title 4 -->#}
+{#        <section class="about">#}
+{#            <div class="container" data-aos="fade-up">#}
+{#                <div class="section-title">#}
+{#                    <h2>Same Day Delivery in Bournemouth, Poole and Christchurch</h2>#}
+{#                </div>#}
+{#                <div class="row content">#}
+{#                    <div class="col-lg-6">#}
+{#                        <p>When you need a parcel collected and delivered fast, you want a local courier you can rely on. At#}
+{#                            Bran Logistics, we provide urgent delivery and same day courier services across Bournemouth,#}
+{#                            Poole#}
+{#                            and Christchurch, with coverage extending nationwide.</p>#}
+{##}
+{#                        <p>Our team are lightning fast, so, no matter whether it is an expensive item, important documents#}
+{#                            or#}
+{#                            something that just has to arrive today, we’ll get it there safely and on time.</p>#}
+{#                    </div>#}
+{#                    <div class="col-lg-6">#}
+{#                        <p>Our team is based in the BCP area, so we can often collect within the hour. With years of#}
+{#                            experience#}
+{#                            handling everything from delicate electronics to legal papers, we understand that fast delivery#}
+{#                            needs to be handled with care.</p>#}
+{##}
+{#                        <p>All of our drivers are trained, professional and fully insured, and every delivery comes with a#}
+{#                            Proof#}
+{#                            of Delivery (POD) so you know your item has arrived safely.</p>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </section>#}
+{#        <!-- End Title 4 -->#}
+
+
+
+    <!-- ======= What We Can Deliver Section ======= -->
+    <section class="about section-bg">
+        <div class="container" data-aos="fade-up">
+            <div class="section-title">
+                <h2>What We Can Deliver</h2>
+            </div>
+            <div class="row content">
+                <div class="col-lg-6">
+                    <p>If it’s urgent and it needs to arrive today, we’ve got you covered. We help individuals and
+                        businesses move parcels quickly and securely.</p>
+                    <p>We regularly deliver:</p>
+                    <ul>
+                        <li><i class="ri-check-double-line"></i> Contracts, legal papers and confidential documents</li>
+                        <li><i class="ri-check-double-line"></i> Spare parts, tools and construction materials</li>
+                    </ul>
+                </div>
+                <div class="col-lg-6 pt-4 pt-lg-0">
+                    <ul>
+                        <li><i class="ri-check-double-line"></i> Ecommerce packages and retail stock</li>
+                        <li><i class="ri-check-double-line"></i> Personal parcels and one-off urgent deliveries</li>
+                        <li><i class="ri-check-double-line"></i> Delicate, valuable or fragile items that require extra
+                            care
+                        </li>
+                    </ul>
+                    <p>If it fits in one of our vehicles and is ready to go, we’ll get it delivered the same day. We
+                        treat every parcel like it matters, because we know it does.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End What We Can Deliver Section -->
+
+    <!-- ======= Local and National Coverage Section ======= -->
+    <section class="about">
+        <div class="container" data-aos="fade-up">
+            <div class="section-title">
+                <h2>Local and National Coverage</h2>
+            </div>
+            <div class="row content">
+                <div class="col-lg-6">
+                    <p>We operate throughout the BCP area, including Bournemouth town
+                        centre, Poole, Southbourne, Boscombe, Christchurch, Winton and
+                        surrounding locations. Whether it’s a short trip across town or an
+                        urgent delivery to London or Manchester, we’ll handle it with the
+                        same level of service and speed.</p>
+                    <p>While we offer nationwide delivery for parcels and urgent
+                        consignments, please note that our business and house removals
+                        service is currently available only within Dorset.</p>
+
+                    <h3>Why Choose Bran Logistics?</h3>
+                    <p>We understand the pressure of needing something delivered quickly and reliably. That’s why our
+                        same day courier service is designed to remove the stress.</p>
+                    <p>Here’s how we help:</p>
+                    <ul>
+                        <li><i class="ri-check-double-line"></i> Rapid local pickup, often within 60 minutes</li>
+                        <li><i class="ri-check-double-line"></i> Same day courier delivery anywhere in the UK</li>
+                        <li><i class="ri-check-double-line"></i> Full Proof of Delivery with every job</li>
+                        <li><i class="ri-check-double-line"></i> Experienced with fragile and high-value items</li>
+                        <li><i class="ri-check-double-line"></i> Friendly, professional drivers who know the local roads
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-6 pt-4 pt-lg-0">
+                    <ul>
+                        <li><i class="ri-check-double-line"></i> Clear communication throughout the job</li>
+                        <li><i class="ri-check-double-line"></i> Booking by phone, WhatsApp or online</li>
+                    </ul>
+                    <p>No call centres, no confusing systems. Just fast, secure, door-to-door delivery with a personal
+                        touch.</p>
+                    <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d508864.455740234!2d2.591045407529538!3d50.77836012621188!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487259c6ff80f43b%3A0x3d35b8fae09b4b6a!2sDorset!5e0!3m2!1sen!2suk!4v1717431869706!5m2!1sen!2suk"
+                            width="100%"
+                            height="350"
+                            style="border:0;"
+                            allowfullscreen=""
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"
+                            class="mt-3">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Local and National Coverage Section -->
+
+    <!-- ======= Why Choose Bran Logistics Section ======= -->
+    {#    <section class="about section-bg">#}
+    {#        <div class="container" data-aos="fade-up">#}
+    {#            <div class="section-title">#}
+    {#                <h2>Why Choose Bran Logistics?</h2>#}
+    {#            </div>#}
+    {#            <div class="row content">#}
+    {#                <div class="col-lg-6">#}
+    {#                    <p>We understand the pressure of needing something delivered quickly and reliably. That’s why our#}
+    {#                        same day courier service is designed to remove the stress.</p>#}
+    {#                    <p>Here’s how we help:</p>#}
+    {#                    <ul>#}
+    {#                        <li><i class="ri-check-double-line"></i> Rapid local pickup, often within 60 minutes</li>#}
+    {#                        <li><i class="ri-check-double-line"></i> Same day courier delivery anywhere in the UK</li>#}
+    {#                        <li><i class="ri-check-double-line"></i> Full Proof of Delivery with every job</li>#}
+    {#                    </ul>#}
+    {#                </div>#}
+    {#                <div class="col-lg-6 pt-4 pt-lg-0">#}
+    {#                    <ul>#}
+    {#                        <li><i class="ri-check-double-line"></i> Experienced with fragile and high-value items</li>#}
+    {#                        <li><i class="ri-check-double-line"></i> Friendly, professional drivers who know the local roads#}
+    {#                        </li>#}
+    {#                        <li><i class="ri-check-double-line"></i> Clear communication throughout the job</li>#}
+    {#                        <li><i class="ri-check-double-line"></i> Booking by phone, WhatsApp or online</li>#}
+    {#                    </ul>#}
+    {#                    <p>No call centres, no confusing systems. Just fast, secure, door-to-door delivery with a personal#}
+    {#                        touch.</p>#}
+    {#                </div>#}
+    {#            </div>#}
+    {#        </div>#}
+    {#    </section>#}
+    <!-- End Why Choose Bran Logistics Section -->
+
+    <!-- ======= Common Questions Section ======= -->
+    <section id="faq" class="faq section-bg">
+        <div class="container" data-aos="fade-up">
+
+            <div class="section-title">
+                <h2>Common Questions</h2>
+            </div>
+
+            <div class="faq-list">
+                <ul>
+                    <li data-aos="fade-up" data-aos-delay="100">
+                        <i class="bx bx-help-circle icon-help"></i>
+                        <a data-bs-toggle="collapse" class="collapse" data-bs-target="#faq-list-1">
+                            Do you provide Proof of Delivery?
+                            <i class="bx bx-chevron-down icon-show"></i>
+                            <i class="bx bx-chevron-up icon-close"></i>
+                        </a>
+                        <div id="faq-list-1" class="collapse show" data-bs-parent=".faq-list">
+                            <p>Yes, every delivery includes full Proof of Delivery (POD), including the time, location
+                                and recipient details. You’ll know your item arrived safely.</p>
+                        </div>
+                    </li>
+
+                    <li data-aos="fade-up" data-aos-delay="200">
+                        <i class="bx bx-help-circle icon-help"></i>
+                        <a data-bs-toggle="collapse" data-bs-target="#faq-list-2" class="collapsed">
+                            Can you deliver delicate or valuable items?
+                            <i class="bx bx-chevron-down icon-show"></i>
+                            <i class="bx bx-chevron-up icon-close"></i>
+                        </a>
+                        <div id="faq-list-2" class="collapse" data-bs-parent=".faq-list">
+                            <p>Absolutely. Our drivers are trained to handle fragile and high-value goods with extra
+                                care. If your item needs special packaging or instructions, just let us know when
+                                booking.</p>
+                        </div>
+                    </li>
+
+                    <li data-aos="fade-up" data-aos-delay="500">
+                        <i class="bx bx-help-circle icon-help"></i>
+                        <a data-bs-toggle="collapse" data-bs-target="#faq-list-6" class="collapsed">
+                            How quickly can you collect?
+                            <i class="bx bx-chevron-down icon-show"></i>
+                            <i class="bx bx-chevron-up icon-close"></i>
+                        </a>
+                        <div id="faq-list-6" class="collapse" data-bs-parent=".faq-list">
+                            <p>For most locations in Bournemouth, Poole and Christchurch, we can usually collect within
+                                60 minutes. Nationwide collections may take a little longer depending on location.</p>
+                        </div>
+                    </li>
+
+                    <li data-aos="fade-up" data-aos-delay="500">
+                        <i class="bx bx-help-circle icon-help"></i>
+                        <a data-bs-toggle="collapse" data-bs-target="#faq-list-7" class="collapsed">
+                            Do you offer same day delivery across the UK?
+                            <i class="bx bx-chevron-down icon-show"></i>
+                            <i class="bx bx-chevron-up icon-close"></i>
+                        </a>
+                        <div id="faq-list-7" class="collapse" data-bs-parent=".faq-list">
+                            <p>Yes. We collect in Dorset and deliver anywhere in the UK the same day, including cities
+                                like London, Birmingham, Manchester, Bristol and more.</p>
+                        </div>
+                    </li>
+
+                    <li data-aos="fade-up" data-aos-delay="500">
+                        <i class="bx bx-help-circle icon-help"></i>
+                        <a data-bs-toggle="collapse" data-bs-target="#faq-list-8" class="collapsed">
+                            Can I book by phone or WhatsApp?
+                            <i class="bx bx-chevron-down icon-show"></i>
+                            <i class="bx bx-chevron-up icon-close"></i>
+                        </a>
+                        <div id="faq-list-8" class="collapse" data-bs-parent=".faq-list">
+                            <p>Yes, and we encourage it. Quick communication means faster dispatch, and we’ll always
+                                confirm everything in writing too.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+    <!-- End Common Questions Section -->
+
+    <!-- ======= Booking Section ======= -->
+    <section class="about portfolio-details">
+        <div class="container" data-aos="fade-up">
+            <div class="section-title">
+                <h2>Booking is Easy. Here is What You Need to Do</h2>
+            </div>
+            <div class="row content">
+                <div class="col-lg-6">
+                    <p>You can book a same day delivery by contacting us directly. Let us know where to collect from,
+                        where it’s going, and when it’s ready. </p>
+                    <p>To get started, just fill in our Same Day Quote form. It only takes a minute and gives us
+                        everything we
+                        need to price your delivery and get it moving.</p>
+                    <h3>Our Same Day Quote </h3>
+                    <p>Here’s what to include:</p>
+                    <ul>
+                        <li><i class="ri-check-double-line"></i> Your name and contact details so we can confirm your
+                            booking
+                        </li>
+                        <li><i class="ri-check-double-line"></i> Where to collect from – postcode and company name if
+                            it’s a business
+                        </li>
+                        <li><i class="ri-check-double-line"></i> Where it’s going – again, postcode and company if it’s
+                            a delivery to a business
+                        </li>
+                        <li><i class="ri-check-double-line"></i> Collection and delivery times – give us a window so we
+                            know when to be there
+                        </li>
+                        <li><i class="ri-check-double-line"></i> Parcel details – let us know what you’re sending,
+                            including size and weight
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-6 pt-4 pt-lg-0">
+                    <p>We’ll confirm the quote straight away and assign a driver immediately. If you’re based in
+                        Bournemouth, Poole or Christchurch, we can usually be with you in under an hour.</p>
+                    <p>You’ll receive updates if you need them, and a confirmation once the item has been delivered.</p>
+
+                    <div class="portfolio-info mb-3">
+                        <ul>
+                            <li><strong>Call or WhatsApp</strong>: <a href="https://wa.me/+44 745 916 4919"
+                                                                      target="_blank">+44 745 916 4919</a></li>
+                            <li><strong>Email</strong>: <a href="mailto:contact@branlogistics.co.uk">contact@branlogistics.co.uk</a>
+                            </li>
+                            <li><strong>Online Quote Form</strong>: <a href="{% url 'quotes:get-a-quote' %}">https://branlogistics.co.uk/quote</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <p>We’re available seven days a week for urgent deliveries and same day courier work. No job is too
+                        small or too far.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Why Choose Bran Logistics Section -->
+
+{% endblock content %}
+
+
+{% block javascript %}
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Do you provide Proof of Delivery?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes, every delivery includes full Proof of Delivery (POD), including the time, location and recipient details. You’ll know your item arrived safely."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can you deliver delicate or valuable items?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": ""Absolutely. Our drivers are trained to handle fragile and high-value goods with extra care. If your item needs special packaging or instructions, just let us know when booking."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How quickly can you collect?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "For most locations in Bournemouth, Poole and Christchurch, we can usually collect within 60 minutes. Nationwide collections may take a little longer depending on location."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Do you offer same day delivery across the UK?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. We collect in Dorset and deliver anywhere in the UK the same day, including cities like London, Birmingham, Manchester, Bristol and more."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can I book by phone or WhatsApp?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes, and we encourage it. Quick communication means faster dispatch, and we’ll always confirm everything in writing too."
+              }
+            },
+          ]
+        }
+    </script>
+{% endblock javascript %}

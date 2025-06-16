@@ -8,16 +8,18 @@ class StaticSitemap(Sitemap):
     priority = 1.0  # High priority
 
     def items(self):
-        return ['index']  # List the URL names for static pages
+        return ['index', 'same_day_delivery']  # List the URL names for static pages
 
     def location(self, item):
         if item == 'index':
             return '/'  # URL for the homepage
+        elif item == 'same_day_delivery':
+            return '/same-day-delivery/'
 
     def get_urls(self, site=None, **kwargs):
         urls = super().get_urls(site=site, **kwargs)
         for url in urls:
-            url['location'] = 'https://branlogistics.co.uk/'
+            url['location'] = f'{url["location"]}'
         return urls
 
 
