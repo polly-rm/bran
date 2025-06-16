@@ -66,7 +66,7 @@ class IndexTemplateView(FormView):
 
     def post(self, request, *args, **kwargs):
         form = self.get_form()
-        check_for_spam(request)
+        # check_for_spam(request)
 
         if form.is_valid():
             return self.form_valid(form)
