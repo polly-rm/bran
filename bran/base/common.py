@@ -43,5 +43,3 @@ def check_for_spam(request):
 
     if request.POST.get('name') == 'RobertGurse':
         return HttpResponseForbidden('Spam detected (forbidden name')
-
-    return None
