@@ -78,6 +78,12 @@
                             <li><i class="ri-check-double-line"></i> Two-person collection and delivery for larger,
                                 heavier items.
                             </li>
+                            <li><i class="ri-check-double-line"></i> ADR-certified vehicles for transporting hazardous
+                                goods safely.
+                            </li>
+                            <li><i class="ri-check-double-line"></i> Tail lift-equipped vans for easy loading and
+                                unloading.
+                            </li>
                         </ul>
                     </div>
                     <div class="col-lg-6 pt-4 pt-lg-0">
@@ -126,15 +132,22 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-xl-3 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-                        <div class="icon-box">
-                            <div class="icon"><i class="bx bxs-package"></i></div>
-                            <h3 class="service-title">Urgent Same or Next Day Delivery</h3>
-                            <p>Need your package delivered fast? With our Express Same Day Delivery, we’ll ensure your
-                                shipment reaches its destination before the day ends. Contact us now, and our team will
-                                handle everything to make sure your delivery is completed quickly and efficiently.</p>
-                        </div>
+                    <div class="col-xl-3 col-md-6 d-flex align-items-stretch" data-aos="zoom-in"
+                         data-aos-delay="100">
+                        <a href="{% url 'same-day-delivery' %}" style="color: #444;">
+                            <div class="icon-box">
+                                <div class="icon"><i class="bx bxs-package"></i></div>
+                                <h3 class="service-title">Urgent Same or Next Day Delivery</h3>
+                                <p>Need your package delivered fast? With our Express Same Day Delivery, we’ll ensure
+                                    your
+                                    shipment reaches its destination before the day ends. Contact us now, and our team
+                                    will
+                                    handle everything to make sure your delivery is completed quickly and
+                                    efficiently.</p>
+                            </div>
+                        </a>
                     </div>
+
 
                     <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in"
                          data-aos-delay="200">
@@ -474,8 +487,10 @@
 
                             <div class="phone">
                                 <i class="bi bi-phone"></i>
-                                <h4>Call:</h4>
-                                <p>+44 745 916 4919</p>
+                                <h4>Call or WhatsApp:</h4>
+                                <p><a style="color: var(--dark-grey);" class="email-link"
+                                      href="https://wa.me/447459164919" target="_blank" rel="noopener">+44 745 916
+                                    4919</a></p>
                             </div>
 
                             <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10659.719154679498!2d-1.8785!3d50.720806!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4873a1743afcbfa3%3A0x9c4cbf60fbb71e96!2sBournemouth%2C%20UK!5e0!3m2!1sen!2sbg!4v1539943755621"

@@ -5,8 +5,8 @@
 <footer id="footer">
     <div class="footer-top" style="background-color: var(--light-grey)">
         <div class="container">
-            <div class="row d-flex justify-content-between">
-                <div class="col-lg-6 col-md-6 footer-contact">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 footer-contact">
                     {#                    <a href="{% url 'index' %}" class="logo me-auto">#}
                     {#                        <img id="logo" src="{% static 'img/logo-new.png' %}" alt="logo" class="img-fluid" width="180">#}
                     {#                    </a>#}
@@ -18,28 +18,41 @@
                                                    style="color: #5e5e5e;">contact@branlogistics.co.uk</a><br>
                     </p>
                 </div>
-                <div class="col-lg-6 col-md-6 d-flex justify-content-end mobile-flex-column" style="column-gap: 100px">
-                    <div class="col-lg-6 col-md-6 footer-links">
-                        <h4>Quick Links</h4>
-                        <div class="d-flex gap-4">
-                            <ul>
-                                <li><i class="bx bx-chevron-right"></i> <a href="{% url 'index' %}#hero">Home</a></li>
-                                <li><i class="bx bx-chevron-right"></i> <a href="{% url 'index' %}#about">About us</a>
-                                </li>
-                                <li><i class="bx bx-chevron-right"></i> <a
-                                        href="{% url 'index' %}#services">Services</a></li>
-                            </ul>
-                            <ul>
-                                <li><i class="bx bx-chevron-right"></i> <a href="{% url 'index' %}#portfolio">Fleet</a>
-                                </li>
-                                <li><i class="bx bx-chevron-right"></i> <a href="{% url 'index' %}#faq">FAQ</a></li>
-                                <li><i class="bx bx-chevron-right"></i> <a href="{% url 'index' %}#contact">Contact
-                                    us</a></li>
-                            </ul>
-                            <ul>
-                                <li><i class="bx bx-chevron-right"></i> <a href="{% url 'quotes:get-a-quote' %}">Get a Quote</a></li>
-                            </ul>
-                        </div>
+                <div class="col-lg-5 col-md-6 footer-links">
+                    <h4>Quick Links</h4>
+                    <div class="d-flex gap-4">
+                        <ul>
+                            <li><i class="bx bx-chevron-right"></i> <a href="{% url 'index' %}#hero">Home</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="{% url 'index' %}#about">About us</a>
+                            </li>
+                            <li><i class="bx bx-chevron-right"></i> <a
+                                    href="{% url 'index' %}#services">Services</a></li>
+                        </ul>
+                        <ul>
+                            <li><i class="bx bx-chevron-right"></i> <a href="{% url 'index' %}#portfolio">Fleet</a>
+                            </li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="{% url 'index' %}#faq">FAQ</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="{% url 'index' %}#contact">Contact
+                                us</a></li>
+                        </ul>
+                        <ul>
+                            <li><i class="bx bx-chevron-right"></i> <a href="{% url 'quotes:get-a-quote' %}">Get a
+                                Quote</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="{% url 'same-day-delivery' %}">Same Day
+                                Delivery</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 footer-links">
+                    <h4>Our Social Networks</h4>
+                    <p>Connect with us on our social platforms to stay updated and get in touch.</p>
+                    <div class="social-links mt-4">
+                        <a href="https://www.facebook.com/profile.php?id=100087377934892" target="_blank" rel="noopener"
+                           class="facebook"><i class="bx bxl-facebook"></i></a>
+                        <a href="https://www.instagram.com/branlogistics/" class="instagram" target="_blank"
+                           rel="noopener"><i class="bx bxl-instagram"></i></a>
+                        <a href="https://wa.me/447459164919" class="whatsapp" target="_blank" rel="noopener"><i
+                                class="bx bxl-whatsapp"></i></a>
                     </div>
                 </div>
             </div>
