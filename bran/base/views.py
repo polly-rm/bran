@@ -9,7 +9,7 @@ from django.http import HttpResponse, HttpResponseForbidden
 from django.http import JsonResponse
 from django.contrib import messages
 from django.http import HttpResponseRedirect
-from django.views.generic import FormView
+from django.views.generic import FormView, TemplateView
 
 from bran import settings
 from bran.base.common import check_for_spam
@@ -90,3 +90,5 @@ class IndexTemplateView(FormView):
         return HttpResponseRedirect(self.request.path_info)
 
 
+class SameDayDeliveryTemplateView(TemplateView):
+    template_name = 'same_day_delivery.html'

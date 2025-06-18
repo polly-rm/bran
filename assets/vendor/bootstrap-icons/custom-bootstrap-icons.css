@@ -34,3 +34,11 @@
 .bi-trash::before {
     content: "\f5de";
 }
+
+.bi-list::before {
+    content: "\f479";
+}
+
+.bi-x::before {
+    content: "\f62a";
+}

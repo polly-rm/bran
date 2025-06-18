@@ -59,3 +59,19 @@
 .bx-chevron-up:before {
     content: "\e9b9";
 }
+
+.bx-chevron-right:before {
+    content: "\e9b2"
+}
+
+.bxl-whatsapp:before {
+    content: "\eed2";
+}
+
+.bxl-facebook:before {
+    content: "\ee81";
+}
+
+.bxl-instagram:before {
+    content: "\ee93";
+}
