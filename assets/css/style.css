@@ -153,7 +153,7 @@ a:hover {
 }
 
 #header .logo a, .cta p, .mobile-nav-toggle.bi-x, .team .member .social a:hover i {
-    color: #fff
+    color: #fff;
 }
 
 #header .logo img {
@@ -448,6 +448,10 @@ a:hover {
 
     .contact-btn-mobile-hide, .time-to-label-mobile {
         display: none
+    }
+
+    .container, .container-sm {
+        max-width: 840px !important;
     }
 
     .container-mobile {
@@ -893,7 +897,7 @@ section {
 }
 
 .contact .info .address:hover i, .contact .info .email:hover i, .contact .info .phone:hover i, .contact .info .social-links a:hover, .portfolio #portfolio-flters li.filter-active, .portfolio #portfolio-flters li:hover, .pricing .buy-btn:hover, .pricing .featured .buy-btn {
-    background: #47b2e4;
+    background: var(--main-gold);
     color: #fff
 }
 
@@ -904,7 +908,9 @@ section {
 .portfolio .portfolio-item .portfolio-img {
     overflow: hidden;
     background: var(--light-grey);
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, .1)
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, .1);
+    display: flex;
+    justify-content: center;
 }
 
 .portfolio .portfolio-item .portfolio-img img {
@@ -1579,7 +1585,7 @@ section {
 #footer .footer-top .social-links a {
     font-size: 18px;
     display: inline-block;
-    background: #47b2e4;
+    background: var(--main-gold);
     color: #fff;
     line-height: 1;
     padding: 8px 0;
@@ -1592,7 +1598,7 @@ section {
 }
 
 #footer .footer-top .social-links a:hover {
-    background: #209dd8;
+    background: var(--dark-gold);
     color: #fff;
     text-decoration: none
 }
@@ -1705,4 +1711,25 @@ body, #header, #navbar {
     font-weight: 600;
     color: #fff;
     margin-bottom: 0;
+}
+
+/* Same Day Delivery Page */
+#same-day {
+    width: 100%;
+    position: relative;
+    background-color: white;
+    padding: 0;
+}
+
+#same-day h1 {
+    margin: 0 0 10px;
+    color: var(--main-black);
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 56px;
+}
+
+#same-day .animated {
+    animation: 2s ease-in-out infinite alternate-reverse both up-down;
+    max-height: 250px;
 }
