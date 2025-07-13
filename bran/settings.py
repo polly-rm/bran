@@ -3,6 +3,9 @@ import os
 from dotenv import load_dotenv
 from pathlib import Path
 
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
+
 load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -182,8 +185,8 @@ EMAIL_HOST = os.getenv('EMAIL_HOST')
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = int(os.getenv('EMAIL_PORT'))
-#EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS')
-#DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
+# EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS')
+# DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
 
 # Recaptcha config
 
@@ -199,3 +202,14 @@ CSRF_TRUSTED_ORIGINS = ['https://www.branlogistics.co.uk', 'https://branlogistic
 
 GOOGLE_MAPS_API_KEY = os.getenv('GOOGLE_MAPS_API_KEY')
 GOOGLE_MAPS_DISTANCE_API_KEY = os.getenv('GOOGLE_MAPS_DISTANCE_API_KEY')
+
+
+# Sentry config
+if not DEBUG:
+    SENTRY_DSN = os.environ.get('SENTRY_DSN')
+
+    sentry_sdk.init(
+        dsn=SENTRY_DSN,
+        integrations=[DjangoIntegration()],
+        send_default_pii=True,
+    )
