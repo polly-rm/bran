@@ -41,6 +41,7 @@ LOCAL_APPS = [
     'bran.users',
     'bran.pages',
     'bran.quotes',
+    'bran.invoices',
 ]
 
 THIRD_PARTY_APPS = [

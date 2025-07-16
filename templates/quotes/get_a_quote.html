@@ -71,7 +71,6 @@
                                 <div class="error">{{ error }}</div>
                             {% endfor %}
                         </div>
-
                         <div class="form-group col-md-6">
                             <label for="{{ form.postcode_from.id_for_label }}"
                                    class="mandatory">{{ form.postcode_from.label }}</label>
@@ -163,6 +162,22 @@
                                 <div class="error">{{ error }}</div>
                             {% endfor %}
                         </div>
+                        <div class="form-group col-md-6">
+                            <label for="{{ form.invoice_name.id_for_label }}"
+                                   class="mandatory">{{ form.invoice_name.label }}</label>
+                            {{ form.invoice_name }}
+                            {% for error in form.invoice_name.errors %}
+                                <div class="error">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="{{ form.invoice_address.id_for_label }}"
+                                   class="mandatory">{{ form.invoice_address.label }}</label>
+                            {{ form.invoice_address }}
+                            {% for error in form.invoice_address.errors %}
+                                <div class="error">{{ error }}</div>
+                            {% endfor %}
+                        </div>
 
                         <div class="form-group mt-4 mb-5">
                             <label class="mandatory">Parcels Details</label>
@@ -179,12 +194,12 @@
                             {% endfor %}
                         </div>
 
-                        <div class="form-group">
-                            {{ form.captcha }}
-                            {% for error in form.captcha.errors %}
-                                <div class="error">{{ error }}</div>
-                            {% endfor %}
-                        </div>
+{#                        <div class="form-group">#}
+{#                            {{ form.captcha }}#}
+{#                            {% for error in form.captcha.errors %}#}
+{#                                <div class="error">{{ error }}</div>#}
+{#                            {% endfor %}#}
+{#                        </div>#}
 
                         <div class="text-center">
                             <button type="submit" id="submit-btn">Quote Me</button>

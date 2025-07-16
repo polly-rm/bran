@@ -15,4 +15,12 @@ $(document).ready(function () {
                 const autocompleteAddressFrom = new google.maps.places.Autocomplete(document.getElementById('id_postcode_to'));
             });
     });
+    $('#id_invoice_address').on('input', function () {
+        const query = $(this).val();
+        fetch(`/api/autocomplete/?input=${query}`)
+            .then(response => response.json())
+            .then(data => {
+                const autocompleteAddressFrom = new google.maps.places.Autocomplete(document.getElementById('id_invoice_address'));
+            });
+    });
 });

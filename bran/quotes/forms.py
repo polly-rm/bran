@@ -1,22 +1,48 @@
 from django import forms
 from django.core.validators import MaxLengthValidator
-from django.forms import formset_factory
-from django_recaptcha.fields import ReCaptchaField
-from django_recaptcha.widgets import ReCaptchaV2Checkbox
+from django.forms.models import modelformset_factory
+
+from bran.quotes.models import Quote, Parcel
 
 
-class QuoteForm(forms.Form):
+class QuoteForm(forms.ModelForm):
     name = forms.CharField(
         required=True,
         label='Name',
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
-                'placeholder': 'Your Name'
+                'placeholder': 'Your name'
             }
         ),
         validators=[
             MaxLengthValidator(50, message="Your name cannot be more than 50 characters long.")
+        ]
+    )
+    invoice_name = forms.CharField(
+        required=True,
+        label='Invoice name',
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': 'Invoice name'
+            }
+        ),
+        validators=[
+            MaxLengthValidator(150, message="Your invoice name cannot be more than 150 characters long.")
+        ]
+    )
+    invoice_address = forms.CharField(
+        required=True,
+        label='Invoice address',
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': 'Invoice Address'
+            }
+        ),
+        validators=[
+            MaxLengthValidator(150, message="Your invoice address cannot be more than 150 characters long.")
         ]
     )
     contact_telephone = forms.CharField(
@@ -25,7 +51,7 @@ class QuoteForm(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
-                'placeholder': 'Your Telephone'
+                'placeholder': 'Your telephone'
             }
         )
     )
@@ -35,7 +61,7 @@ class QuoteForm(forms.Form):
         widget=forms.EmailInput(
             attrs={
                 'class': 'form-control',
-                'placeholder': 'Your Email'
+                'placeholder': 'Your email'
             }
         )
     )
@@ -45,11 +71,11 @@ class QuoteForm(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
-                'placeholder': 'From (Postcode)'
+                'placeholder': 'From (postcode)'
             }
         ),
         validators=[
-            MaxLengthValidator(50, message="This field cannot be more than 50 characters long.")
+            MaxLengthValidator(150, message="This field cannot be more than 50 characters long.")
         ]
     )
     postcode_to = forms.CharField(
@@ -58,20 +84,20 @@ class QuoteForm(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
-                'placeholder': 'From (Postcode)'
+                'placeholder': 'To (postcode)'
             }
         ),
         validators=[
-            MaxLengthValidator(50, message="This field cannot be more than 50 characters long.")
+            MaxLengthValidator(150, message="This field cannot be more than 50 characters long.")
         ]
     )
     company_from = forms.CharField(
         required=False,
-        label='Collect from Company',
+        label='Collect from company',
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
-                'placeholder': 'Company Name'
+                'placeholder': 'Company name to collect from'
             }
         ),
         validators=[
@@ -80,11 +106,11 @@ class QuoteForm(forms.Form):
     )
     company_to = forms.CharField(
         required=False,
-        label='Deliver to Company',
+        label='Deliver to company',
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
-                'placeholder': 'Company Name'
+                'placeholder': 'Company name to deliver to'
             }
         ),
         validators=[
@@ -93,51 +119,51 @@ class QuoteForm(forms.Form):
     )
     time_to_collect_from = forms.CharField(
         required=True,
-        label='Collection Time',
+        label='Collection time',
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control datetimepicker-input',
                 'data-target': '#datetimepicker1',
-                'placeholder': 'From (Date and Time)',
+                'placeholder': 'From (date and time)',
             }
         )
     )
     time_to_collect_to = forms.CharField(
         required=False,
-        label='Collection Time',
+        label='Collection time',
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control datetimepicker-input',
                 'data-target': '#datetimepicker2',
-                'placeholder': 'To (Date and Time)'
+                'placeholder': 'To (date and time)'
             }
         )
     )
     time_to_deliver_from = forms.CharField(
         required=True,
-        label='Delivery Time',
+        label='Delivery time',
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control datetimepicker-input',
                 'data-target': '#datetimepicker3',
-                'placeholder': 'From (Date and Time)'
+                'placeholder': 'From (date and time)'
             }
         )
     )
     time_to_deliver_to = forms.CharField(
         required=False,
-        label='Delivery Time',
+        label='Delivery time',
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control datetimepicker-input',
                 'data-target': '#datetimepicker4',
-                'placeholder': 'To (Date and Time)'
+                'placeholder': 'To (date and time)'
             }
         )
     )
     additional_info = forms.CharField(
         required=False,
-        label='Additional Information',
+        label='Additional information',
         widget=forms.Textarea(
             attrs={
                 'rows': '4',
@@ -145,16 +171,33 @@ class QuoteForm(forms.Form):
             },
         )
     )
-    captcha = ReCaptchaField(
-        widget=ReCaptchaV2Checkbox()
-    )
+    # captcha = ReCaptchaField(
+    #     widget=ReCaptchaV2Checkbox()
+    # )
     middle_name = forms.CharField(
         required=False,
         widget=forms.HiddenInput()
     )
 
+    class Meta:
+        model = Quote
+        fields = ['name',
+                  'invoice_name',
+                  'invoice_address',
+                  'contact_telephone',
+                  'email',
+                  'postcode_from',
+                  'postcode_to',
+                  'company_from',
+                  'company_to',
+                  'time_to_collect_from',
+                  'time_to_collect_to',
+                  'time_to_deliver_from',
+                  'time_to_deliver_to',
+                  'additional_info', ]
 
-class ParcelForm(forms.Form):
+
+class ParcelForm(forms.ModelForm):
     count = forms.IntegerField(
         required=True,
         label='Count',
@@ -231,8 +274,17 @@ class ParcelForm(forms.Form):
         }
     )
 
+    class Meta:
+        model = Parcel
+        fields = ['count',
+                  'weight',
+                  'length',
+                  'width',
+                  'height']
 
-ParcelFormset = formset_factory(
+
+ParcelFormset = modelformset_factory(
+    Parcel,
     ParcelForm,
     extra=1,
 )

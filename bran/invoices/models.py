@@ -1,9 +1,21 @@
 from django.db import models
+from django.db.models import Max
 
 from bran.base.models import TimeStampedModel
+from bran.quotes.models import Quote
 
 
-class Quote(TimeStampedModel):
+class Invoice(TimeStampedModel):
+    quote = models.ForeignKey(
+        Quote,
+        on_delete=models.CASCADE,
+        related_name='invoices',
+        blank=True,
+        null=True
+    )
+    invoice_number = models.PositiveIntegerField(
+        unique=True
+    )
     name = models.CharField(
         max_length=50
     )
@@ -55,43 +67,10 @@ class Quote(TimeStampedModel):
     )
 
     def __str__(self):
-        return f"Quote #{self.id} from {self.email}"
+        return f'Invoice #{self.invoice_number}'
 
-
-class Parcel(TimeStampedModel):
-    quote = models.ForeignKey(
-        Quote,
-        related_name='parcels',
-        on_delete=models.CASCADE
-    )
-    count = models.PositiveIntegerField(
-        null=True,
-        blank=True
-    )
-    weight = models.DecimalField(
-        max_digits=10,
-        decimal_places=2,
-        null=True,
-        blank=True
-    )
-    length = models.DecimalField(
-        max_digits=10,
-        decimal_places=2,
-        null=True,
-        blank=True
-    )
-    width = models.DecimalField(
-        max_digits=10,
-        decimal_places=2,
-        null=True,
-        blank=True
-    )
-    height = models.DecimalField(
-        max_digits=10,
-        decimal_places=2,
-        null=True,
-        blank=True
-    )
-
-    def __str__(self):
-        return f"Parcel #{self.id} for Quote #{self.quote.id} from {self.quote.name}"
+    def save(self, *args, **kwargs):
+        if self.invoice_number is None:
+            last_number = Invoice.objects.aggregate(Max('invoice_number'))['invoice_number__max']
+            self.invoice_number = 1 if last_number is None else last_number + 1
+        super().save(*args, **kwargs)

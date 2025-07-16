@@ -7,6 +7,7 @@ from django.views.generic import FormView
 from bran.base.common import get_driving_distance, check_for_spam
 from bran.base.emails import email_get_quote, email_automatic_answer
 from bran.quotes.forms import QuoteForm, ParcelFormset
+from bran.quotes.models import Quote
 from bran.settings import GOOGLE_MAPS_DISTANCE_API_KEY
 
 
@@ -39,6 +40,17 @@ class GetQuote(FormView):
         if form.cleaned_data.get('honeypot'):
             return HttpResponseForbidden('Spam detected!')
 
+        # Save the quote
+        quote = form.save()
+
+        # Save the parcels
+        for parcel_form in formset:
+            if parcel_form.is_valid() and parcel_form.cleaned_data.get('count'):
+                parcel = parcel_form.save(commit=False)
+                parcel.quote = quote
+                parcel.save()
+
+        # Extract distance
         distance = self.get_distance(form)
 
         email_get_quote(form.cleaned_data, formset.cleaned_data, distance)
@@ -55,7 +67,7 @@ class GetQuote(FormView):
         context = super().get_context_data(**kwargs)
 
         if 'formset' not in kwargs:
-            context['formset'] = ParcelFormset(prefix=self.FORMSET_PREFIX)
+            context['formset'] = ParcelFormset(prefix=self.FORMSET_PREFIX, queryset=Quote.objects.none())
         if 'form' not in kwargs:
             context['form'] = QuoteForm()
 
