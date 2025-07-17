@@ -33,19 +33,13 @@ class Quote(TimeStampedModel):
         blank=True,
         null=True
     )
-    time_to_collect_from = models.CharField(
-        max_length=100
-    )
-    time_to_collect_to = models.CharField(
-        max_length=100,
+    time_to_collect_from = models.DateTimeField()
+    time_to_collect_to = models.DateTimeField(
         blank=True,
         null=True
     )
-    time_to_deliver_from = models.CharField(
-        max_length=100
-    )
-    time_to_deliver_to = models.CharField(
-        max_length=100,
+    time_to_deliver_from = models.DateTimeField()
+    time_to_deliver_to = models.DateTimeField(
         blank=True,
         null=True
     )

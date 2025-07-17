@@ -1,6 +1,8 @@
 from django import forms
 from django.core.validators import MaxLengthValidator
 from django.forms.models import modelformset_factory
+from django_recaptcha.fields import ReCaptchaField
+from django_recaptcha.widgets import ReCaptchaV2Checkbox
 
 from bran.quotes.models import Quote, Parcel
 
@@ -117,7 +119,7 @@ class QuoteForm(forms.ModelForm):
             MaxLengthValidator(50, message="This field cannot be more than 50 characters long.")
         ]
     )
-    time_to_collect_from = forms.CharField(
+    time_to_collect_from = forms.DateTimeField(
         required=True,
         label='Collection time',
         widget=forms.TextInput(
@@ -126,9 +128,10 @@ class QuoteForm(forms.ModelForm):
                 'data-target': '#datetimepicker1',
                 'placeholder': 'From (date and time)',
             }
-        )
+        ),
+        input_formats=['%d/%m/%Y %H:%M']
     )
-    time_to_collect_to = forms.CharField(
+    time_to_collect_to = forms.DateTimeField(
         required=False,
         label='Collection time',
         widget=forms.TextInput(
@@ -137,9 +140,10 @@ class QuoteForm(forms.ModelForm):
                 'data-target': '#datetimepicker2',
                 'placeholder': 'To (date and time)'
             }
-        )
+        ),
+        input_formats=['%d/%m/%Y %H:%M']
     )
-    time_to_deliver_from = forms.CharField(
+    time_to_deliver_from = forms.DateTimeField(
         required=True,
         label='Delivery time',
         widget=forms.TextInput(
@@ -148,9 +152,10 @@ class QuoteForm(forms.ModelForm):
                 'data-target': '#datetimepicker3',
                 'placeholder': 'From (date and time)'
             }
-        )
+        ),
+        input_formats=['%d/%m/%Y %H:%M']
     )
-    time_to_deliver_to = forms.CharField(
+    time_to_deliver_to = forms.DateTimeField(
         required=False,
         label='Delivery time',
         widget=forms.TextInput(
@@ -159,7 +164,8 @@ class QuoteForm(forms.ModelForm):
                 'data-target': '#datetimepicker4',
                 'placeholder': 'To (date and time)'
             }
-        )
+        ),
+        input_formats=['%d/%m/%Y %H:%M']
     )
     additional_info = forms.CharField(
         required=False,
@@ -171,9 +177,9 @@ class QuoteForm(forms.ModelForm):
             },
         )
     )
-    # captcha = ReCaptchaField(
-    #     widget=ReCaptchaV2Checkbox()
-    # )
+    captcha = ReCaptchaField(
+        widget=ReCaptchaV2Checkbox()
+    )
     middle_name = forms.CharField(
         required=False,
         widget=forms.HiddenInput()

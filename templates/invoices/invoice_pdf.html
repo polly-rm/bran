@@ -1,0 +1,223 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Invoice #{{ invoice.invoice_number }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            color: #333;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .client, .logo {
+            width: 43%;
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        .company {
+            width: 43%;
+            display: inline-block;
+            vertical-align: top;
+            text-align: right;
+        }
+
+        .invoice-header {
+            margin-bottom: 30px;
+        }
+
+        .invoice-meta {
+            margin-top: 10px;
+        }
+
+        .invoice-meta p {
+            margin: 3px 0;
+        }
+
+        .invoice-meta-right {
+            padding: 0 8px 8px 0;
+        }
+
+        .section-title {
+            font-weight: bold;
+            margin-top: 30px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 5px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f5f5f5;
+            text-align: left;
+        }
+
+        .right {
+            text-align: right;
+        }
+
+        .total {
+            font-weight: bold;
+        }
+
+        .bank-details {
+            margin-top: 50px;
+        }
+
+        .footer {
+            margin-top: 50px;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .middle {
+            width: 11%;
+            display: inline-block;
+        }
+
+        .notes {
+            font-style: italic;
+        }
+
+        .logo {
+            height: 50px;
+            width: auto;
+        }
+
+        .invoice-to-box {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>INVOICE</h1>
+
+<div class="invoice-header">
+    <div class="logo">
+        <img src="file://{{ logo_path }}" alt="Logo Image" class="logo">
+    </div>
+
+    <div class="middle"></div>
+
+    <div class="company">
+        <strong>Bran Logistics Ltd</strong><br>
+        69 Benbow Crescent<br>
+        Poole<br>
+        BH12 5AH<br>
+        GB<br><br>
+        Tel: +44 7459164919<br>
+        Email: <a href="mailto:branpt@outlook.com">branpt@outlook.com</a>
+    </div>
+</div>
+
+
+<div class="invoice-header">
+    <div class="client">
+        <div class="invoice-meta">
+            <p><strong>Invoice To:</strong></p>
+            <div class="invoice-to-box">
+                <p>{{ invoice.invoice_name|linebreaksbr }}</p>
+                <p>{{ invoice.invoice_address|linebreaksbr }}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="middle"></div>
+
+    <div class="company">
+        <div class="invoice-meta invoice-meta-right">
+            <p><strong>Invoice No.:</strong> {{ invoice.invoice_number }}</p>
+            <p><strong>Invoice Date:</strong> {{ invoice.created|date:"d M Y" }}</p>
+            <p><strong>Payment Terms:</strong> 30 Days (From Invoice)</p>
+        </div>
+    </div>
+</div>
+
+<div class="section-title">Services</div>
+<table>
+    <thead>
+    <tr>
+        <th>Date</th>
+        <th>Description</th>
+        <th class="right">Qty</th>
+        <th class="right">Unit Cost</th>
+        <th class="right">Total</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>{{ invoice.time_to_collect|date:"l d/m/Y" }}</td>
+        <td>Collection from: {{ invoice.postcode_from }} and Delivery to: {{ invoice.postcode_to }}</td>
+        <td class="right">{{ invoice.quantity }}</td>
+        <td class="right">£{{ invoice.unit_cost }}</td>
+        <td class="right">£{{ invoice.unit_total }}</td>
+    </tr>
+    {% if invoice.additional_service_cost %}
+        <tr>
+            <td>{{ invoice.additional_service_date|date:"l d/m/Y"|default_if_none:'' }}</td>
+            <td>{{ invoice.additional_service_description|default_if_none:'' }}</td>
+            <td class="right">{{ invoice.additional_service_quantity|default_if_none:'' }}</td>
+            <td class="right">£{{ invoice.additional_service_cost }}</td>
+            <td class="right">£{{ invoice.additional_service_total }}</td>
+        </tr>
+    {% endif %}
+    </tbody>
+</table>
+
+<table style="margin-top: 20px;">
+    <tr>
+        <td class="right" style="width: 80%;"><strong>Subtotal</strong></td>
+        <td class="right">£{{ invoice.subtotal }}</td>
+    </tr>
+    <tr>
+        <td class="right"><strong>VAT</strong></td>
+        <td class="right">£{{ invoice.vat }}</td>
+    </tr>
+    <tr>
+        <td class="right total"><strong>Total</strong></td>
+        <td class="right total">£{{ invoice.total }}</td>
+    </tr>
+</table>
+
+{% if invoice.notes %}
+    <div class="section-title">Notes</div>
+    <p class="notes">{{ invoice.notes }}</p>
+{% endif %}
+
+<div class="bank-details">
+    <div class="section-title">Bank Details</div>
+    <p>
+        <strong>Bank Name:</strong> Tide Bank<br>
+        <strong>Account Holder:</strong> Bran Logistics Ltd<br>
+        <strong>Sort Code:</strong> 04-06-05<br>
+        <strong>Account Number:</strong> 19740873
+    </p>
+</div>
+
+<div class="footer">
+    VAT: 465411106 &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; Company Reg: 14323419
+</div>
+
+</body>
+</html>
+

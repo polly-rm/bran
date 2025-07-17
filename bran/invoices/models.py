@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 from django.db import models
 from django.db.models import Max
 
@@ -16,19 +18,12 @@ class Invoice(TimeStampedModel):
     invoice_number = models.PositiveIntegerField(
         unique=True
     )
-    name = models.CharField(
-        max_length=50
-    )
     invoice_name = models.CharField(
         max_length=150
     )
     invoice_address = models.CharField(
         max_length=150
     )
-    contact_telephone = models.CharField(
-        max_length=50
-    )
-    email = models.EmailField()
     postcode_from = models.CharField(
         max_length=150
     )
@@ -45,26 +40,74 @@ class Invoice(TimeStampedModel):
         blank=True,
         null=True
     )
-    time_to_collect_from = models.CharField(
-        max_length=100
-    )
-    time_to_collect_to = models.CharField(
-        max_length=100,
+    time_to_collect = models.DateTimeField(
         blank=True,
         null=True
     )
-    time_to_deliver_from = models.CharField(
-        max_length=100
+    time_to_deliver = models.DateTimeField(
+        blank=True,
+        null=True,
     )
-    time_to_deliver_to = models.CharField(
-        max_length=100,
+    notes = models.TextField(
         blank=True,
         null=True
     )
-    additional_info = models.TextField(
+    pdf_file = models.FileField(
+        upload_to='invoices/',
         blank=True,
         null=True
     )
+    quantity = models.PositiveIntegerField()
+    unit_cost = models.DecimalField(
+        max_digits=10,
+        decimal_places=2
+    )
+    additional_service_date = models.DateTimeField(
+        blank=True,
+        null=True,
+    )
+    additional_service_description = models.CharField(
+        max_length=150,
+        blank=True,
+        null=True
+    )
+    additional_service_quantity = models.PositiveIntegerField(
+        blank=True,
+        null=True
+    )
+    additional_service_cost = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        blank=True,
+        null=True
+    )
+
+    @property
+    def unit_total(self):
+        return self.quantity * self.unit_cost
+
+    @property
+    def additional_service_total(self):
+        total = 0
+
+        if self.additional_service_quantity and self.additional_service_cost:
+            total += self.additional_service_cost * self.additional_service_quantity
+        elif self.additional_service_cost:
+            total += self.additional_service_cost
+
+        return total
+
+    @property
+    def subtotal(self):
+        return self.unit_total + self.additional_service_total
+
+    @property
+    def vat(self):
+        return self.subtotal * Decimal('0.20')  # 20% VAT
+
+    @property
+    def total(self):
+        return self.subtotal + self.vat
 
     def __str__(self):
         return f'Invoice #{self.invoice_number}'
