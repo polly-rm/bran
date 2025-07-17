@@ -6,7 +6,7 @@ from django.conf import settings
 from django.contrib import admin
 from django.template.loader import render_to_string
 from django.utils.html import format_html
-from weasyprint import HTML
+from weasyprint import HTML, CSS
 
 from bran.invoices.models import Invoice
 
@@ -58,6 +58,9 @@ class InvoiceAdmin(admin.ModelAdmin):
 
         # Generate the PDF
         image_path_logo = str(settings.BASE_DIR) + '/assets/img/logo-black.jpg'
+        css_path = str(settings.BASE_DIR) + '/assets/css/invoice.css'
+        css_uri = f'file://{css_path}'
+
         context = {'invoice': obj, 'logo_path': image_path_logo}
         html_string = render_to_string('invoices/invoice_pdf.html', context)
 
@@ -67,7 +70,7 @@ class InvoiceAdmin(admin.ModelAdmin):
         output_path = os.path.join(output_dir, f'invoice_{obj.invoice_number}.pdf')
 
         # Generate and save PDF
-        HTML(string=html_string).write_pdf(output_path)
+        HTML(string=html_string, base_url=settings.STATIC_ROOT).write_pdf(output_path, stylesheets=[CSS(css_uri)])
 
         # Save PDF path to model field
         obj.pdf_file = f'invoices/invoice_{obj.invoice_number}.pdf'
