@@ -4,7 +4,6 @@ document.getElementById("submit-btn").addEventListener("click", function (event)
 
     // Check if there is only one form in the formset
     if (formsetForms.length === 1) {
-        console.log('1 forma')
         const fields = formsetForms[0].querySelectorAll("input");
 
         // Check if all fields are empty

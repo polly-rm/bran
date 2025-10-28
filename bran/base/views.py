@@ -14,7 +14,8 @@ from django.views.generic import FormView, TemplateView
 from bran import settings
 from bran.base.common import check_for_spam
 from bran.base.emails import email_contact_us, email_automatic_answer
-from bran.base.forms import ContactForm
+from bran.base.forms import ContactForm, CalculatorForm
+from bran.base.mixins import QuoteFormMixin
 from bran.settings import CURRENT_DOMAIN
 
 
@@ -51,33 +52,30 @@ def autocomplete(request):
     return JsonResponse(response.json())
 
 
-class IndexTemplateView(FormView):
+class IndexTemplateView(QuoteFormMixin, FormView):
     form_class = ContactForm
     template_name = 'index.html'
 
     def get_initial(self):
-        initial = {'timestamp': str(time.time())}
+        initial = super().get_initial()
+        initial['timestamp'] = str(time.time())
         user = self.request.user
-
         if user.is_authenticated:
             initial['email'] = user.email
-
         return initial
 
     def post(self, request, *args, **kwargs):
-        form = self.get_form()
-
-        # Check for spam and return early if detected
-        spam_response = check_for_spam(request)
-        if isinstance(spam_response, HttpResponse):
-            return spam_response
-
-        if form.is_valid():
-            return self.form_valid(form)
+        """Handle both forms separately"""
+        if 'calculator_form_submit' in request.POST:
+            # user submitted the quote form
+            self.form_class = CalculatorForm
+            return QuoteFormMixin.post(self, request, *args, **kwargs)
         else:
-            return self.form_invalid(form)
+            # user submitted the contact form
+            return super().post(request, *args, **kwargs)
 
     def form_valid(self, form):
+        # Handle contact form
         name = form.cleaned_data.get('name')
         email = form.cleaned_data.get('email')
         subject = form.cleaned_data.get('subject')
@@ -86,8 +84,23 @@ class IndexTemplateView(FormView):
         email_contact_us(name, email, subject, message)
         email_automatic_answer(email)
         messages.success(self.request, 'Your message was sent successfully!')
-
         return HttpResponseRedirect(self.request.path_info)
+
+    def forms_valid(self, form, formset):
+        # Handle quote form differently on this page
+        print('okkk calculator')
+        messages.success(self.request, 'Your quick quote was sent successfully!')
+        return HttpResponseRedirect(self.request.path_info)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        if 'form' not in kwargs:
+            context['form'] = ContactForm()
+        if 'calculator_form' not in kwargs:
+            context['calculator_form'] = CalculatorForm()
+
+        return context
 
 
 class SameDayDeliveryTemplateView(TemplateView):

@@ -155,7 +155,7 @@ a:hover {
 }
 
 #header .logo img {
-    max-height: 70px;
+    max-height: 65px;
     width: auto;
 }
 
@@ -352,7 +352,7 @@ a:hover {
 
 #hero {
     width: 100%;
-    height: 68vh;
+    height: 80vh;
     position: relative;
     background-color: #f5f5f5;
     padding: 90px 0 0 0;
@@ -367,7 +367,7 @@ a:hover {
 
 #hero .container {
     position: absolute;
-    padding-top: 65px;
+    padding-top: 55px;
     z-index: 1;
     top: 50%;
     left: 50%;
@@ -1658,7 +1658,7 @@ section {
     }
 
     #header .logo img {
-        max-height: 55px
+        max-height: 50px
     }
 }
 
@@ -1730,4 +1730,42 @@ body, #header, #navbar {
 #same-day .animated {
     animation: 2s ease-in-out infinite alternate-reverse both up-down;
     max-height: 250px;
+}
+
+.calculator {
+    background-color: rgba(198, 198, 198, 0.8);
+    padding: 30px 30px 0 30px;
+    border-radius: 30px;
+    max-height: 400px;
+    max-width: 100%;
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+.btn-calculate {
+    font-size: 16px;
+    padding: 10px 18px;
+    border-radius: 50px;
+    border-color: var(--main-gold);
+    border-width: 1px;
+    transition: .5s;
+    color: #fff;
+    background: var(--main-gold);
+}
+
+.btn-calculate:hover {
+    background: var(--dark-gold)
+}
+
+.btn-add-parcel {
+    font-size: 14px;
+    padding: 10px 18px;
+    border-radius: 50px;
+    border-color: var(--main-gold);
+    border-width: 1px;
+    transition: .5s;
+    color: var(--main-gold);
+    background: #fff;
 }
