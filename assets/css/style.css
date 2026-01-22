@@ -1756,7 +1756,8 @@ body, #header, #navbar {
 }
 
 .btn-calculate:hover {
-    background: var(--dark-gold)
+    background: var(--dark-gold);
+    color: white;
 }
 
 .btn-add-parcel {

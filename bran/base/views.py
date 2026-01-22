@@ -13,7 +13,7 @@ from django.views.generic import TemplateView
 
 from bran import settings
 from bran.base.common import get_driving_distance
-from bran.base.emails import email_contact_us, email_automatic_answer
+from bran.base.emails import email_contact_us, email_automatic_answer, email_calculator_to_admin
 from bran.base.forms import ContactForm, CalculatorForm
 from bran.settings import CURRENT_DOMAIN, GOOGLE_MAPS_DISTANCE_API_KEY
 from django_ratelimit.decorators import ratelimit
@@ -110,7 +110,9 @@ class IndexTemplateView(TemplateView):
         email_automatic_answer(form.cleaned_data['email'])
 
     def handle_calculator_form(self, form):
-        self.request.session['quote_data'] = form.cleaned_data
+        quote_data = form.cleaned_data
+        self.request.session['quote_data'] = quote_data
+        email_calculator_to_admin(quote_data)
 
 
 class SameDayDeliveryTemplateView(TemplateView):

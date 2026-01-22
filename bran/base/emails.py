@@ -5,6 +5,7 @@ from django.utils.encoding import force_bytes
 
 from bran import settings
 from bran.base.models import SendEmail
+from bran.quotes.forms import QuoteForm
 from bran.users.utils.tokens import account_activation_token
 from bran.settings import EMAIL_HOST_USER, CURRENT_DOMAIN
 
@@ -72,6 +73,10 @@ def email_contact_us(name, email, title, message):
 
 
 def email_get_quote(form_data, formset_data, distance):
+    vehicle_value = form_data.get('vehicle_type')
+    vehicle_choices_dict = dict(QuoteForm.VEHICLE_TYPE_CHOICES)
+    vehicle_label = vehicle_choices_dict.get(vehicle_value)
+
     subject = 'Quote Request'
     html_content = (
         get_template('emails/get_a_quote_email.html').render(
@@ -79,6 +84,7 @@ def email_get_quote(form_data, formset_data, distance):
                 'form_data': form_data,
                 'formset_data': formset_data,
                 'distance': distance,
+                'vehicle_type': vehicle_label,
             }
         )
     )
@@ -94,3 +100,14 @@ def email_automatic_answer(email):
     )
 
     send_mail(subject, html_content, email, from_email=f'Bran Logistics <{EMAIL_HOST_USER}>')
+
+
+def email_calculator_to_admin(quote_data):
+    subject = 'Calculator has been used'
+    html_content = (
+        get_template('emails/calculator_to_admin_email.html').render({
+            'quote_data': quote_data,
+        })
+    )
+
+    send_mail(subject, html_content, EMAIL_HOST_USER, from_email=EMAIL_HOST_USER)

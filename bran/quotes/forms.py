@@ -8,6 +8,15 @@ from bran.base.mixins import AntiSpamFormMixin
 
 
 class QuoteForm(AntiSpamFormMixin, forms.Form):
+    VEHICLE_TYPE_CHOICES = [
+        ('small_van', 'Small Van'),
+        ('swb', 'SWB'),
+        ('mwb', 'MWB'),
+        ('lwb', 'LWB'),
+        ('xlwb', 'XLWB'),
+        ('luton_van', 'Luton Van'),
+    ]
+
     name = forms.CharField(
         required=True,
         label='Name',
@@ -144,6 +153,16 @@ class QuoteForm(AntiSpamFormMixin, forms.Form):
             attrs={
                 'rows': '4',
                 'class': 'form-control hide'
+            },
+        )
+    )
+    vehicle_type = forms.ChoiceField(
+        required=False,
+        choices=[('', 'Select a vehicle')] + VEHICLE_TYPE_CHOICES,
+        label='Vehicle Type',
+        widget=forms.Select(
+            attrs={
+                'class': 'form-select'
             },
         )
     )

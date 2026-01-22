@@ -23,7 +23,24 @@ class GetQuote(FormView):
     FORMSET_PREFIX = 'parcel'
 
     def get_initial(self):
+        # Base initial
         initial = {'timestamp': str(time.time())}
+
+        # Prefill vehicle_type from URL
+        vehicle_type = self.request.GET.get('vehicle_type')
+        if vehicle_type:
+            initial['vehicle_type'] = vehicle_type
+
+        # Prefill from session if available
+        quote_data = self.request.session.get('quote_data', {})
+        postcode_from = quote_data.get('postcode_from')
+        postcode_to = quote_data.get('postcode_to')
+
+        if postcode_from:
+            initial['postcode_from'] = postcode_from
+        if postcode_to:
+            initial['postcode_to'] = postcode_to
+
         return initial
 
     def post(self, request, *args, **kwargs):
@@ -40,6 +57,7 @@ class GetQuote(FormView):
         email_get_quote(form.cleaned_data, formset.cleaned_data, distance)
         email_automatic_answer(form.cleaned_data.get('email'))
         messages.success(self.request, 'Your quote request was sent successfully!')
+        self.request.session.pop('quote_data', None)
 
         return HttpResponseRedirect(self.request.path_info)
 
@@ -49,15 +67,11 @@ class GetQuote(FormView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        quote_data = self.request.session.get('quote_data', {})
-        postcode_from = quote_data.get('postcode_from')
-        postcode_to = quote_data.get('postcode_to')
 
         if 'formset' not in kwargs:
             context['formset'] = ParcelFormset(prefix=self.FORMSET_PREFIX)
         if 'form' not in kwargs:
-            context['form'] = QuoteForm(
-                initial={'timestamp': str(time.time()), 'postcode_from': postcode_from, 'postcode_to': postcode_to})
+            context['form'] = QuoteForm(initial=self.get_initial())
 
         return context
 

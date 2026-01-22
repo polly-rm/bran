@@ -20,7 +20,6 @@ def get_driving_distance(origin, destination, api_key):
 
     response = requests.get(base_url, params=params)
     data = response.json()
-    print(data)
 
     if data["status"] == "OK":
         try:

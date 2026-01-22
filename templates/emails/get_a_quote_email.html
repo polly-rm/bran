@@ -26,6 +26,11 @@
       {% endif %}
   {% endfor %}
 
+  {% if form_data.vehicle_type %}
+    <br>
+    <p><b>Selected vehicle:</b> {{ vehicle_type }}</p>
+  {% endif %}
+
   {% if form_data.additional_info %}
     <br>
     <p><b>Additional information:</b> {{ form_data.additional_info }}</p>

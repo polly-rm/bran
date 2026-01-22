@@ -39,8 +39,10 @@
                         additional charges may apply in the following cases:</p>
                     <p class="fst-italic">
                         • Services carried out outside of standard working hours (08:00 – 16:00)<br>
-                        • Additional services, such as manual loading/unloading (handball) at the collection point, delivery point, or both<br>
-                        • When the collection or delivery location requires an additional fee, for example restricted access areas such as Central London
+                        • Additional services, such as manual loading/unloading (handball) at the collection point,
+                        delivery point, or both<br>
+                        • When the collection or delivery location requires an additional fee, for example restricted
+                        access areas such as Central London
                     </p>
                     <p class="fst-italic">If you are unsure about which vehicle is most suitable for your
                         shipment, please do not hesitate
@@ -68,7 +70,7 @@
                             </div>
                             <hr class="ms-4">
                             <div class="d-flex justify-content-end">
-                                <a class="btn-calculate" href="{% url 'quotes:get-a-quote' %}">Book</a>
+                                <a class="btn-calculate" href="{% url 'quotes:get-a-quote' %}?vehicle_type=small_van" target="_blank">Book</a>
                             </div>
                         </div>
                     </div>
@@ -93,7 +95,7 @@
                             </div>
                             <hr class="ms-4">
                             <div class="d-flex justify-content-end">
-                                <a class="btn-calculate" href="{% url 'quotes:get-a-quote' %}">Book</a>
+                                <a class="btn-calculate" href="{% url 'quotes:get-a-quote' %}?vehicle_type=swb" target="_blank">Book</a>
                             </div>
                         </div>
                     </div>
@@ -118,7 +120,7 @@
                             </div>
                             <hr class="ms-4">
                             <div class="d-flex justify-content-end">
-                                <a class="btn-calculate" href="{% url 'quotes:get-a-quote' %}">Book</a>
+                                <a class="btn-calculate" href="{% url 'quotes:get-a-quote' %}?vehicle_type=mwb" target="_blank">Book</a>
                             </div>
                         </div>
                     </div>
@@ -143,7 +145,7 @@
                             </div>
                             <hr class="ms-4">
                             <div class="d-flex justify-content-end">
-                                <a class="btn-calculate" href="{% url 'quotes:get-a-quote' %}">Book</a>
+                                <a class="btn-calculate" href="{% url 'quotes:get-a-quote' %}?vehicle_type=lwb" target="_blank">Book</a>
                             </div>
                         </div>
                     </div>
@@ -168,7 +170,8 @@
                             </div>
                             <hr class="ms-4">
                             <div class="d-flex justify-content-end">
-                                <a class="btn-calculate" href="{% url 'quotes:get-a-quote' %}">Book</a>
+                                <a class="btn-calculate"
+                                   href="{% url 'quotes:get-a-quote' %}?vehicle_type=xlwb" target="_blank">Book</a>
                             </div>
                         </div>
                     </div>
@@ -192,7 +195,7 @@
                             </div>
                             <hr class="ms-4">
                             <div class="d-flex justify-content-end">
-                                <button class="btn-calculate">Book</button>
+                                <a class="btn-calculate" href="{% url 'quotes:get-a-quote' %}?vehicle_type=luton_van" target="_blank">Book</a>
                             </div>
                         </div>
                     </div>
