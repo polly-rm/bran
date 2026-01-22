@@ -39,6 +39,8 @@
                         <div class="mt-5 mt-lg-0 d-flex align-items-stretch calculator">
                             <form action="{% url 'index' %}#calculator" method="post" class="php-email-form">
                                 {% csrf_token %}
+                                {{ calculator_form.middle_name }}
+                                {{ calculator_form.timestamp }}
 
                                 <div class="row">
                                     <div class="col-md-12 mb-2">
@@ -73,7 +75,8 @@
                                     </div>
                                     <div class="col-md-12 mt-2 mb-4">
                                         <div class="w-100 d-flex justify-content-end">
-                                            <button type="submit" name="calculator_form_submit" class="btn-calculate"><b>Quote me</b></button>
+                                            <button type="submit" name="calculator_form_submit" class="btn-calculate">
+                                                <b>Quote me</b></button>
                                         </div>
                                     </div>
                                 </div>

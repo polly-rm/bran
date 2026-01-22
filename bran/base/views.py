@@ -12,10 +12,12 @@ from django.shortcuts import redirect
 from django.views.generic import TemplateView
 
 from bran import settings
-from bran.base.common import get_driving_distance, check_for_spam
+from bran.base.common import get_driving_distance
 from bran.base.emails import email_contact_us, email_automatic_answer
 from bran.base.forms import ContactForm, CalculatorForm
 from bran.settings import CURRENT_DOMAIN, GOOGLE_MAPS_DISTANCE_API_KEY
+from django_ratelimit.decorators import ratelimit
+from django.utils.decorators import method_decorator
 
 
 def generate_qr_code(request):
@@ -51,28 +53,27 @@ def autocomplete(request):
     return JsonResponse(response.json())
 
 
+@method_decorator(
+    ratelimit(key='ip', rate='30/m'),
+    name='post'
+)
 class IndexTemplateView(TemplateView):
     template_name = 'index.html'
 
-    def get_initial_contact(self):
-        initial = {
-            'timestamp': str(time.time()),
-        }
-
-        if self.request.user.is_authenticated:
-            initial['email'] = self.request.user.email
-
-        return initial
-
     def get(self, request, *args, **kwargs):
         request.session.pop('quote_data', None)
+        now = str(time.time())
 
         return self.render_to_response({
-            'form': ContactForm(initial=self.get_initial_contact()),
-            'calculator_form': CalculatorForm(),
+            'form': ContactForm(initial={'timestamp': now}),
+            'calculator_form': CalculatorForm(initial={'timestamp': now}),
         })
 
     def post(self, request, *args, **kwargs):
+        # SLOW BOTS
+        if getattr(request, 'limited', False):
+            time.sleep(2)
+
         # CONTACT FORM
         if 'contact_form_submit' in request.POST:
             form = ContactForm(request.POST)
@@ -86,7 +87,7 @@ class IndexTemplateView(TemplateView):
         # CALCULATOR FORM
         elif 'calculator_form_submit' in request.POST:
             calculator_form = CalculatorForm(request.POST)
-            form = ContactForm(initial=self.get_initial_contact())
+            form = ContactForm()
 
             if calculator_form.is_valid():
                 self.handle_calculator_form(calculator_form)

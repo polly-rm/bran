@@ -4,8 +4,10 @@ from django.forms import formset_factory
 from django_recaptcha.fields import ReCaptchaField
 from django_recaptcha.widgets import ReCaptchaV2Checkbox
 
+from bran.base.mixins import AntiSpamFormMixin
 
-class QuoteForm(forms.Form):
+
+class QuoteForm(AntiSpamFormMixin, forms.Form):
     name = forms.CharField(
         required=True,
         label='Name',
@@ -147,10 +149,6 @@ class QuoteForm(forms.Form):
     )
     captcha = ReCaptchaField(
         widget=ReCaptchaV2Checkbox()
-    )
-    middle_name = forms.CharField(
-        required=False,
-        widget=forms.HiddenInput()
     )
 
 

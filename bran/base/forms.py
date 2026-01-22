@@ -3,10 +3,10 @@ from django.core.validators import MaxLengthValidator
 from django_recaptcha.fields import ReCaptchaField
 from django_recaptcha.widgets import ReCaptchaV2Checkbox
 
-from bran.quotes.forms import QuoteForm
+from bran.base.mixins import AntiSpamFormMixin
 
 
-class ContactForm(forms.Form):
+class ContactForm(AntiSpamFormMixin, forms.Form):
     name = forms.CharField(
         required=True,
         label='Your Name',
@@ -53,16 +53,9 @@ class ContactForm(forms.Form):
     captcha = ReCaptchaField(
         widget=ReCaptchaV2Checkbox()
     )
-    middle_name = forms.CharField(
-        required=False,
-        widget=forms.HiddenInput()
-    )
-    timestamp = forms.CharField(
-        widget=forms.HiddenInput()
-    )
 
 
-class CalculatorForm(forms.Form):
+class CalculatorForm(AntiSpamFormMixin, forms.Form):
     postcode_from = forms.CharField(
         required=True,
         label='From',
