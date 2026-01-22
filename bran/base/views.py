@@ -5,18 +5,17 @@ import time
 
 from io import BytesIO
 
-from django.http import HttpResponse, HttpResponseForbidden
+from django.http import HttpResponse
 from django.http import JsonResponse
 from django.contrib import messages
-from django.http import HttpResponseRedirect
-from django.views.generic import FormView, TemplateView
+from django.shortcuts import redirect
+from django.views.generic import TemplateView
 
 from bran import settings
-from bran.base.common import check_for_spam
+from bran.base.common import get_driving_distance, check_for_spam
 from bran.base.emails import email_contact_us, email_automatic_answer
 from bran.base.forms import ContactForm, CalculatorForm
-from bran.base.mixins import QuoteFormMixin
-from bran.settings import CURRENT_DOMAIN
+from bran.settings import CURRENT_DOMAIN, GOOGLE_MAPS_DISTANCE_API_KEY
 
 
 def generate_qr_code(request):
@@ -52,56 +51,81 @@ def autocomplete(request):
     return JsonResponse(response.json())
 
 
-class IndexTemplateView(QuoteFormMixin, FormView):
-    form_class = ContactForm
+class IndexTemplateView(TemplateView):
     template_name = 'index.html'
 
-    def get_initial(self):
-        initial = super().get_initial()
-        initial['timestamp'] = str(time.time())
-        user = self.request.user
-        if user.is_authenticated:
-            initial['email'] = user.email
+    def get_initial_contact(self):
+        initial = {
+            'timestamp': str(time.time()),
+        }
+
+        if self.request.user.is_authenticated:
+            initial['email'] = self.request.user.email
+
         return initial
 
+    def get(self, request, *args, **kwargs):
+        request.session.pop('quote_data', None)
+
+        return self.render_to_response({
+            'form': ContactForm(initial=self.get_initial_contact()),
+            'calculator_form': CalculatorForm(),
+        })
+
     def post(self, request, *args, **kwargs):
-        """Handle both forms separately"""
-        if 'calculator_form_submit' in request.POST:
-            # user submitted the quote form
-            self.form_class = CalculatorForm
-            return QuoteFormMixin.post(self, request, *args, **kwargs)
-        else:
-            # user submitted the contact form
-            return super().post(request, *args, **kwargs)
+        # CONTACT FORM
+        if 'contact_form_submit' in request.POST:
+            form = ContactForm(request.POST)
+            calculator_form = CalculatorForm()
 
-    def form_valid(self, form):
-        # Handle contact form
-        name = form.cleaned_data.get('name')
-        email = form.cleaned_data.get('email')
-        subject = form.cleaned_data.get('subject')
-        message = form.cleaned_data.get('message')
+            if form.is_valid():
+                self.handle_contact_form(form)
+                messages.success(request, 'Your message was sent successfully!')
+                return redirect(request.path)
 
-        email_contact_us(name, email, subject, message)
-        email_automatic_answer(email)
-        messages.success(self.request, 'Your message was sent successfully!')
-        return HttpResponseRedirect(self.request.path_info)
+        # CALCULATOR FORM
+        elif 'calculator_form_submit' in request.POST:
+            calculator_form = CalculatorForm(request.POST)
+            form = ContactForm(initial=self.get_initial_contact())
 
-    def forms_valid(self, form, formset):
-        # Handle quote form differently on this page
-        print('okkk calculator')
-        messages.success(self.request, 'Your quick quote was sent successfully!')
-        return HttpResponseRedirect(self.request.path_info)
+            if calculator_form.is_valid():
+                self.handle_calculator_form(calculator_form)
+                return redirect('calculator')
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+        # invalid → re-render both forms
+        return self.render_to_response({
+            'form': form,
+            'calculator_form': calculator_form,
+        })
 
-        if 'form' not in kwargs:
-            context['form'] = ContactForm()
-        if 'calculator_form' not in kwargs:
-            context['calculator_form'] = CalculatorForm()
+    @staticmethod
+    def handle_contact_form(form):
+        email_contact_us(
+            form.cleaned_data['name'],
+            form.cleaned_data['email'],
+            form.cleaned_data['subject'],
+            form.cleaned_data['message'],
+        )
+        email_automatic_answer(form.cleaned_data['email'])
 
-        return context
+    def handle_calculator_form(self, form):
+        self.request.session['quote_data'] = form.cleaned_data
 
 
 class SameDayDeliveryTemplateView(TemplateView):
     template_name = 'same_day_delivery.html'
+
+
+class CalculatorTemplateView(TemplateView):
+    template_name = 'calculator.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        quote_data = self.request.session.get('quote_data', {})
+        postcode_from = quote_data.get('postcode_from')
+        postcode_to = quote_data.get('postcode_to')
+        context['distance'] = get_driving_distance(postcode_from, postcode_to, GOOGLE_MAPS_DISTANCE_API_KEY).get(
+            'distance_miles')
+
+        return context

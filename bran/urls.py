@@ -22,7 +22,8 @@ from django.contrib.flatpages import views
 from django.contrib.sitemaps.views import sitemap
 
 from bran.base.sitemaps import StaticSitemap, SendEmailSitemap
-from bran.base.views import IndexTemplateView, generate_qr_code, robots_txt, autocomplete, SameDayDeliveryTemplateView
+from bran.base.views import IndexTemplateView, generate_qr_code, robots_txt, autocomplete, SameDayDeliveryTemplateView, \
+    CalculatorTemplateView
 
 sitemaps = {
     'static': StaticSitemap,
@@ -33,6 +34,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', IndexTemplateView.as_view(), name='index'),
     path('same-day-delivery/', SameDayDeliveryTemplateView.as_view(), name='same-day-delivery'),
+    path('calculator/', CalculatorTemplateView.as_view(), name='calculator'),
     path('users/', include('bran.users.urls', namespace='users')),
     path('quote/', include('bran.quotes.urls', namespace='quotes')),
 

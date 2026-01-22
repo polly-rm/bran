@@ -29,7 +29,7 @@
 
         <div class="container container-mobile">
             <div class="row" style="height: 100%">
-                <div class="col-lg-7 d-flex flex-column justify-content-between pt-4 pt-lg-0">
+                <div class="col-lg-6 d-flex flex-column justify-content-between pt-4 pt-lg-0 title-box-wide">
                     <div>
                         <h1 class="mb-2 title-mobile-wide">Same Day Courier in UK</h1>
                         <h2>Whether you need same-day, next-day, or urgent delivery services across the UK, we’ve got
@@ -39,7 +39,6 @@
                         <div class="mt-5 mt-lg-0 d-flex align-items-stretch calculator">
                             <form action="{% url 'index' %}#calculator" method="post" class="php-email-form">
                                 {% csrf_token %}
-                                {{ calculator_form.middle_name }}
 
                                 <div class="row">
                                     <div class="col-md-12 mb-2">
@@ -72,12 +71,9 @@
                                             <div class="error">{{ error }}</div>
                                         {% endfor %}
                                     </div>
-                                    <div class="col-md-12">
-                                        <div class="row d-flex align-items-center">
-                                            <div class="col-sm-1 me-2"></div>
-                                            <div class="col-sm">
-                                                {% include 'base/_partials/calculator_formset.html' %}
-                                            </div>
+                                    <div class="col-md-12 mt-2 mb-4">
+                                        <div class="w-100 d-flex justify-content-end">
+                                            <button type="submit" name="calculator_form_submit" class="btn-calculate"><b>Quote me</b></button>
                                         </div>
                                     </div>
                                 </div>

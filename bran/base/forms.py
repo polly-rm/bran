@@ -62,7 +62,7 @@ class ContactForm(forms.Form):
     )
 
 
-class CalculatorForm(QuoteForm):
+class CalculatorForm(forms.Form):
     postcode_from = forms.CharField(
         required=True,
         label='From',
@@ -89,9 +89,3 @@ class CalculatorForm(QuoteForm):
             MaxLengthValidator(50, message="This field cannot be more than 50 characters long.")
         ]
     )
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        for field in ['name', 'contact_telephone', 'email', 'company_from', 'company_to', 'time_to_collect_from',
-                      'time_to_collect_to', 'time_to_deliver_from', 'time_to_deliver_to', 'additional_info', 'captcha']:
-            self.fields.pop(field, None)

@@ -1,0 +1,215 @@
+{% extends 'base.html' %}
+
+{% load static calculate_price %}
+
+
+{% block title %}
+    <title>Free Quote | Select A Service | Bran Logistics</title>
+{% endblock title %}
+
+{% block meta_description %}
+    <meta content="Need a same day courier in Bournemouth? We deliver parcels fast, locally and nationwide. Affordable, secure, and professional service – 24/7."
+          name="description">
+{% endblock meta_description %}
+
+
+{% block content %}
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs" style="padding-top: 4rem">
+        <div class="container">
+            <ol>
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li>Quick quote</li>
+            </ol>
+            <h2>Quick Quote</h2>
+        </div>
+    </section>
+    <!-- End Breadcrumbs -->
+
+    <section id="team" class="team">
+        <div class="container" data-aos="fade-up">
+
+            <div class="section-title">
+                <h2>Free Quick Quote</h2>
+            </div>
+
+            <div class="row">
+                <div class="mb-3">
+                    <p class="fst-italic">Please note that the prices listed are indicative only and
+                        additional charges may apply in the following cases:</p>
+                    <p class="fst-italic">
+                        • Services carried out outside of standard working hours (08:00 – 16:00)<br>
+                        • Additional services, such as manual loading/unloading (handball) at the collection point, delivery point, or both<br>
+                        • When the collection or delivery location requires an additional fee, for example restricted access areas such as Central London
+                    </p>
+                    <p class="fst-italic">If you are unsure about which vehicle is most suitable for your
+                        shipment, please do not hesitate
+                        to contact us.
+                        We will be happy to provide free advice to help you choose the correct vehicle for your
+                        needs.</p>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="section-bg member d-flex align-items-center pt-3 pb-3" data-aos="zoom-in"
+                         data-aos-delay="100">
+                        <div class="pic">
+                            <img src="{% static 'img/vehicles/small-van.png' %}" class="img-fluid" alt="">
+                        </div>
+                        <div class="w-100">
+                            <div class="d-flex align-items-center justify-content-between w-100">
+                                <div class="member-info">
+                                    <h4>Small Van</h4>
+                                    <div>up to 1.5m</div>
+                                </div>
+                                <div class="member-info text-end">
+                                    <h2>£{{ distance|calculate_price:1 }}</h2>
+                                    <div>£{{ distance|calculate_price_with_vat:1 }} inc VAT</div>
+                                </div>
+                            </div>
+                            <hr class="ms-4">
+                            <div class="d-flex justify-content-end">
+                                <a class="btn-calculate" href="{% url 'quotes:get-a-quote' %}">Book</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 mt-4 mt-lg-0">
+                    <div class="section-bg member d-flex align-items-center pt-3 pb-3" data-aos="zoom-in"
+                         data-aos-delay="200">
+                        <div class="pic">
+                            <img src="{% static 'img/vehicles/swb.png' %}" class="img-fluid" alt="">
+                        </div>
+                        <div class="w-100">
+                            <div class="d-flex align-items-center justify-content-between w-100">
+                                <div class="member-info">
+                                    <h4>SWB</h4>
+                                    <div>up to 2.4m</div>
+                                </div>
+                                <div class="member-info text-end">
+                                    <h2>£{{ distance|calculate_price:1.2 }}</h2>
+                                    <div>£{{ distance|calculate_price_with_vat:1.2 }} inc VAT</div>
+                                </div>
+                            </div>
+                            <hr class="ms-4">
+                            <div class="d-flex justify-content-end">
+                                <a class="btn-calculate" href="{% url 'quotes:get-a-quote' %}">Book</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 mt-4">
+                    <div class="section-bg member d-flex align-items-center pt-3 pb-3" data-aos="zoom-in"
+                         data-aos-delay="300">
+                        <div class="pic">
+                            <img src="{% static 'img/vehicles/mwb.png' %}" class="img-fluid" alt="">
+                        </div>
+                        <div class="w-100">
+                            <div class="d-flex align-items-center justify-content-between w-100">
+                                <div class="member-info">
+                                    <h4>MWB</h4>
+                                    <div>up to 3m</div>
+                                </div>
+                                <div class="member-info text-end">
+                                    <h2>£{{ distance|calculate_price:1.4 }}</h2>
+                                    <div>£{{ distance|calculate_price_with_vat:1.4 }} inc VAT</div>
+                                </div>
+                            </div>
+                            <hr class="ms-4">
+                            <div class="d-flex justify-content-end">
+                                <a class="btn-calculate" href="{% url 'quotes:get-a-quote' %}">Book</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 mt-4">
+                    <div class="section-bg member d-flex align-items-center pt-3 pb-3" data-aos="zoom-in"
+                         data-aos-delay="400">
+                        <div class="pic">
+                            <img src="{% static 'img/vehicles/panel-van.png' %}" class="img-fluid" alt="">
+                        </div>
+                        <div class="w-100">
+                            <div class="d-flex align-items-center justify-content-between w-100">
+                                <div class="member-info">
+                                    <h4>LWB</h4>
+                                    <div>up to 4m</div>
+                                </div>
+                                <div class="member-info text-end">
+                                    <h2>£{{ distance|calculate_price:1.6 }}</h2>
+                                    <div>£{{ distance|calculate_price_with_vat:1.6 }} inc VAT</div>
+                                </div>
+                            </div>
+                            <hr class="ms-4">
+                            <div class="d-flex justify-content-end">
+                                <a class="btn-calculate" href="{% url 'quotes:get-a-quote' %}">Book</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 mt-4">
+                    <div class="section-bg member d-flex align-items-center pt-3 pb-3" data-aos="zoom-in"
+                         data-aos-delay="500">
+                        <div class="pic">
+                            <img src="{% static 'img/vehicles/panel-van.png' %}" class="img-fluid" alt="">
+                        </div>
+                        <div class="w-100">
+                            <div class="d-flex align-items-center justify-content-between w-100">
+                                <div class="member-info">
+                                    <h4>XLWB</h4>
+                                    <div>up to 4.2m</div>
+                                </div>
+                                <div class="member-info text-end">
+                                    <h2>£{{ distance|calculate_price:1.8 }}</h2>
+                                    <div>£{{ distance|calculate_price_with_vat:1.8 }} inc VAT</div>
+                                </div>
+                            </div>
+                            <hr class="ms-4">
+                            <div class="d-flex justify-content-end">
+                                <a class="btn-calculate" href="{% url 'quotes:get-a-quote' %}">Book</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 mt-4">
+                    <div class="section-bg member d-flex align-items-center pt-3 pb-3" data-aos="zoom-in"
+                         data-aos-delay="600">
+                        <div class="pic">
+                            <img src="{% static 'img/vehicles/luton-box.png' %}" class="img-fluid" alt="">
+                        </div>
+                        <div class="w-100">
+                            <div class="d-flex align-items-center justify-content-between w-100">
+                                <div class="member-info">
+                                    <h4>Luton Van</h4>
+                                </div>
+                                <div class="member-info text-end">
+                                    <h2>£{{ distance|calculate_price:2.1 }}</h2>
+                                    <div>£{{ distance|calculate_price_with_vat:2.1 }} inc VAT</div>
+                                </div>
+                            </div>
+                            <hr class="ms-4">
+                            <div class="d-flex justify-content-end">
+                                <button class="btn-calculate">Book</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <style>
+        hr {
+            background: #cbd6e9;
+        }
+
+        .btn-calculate {
+            padding: 6px 22px;
+        }
+    </style>
+
+{% endblock content %}
