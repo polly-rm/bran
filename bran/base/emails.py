@@ -72,11 +72,7 @@ def email_contact_us(name, email, title, message):
     send_mail(subject, html_content, EMAIL_HOST_USER, from_email=email, message_to_save=message)
 
 
-def email_get_quote(form_data, formset_data, distance):
-    vehicle_value = form_data.get('vehicle_type')
-    vehicle_choices_dict = dict(QuoteForm.VEHICLE_TYPE_CHOICES)
-    vehicle_label = vehicle_choices_dict.get(vehicle_value)
-
+def email_get_quote(form_data, formset_data, distance, vehicle_name=None, price=None, price_vat=None):
     subject = 'Quote Request'
     html_content = (
         get_template('emails/get_a_quote_email.html').render(
@@ -84,7 +80,9 @@ def email_get_quote(form_data, formset_data, distance):
                 'form_data': form_data,
                 'formset_data': formset_data,
                 'distance': distance,
-                'vehicle_type': vehicle_label,
+                'vehicle_name': vehicle_name,
+                'price': price,
+                'price_vat': price_vat
             }
         )
     )

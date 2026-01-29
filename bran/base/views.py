@@ -9,6 +9,7 @@ from django.http import HttpResponse
 from django.http import JsonResponse
 from django.contrib import messages
 from django.shortcuts import redirect
+from django.views import View
 from django.views.generic import TemplateView
 
 from bran import settings
@@ -121,6 +122,21 @@ class SameDayDeliveryTemplateView(TemplateView):
 
 class CalculatorTemplateView(TemplateView):
     template_name = 'calculator.html'
+
+    def post(self, request, *args, **kwargs):
+        vehicle_type = request.POST.get('vehicle_type')
+
+        if vehicle_type:
+            quote_data = request.session.get('quote_data', {})
+            quote_data['vehicle_type'] = vehicle_type
+            quote_data['name'] = request.POST.get('name')
+            quote_data['size'] = request.POST.get('size')
+            quote_data['price'] = request.POST.get('price')
+            quote_data['price_vat'] = request.POST.get('price_vat')
+
+            request.session['quote_data'] = quote_data
+
+        return redirect('quotes:get-a-quote')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

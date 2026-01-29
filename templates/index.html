@@ -37,7 +37,7 @@
                             condition.</h2>
 
                         <div class="mt-5 mt-lg-0 d-flex align-items-stretch calculator">
-                            <form action="{% url 'index' %}#calculator" method="post" class="php-email-form">
+                            <form action="{% url 'index' %}" method="post" class="php-email-form">
                                 {% csrf_token %}
                                 {{ calculator_form.middle_name }}
                                 {{ calculator_form.timestamp }}

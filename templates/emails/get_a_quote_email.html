@@ -26,9 +26,17 @@
       {% endif %}
   {% endfor %}
 
-  {% if form_data.vehicle_type %}
+  {% if vehicle_name %}
     <br>
-    <p><b>Selected vehicle:</b> {{ vehicle_type }}</p>
+    <p><b>Selected vehicle:</b> {{ vehicle_name }}</p>
+  {% endif %}
+
+  {% if price %}
+    <p><b>Estimated Price:</b> £{{ price }}</p>
+  {% endif %}
+
+  {% if price_vat %}
+    <p><b>Estimated Price inc VAT:</b> £{{ price_vat }}</p>
   {% endif %}
 
   {% if form_data.additional_info %}

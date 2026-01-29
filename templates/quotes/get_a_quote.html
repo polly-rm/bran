@@ -43,6 +43,30 @@
                     with Bran Logistics.</p>
             </div>
 
+            {% if quote_data.vehicle_type %}
+                <div id="team" class="team col-lg-8 mt-5 mb-4 mt-lg-0 d-flex align-items-stretch">
+                    <div class="section-bg member d-flex align-items-center pt-3 pb-3 w-100">
+                        <div class="pic">
+                            <img src="{% static 'img/vehicles/small-van.png' %}" class="img-fluid" alt="">
+                        </div>
+                        <div class="w-100">
+                            <div class="d-flex align-items-center justify-content-between w-100">
+                                <div class="member-info">
+                                    <h4>{{ quote_data.name }}</h4>
+                                    {% if quote_data.size %}
+                                        <div>up to {{ quote_data.size }}m</div>
+                                    {% endif %}
+                                </div>
+                                <div class="member-info text-end">
+                                    <h2>£{{ quote_data.price }}</h2>
+                                    <div>£{{ quote_data.price_vat }} inc VAT</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+
             <div class="col-lg-8 mt-5 mt-lg-0 d-flex align-items-stretch">
                 <form action="{% url 'quotes:get-a-quote' %}" method="post" class="php-email-form">
                     {% csrf_token %}
@@ -168,14 +192,6 @@
                         <div class="form-group mt-4 mb-5">
                             <label class="mandatory">Parcels Details</label>
                             {% include 'quotes/_partials/parcel_formset.html' %}
-                        </div>
-
-                        <div class="form-group col-md-12">
-                            <label for="{{ form.vehicle_type.id_for_label }}">{{ form.vehicle_type.label }}</label>
-                            {{ form.vehicle_type }}
-                            {% for error in form.vehicle_type.errors %}
-                                <div class="error">{{ error }}</div>
-                            {% endfor %}
                         </div>
 
                         <div class="form-group">

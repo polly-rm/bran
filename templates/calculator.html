@@ -38,7 +38,7 @@
                     <p class="fst-italic">Please note that the prices listed are indicative only and
                         additional charges may apply in the following cases:</p>
                     <p class="fst-italic">
-                        • Services carried out outside of standard working hours (08:00 – 16:00)<br>
+                        • Services carried out outside of standard working hours (06:00 – 17:00)<br>
                         • Additional services, such as manual loading/unloading (handball) at the collection point,
                         delivery point, or both<br>
                         • When the collection or delivery location requires an additional fee, for example restricted
@@ -64,13 +64,24 @@
                                     <div>up to 1.5m</div>
                                 </div>
                                 <div class="member-info text-end">
-                                    <h2>£{{ distance|calculate_price:1 }}</h2>
-                                    <div>£{{ distance|calculate_price_with_vat:1 }} inc VAT</div>
+                                    <h2>£{{ distance|calculate_price:'small_van' }}</h2>
+                                    <div>£{{ distance|calculate_price_with_vat:'small_van' }} inc VAT</div>
                                 </div>
                             </div>
                             <hr class="ms-4">
                             <div class="d-flex justify-content-end">
-                                <a class="btn-calculate" href="{% url 'quotes:get-a-quote' %}?vehicle_type=small_van" target="_blank">Book</a>
+                                <form method="post" action="">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="vehicle_type" value="small_van">
+                                    <input type="hidden" name="name" value="Small Van">
+                                    <input type="hidden" name="size" value="1.5">
+                                    <input type="hidden" name="price"
+                                           value="{{ distance|calculate_price:'small_van' }}">
+                                    <input type="hidden" name="price_vat"
+                                           value="{{ distance|calculate_price_with_vat:'small_van' }}">
+
+                                    <button type="submit" class="btn-calculate">Book</button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -89,13 +100,23 @@
                                     <div>up to 2.4m</div>
                                 </div>
                                 <div class="member-info text-end">
-                                    <h2>£{{ distance|calculate_price:1.2 }}</h2>
-                                    <div>£{{ distance|calculate_price_with_vat:1.2 }} inc VAT</div>
+                                    <h2>£{{ distance|calculate_price:'swb' }}</h2>
+                                    <div>£{{ distance|calculate_price_with_vat:'swb' }} inc VAT</div>
                                 </div>
                             </div>
                             <hr class="ms-4">
                             <div class="d-flex justify-content-end">
-                                <a class="btn-calculate" href="{% url 'quotes:get-a-quote' %}?vehicle_type=swb" target="_blank">Book</a>
+                                <form method="post" action="">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="vehicle_type" value="swb">
+                                    <input type="hidden" name="name" value="SWB">
+                                    <input type="hidden" name="size" value="2.4">
+                                    <input type="hidden" name="price" value="{{ distance|calculate_price:'swb' }}">
+                                    <input type="hidden" name="price_vat"
+                                           value="{{ distance|calculate_price_with_vat:'swb' }}">
+
+                                    <button type="submit" class="btn-calculate">Book</button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -114,13 +135,23 @@
                                     <div>up to 3m</div>
                                 </div>
                                 <div class="member-info text-end">
-                                    <h2>£{{ distance|calculate_price:1.4 }}</h2>
-                                    <div>£{{ distance|calculate_price_with_vat:1.4 }} inc VAT</div>
+                                    <h2>£{{ distance|calculate_price:'mwb' }}</h2>
+                                    <div>£{{ distance|calculate_price_with_vat:'mwb' }} inc VAT</div>
                                 </div>
                             </div>
                             <hr class="ms-4">
                             <div class="d-flex justify-content-end">
-                                <a class="btn-calculate" href="{% url 'quotes:get-a-quote' %}?vehicle_type=mwb" target="_blank">Book</a>
+                                <form method="post" action="">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="vehicle_type" value="mwb">
+                                    <input type="hidden" name="name" value="MWB">
+                                    <input type="hidden" name="size" value="3">
+                                    <input type="hidden" name="price" value="{{ distance|calculate_price:'mwb' }}">
+                                    <input type="hidden" name="price_vat"
+                                           value="{{ distance|calculate_price_with_vat:'mwb' }}">
+
+                                    <button type="submit" class="btn-calculate">Book</button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -128,7 +159,7 @@
 
                 <div class="col-lg-6 mt-4">
                     <div class="section-bg member d-flex align-items-center pt-3 pb-3" data-aos="zoom-in"
-                         data-aos-delay="400">
+                         data-aos-delay="300">
                         <div class="pic">
                             <img src="{% static 'img/vehicles/panel-van.png' %}" class="img-fluid" alt="">
                         </div>
@@ -139,13 +170,23 @@
                                     <div>up to 4m</div>
                                 </div>
                                 <div class="member-info text-end">
-                                    <h2>£{{ distance|calculate_price:1.6 }}</h2>
-                                    <div>£{{ distance|calculate_price_with_vat:1.6 }} inc VAT</div>
+                                    <h2>£{{ distance|calculate_price:'lwb' }}</h2>
+                                    <div>£{{ distance|calculate_price_with_vat:'lwb' }} inc VAT</div>
                                 </div>
                             </div>
                             <hr class="ms-4">
                             <div class="d-flex justify-content-end">
-                                <a class="btn-calculate" href="{% url 'quotes:get-a-quote' %}?vehicle_type=lwb" target="_blank">Book</a>
+                                <form method="post" action="">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="vehicle_type" value="lwb">
+                                    <input type="hidden" name="name" value="LWB">
+                                    <input type="hidden" name="size" value="4">
+                                    <input type="hidden" name="price" value="{{ distance|calculate_price:'lwb' }}">
+                                    <input type="hidden" name="price_vat"
+                                           value="{{ distance|calculate_price_with_vat:'lwb' }}">
+
+                                    <button type="submit" class="btn-calculate">Book</button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -164,14 +205,23 @@
                                     <div>up to 4.2m</div>
                                 </div>
                                 <div class="member-info text-end">
-                                    <h2>£{{ distance|calculate_price:1.8 }}</h2>
-                                    <div>£{{ distance|calculate_price_with_vat:1.8 }} inc VAT</div>
+                                    <h2>£{{ distance|calculate_price:'xlwb' }}</h2>
+                                    <div>£{{ distance|calculate_price_with_vat:'xlwb' }} inc VAT</div>
                                 </div>
                             </div>
                             <hr class="ms-4">
                             <div class="d-flex justify-content-end">
-                                <a class="btn-calculate"
-                                   href="{% url 'quotes:get-a-quote' %}?vehicle_type=xlwb" target="_blank">Book</a>
+                                <form method="post" action="">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="vehicle_type" value="xlwb">
+                                    <input type="hidden" name="name" value="XLWB">
+                                    <input type="hidden" name="size" value="4.2">
+                                    <input type="hidden" name="price" value="{{ distance|calculate_price:'xlwb' }}">
+                                    <input type="hidden" name="price_vat"
+                                           value="{{ distance|calculate_price_with_vat:'xlwb' }}">
+
+                                    <button type="submit" class="btn-calculate">Book</button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -189,13 +239,24 @@
                                     <h4>Luton Van</h4>
                                 </div>
                                 <div class="member-info text-end">
-                                    <h2>£{{ distance|calculate_price:2.1 }}</h2>
-                                    <div>£{{ distance|calculate_price_with_vat:2.1 }} inc VAT</div>
+                                    <h2>£{{ distance|calculate_price:'luton_van' }}</h2>
+                                    <div>£{{ distance|calculate_price_with_vat:'luton_van' }} inc VAT</div>
                                 </div>
                             </div>
                             <hr class="ms-4">
                             <div class="d-flex justify-content-end">
-                                <a class="btn-calculate" href="{% url 'quotes:get-a-quote' %}?vehicle_type=luton_van" target="_blank">Book</a>
+                                <form method="post" action="">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="vehicle_type" value="luton_van">
+                                    <input type="hidden" name="name" value="Luton Van">
+                                    <input type="hidden" name="size" value="">
+                                    <input type="hidden" name="price"
+                                           value="{{ distance|calculate_price:'luton_van' }}">
+                                    <input type="hidden" name="price_vat"
+                                           value="{{ distance|calculate_price_with_vat:'luton_van' }}">
+
+                                    <button type="submit" class="btn-calculate">Book</button>
+                                </form>
                             </div>
                         </div>
                     </div>

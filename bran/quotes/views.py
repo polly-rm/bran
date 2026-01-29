@@ -26,11 +26,6 @@ class GetQuote(FormView):
         # Base initial
         initial = {'timestamp': str(time.time())}
 
-        # Prefill vehicle_type from URL
-        vehicle_type = self.request.GET.get('vehicle_type')
-        if vehicle_type:
-            initial['vehicle_type'] = vehicle_type
-
         # Prefill from session if available
         quote_data = self.request.session.get('quote_data', {})
         postcode_from = quote_data.get('postcode_from')
@@ -54,7 +49,12 @@ class GetQuote(FormView):
 
     def forms_valid(self, form, formset):
         distance = self.get_distance(form)
-        email_get_quote(form.cleaned_data, formset.cleaned_data, distance)
+        quote_data = self.request.session.get('quote_data', {})
+        vehicle_name = quote_data.get('name')
+        price = quote_data.get('price')
+        price_vat = quote_data.get('price_vat')
+        email_get_quote(form.cleaned_data, formset.cleaned_data, distance, vehicle_name=vehicle_name, price=price,
+                        price_vat=price_vat)
         email_automatic_answer(form.cleaned_data.get('email'))
         messages.success(self.request, 'Your quote request was sent successfully!')
         self.request.session.pop('quote_data', None)
@@ -72,6 +72,9 @@ class GetQuote(FormView):
             context['formset'] = ParcelFormset(prefix=self.FORMSET_PREFIX)
         if 'form' not in kwargs:
             context['form'] = QuoteForm(initial=self.get_initial())
+
+        quote_data = self.request.session.get('quote_data', {})
+        context['quote_data'] = quote_data
 
         return context
 

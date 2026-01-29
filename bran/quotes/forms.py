@@ -156,16 +156,6 @@ class QuoteForm(AntiSpamFormMixin, forms.Form):
             },
         )
     )
-    vehicle_type = forms.ChoiceField(
-        required=False,
-        choices=[('', 'Select a vehicle')] + VEHICLE_TYPE_CHOICES,
-        label='Vehicle Type',
-        widget=forms.Select(
-            attrs={
-                'class': 'form-select'
-            },
-        )
-    )
     captcha = ReCaptchaField(
         widget=ReCaptchaV2Checkbox()
     )
