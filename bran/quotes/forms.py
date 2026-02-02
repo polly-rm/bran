@@ -4,8 +4,19 @@ from django.forms import formset_factory
 from django_recaptcha.fields import ReCaptchaField
 from django_recaptcha.widgets import ReCaptchaV2Checkbox
 
+from bran.base.mixins import AntiSpamFormMixin
 
-class QuoteForm(forms.Form):
+
+class QuoteForm(AntiSpamFormMixin, forms.Form):
+    VEHICLE_TYPE_CHOICES = [
+        ('small_van', 'Small Van'),
+        ('swb', 'SWB'),
+        ('mwb', 'MWB'),
+        ('lwb', 'LWB'),
+        ('xlwb', 'XLWB'),
+        ('luton_van', 'Luton Van'),
+    ]
+
     name = forms.CharField(
         required=True,
         label='Name',
@@ -58,7 +69,7 @@ class QuoteForm(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
-                'placeholder': 'From (Postcode)'
+                'placeholder': 'To (Postcode)'
             }
         ),
         validators=[
@@ -147,10 +158,6 @@ class QuoteForm(forms.Form):
     )
     captcha = ReCaptchaField(
         widget=ReCaptchaV2Checkbox()
-    )
-    middle_name = forms.CharField(
-        required=False,
-        widget=forms.HiddenInput()
     )
 
 

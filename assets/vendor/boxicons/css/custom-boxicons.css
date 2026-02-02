@@ -79,3 +79,7 @@
 .bxs-contact:before {
     content: "\ecb7";
 }
+
+.bx-error-circle:before {
+    content: "\ea29";
+}

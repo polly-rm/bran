@@ -31,15 +31,58 @@
             <div class="row" style="height: 100%">
                 <div class="col-lg-6 d-flex flex-column justify-content-between pt-4 pt-lg-0 title-box-wide">
                     <div>
-                        <h1 class="mb-4 title-mobile-wide">Same Day Courier in UK</h1>
+                        <h1 class="mb-2 title-mobile-wide">Same Day Courier in UK</h1>
                         <h2>Whether you need same-day, next-day, or urgent delivery services across the UK, we’ve got
-                            you
-                            covered. Our courier services ensure your items arrive on time and in excellent
+                            you covered. Our courier services ensure your items arrive on time and in excellent
                             condition.</h2>
-                    </div>
-                    <div>
-                        <a href="{% url 'quotes:get-a-quote' %}" class="btn-get-started scrollto"
-                           style="min-width: 135px !important;">Get a Free Quote</a>
+
+                        <div class="mt-5 mt-lg-0 d-flex align-items-stretch calculator">
+                            <form action="{% url 'index' %}" method="post" class="php-email-form">
+                                {% csrf_token %}
+                                {{ calculator_form.middle_name }}
+                                {{ calculator_form.timestamp }}
+
+                                <div class="row">
+                                    <div class="col-md-12 mb-2">
+                                        <div class="row d-flex align-items-center">
+                                            <div class="col-sm-1 me-2">
+                                                <label for="{{ calculator_form.postcode_from.id_for_label }}">
+                                                    <b>{{ calculator_form.postcode_from.label|upper }}</b>
+                                                </label>
+                                            </div>
+                                            <div class="col-sm">
+                                                {{ calculator_form.postcode_from }}
+                                            </div>
+                                        </div>
+                                        {% for error in calculator_form.postcode_from.errors %}
+                                            <div class="error">{{ error }}</div>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="col-md-12 mb-2">
+                                        <div class="row d-flex align-items-center">
+                                            <div class="col-sm-1 me-2">
+                                                <label for="{{ calculator_form.postcode_to.id_for_label }}">
+                                                    <b>{{ calculator_form.postcode_to.label|upper }}</b>
+                                                </label>
+                                            </div>
+                                            <div class="col-sm">
+                                                {{ calculator_form.postcode_to }}
+                                            </div>
+                                        </div>
+                                        {% for error in calculator_form.postcode_to.errors %}
+                                            <div class="error">{{ error }}</div>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="col-md-12 mt-2 mb-4">
+                                        <div class="w-100 d-flex justify-content-end">
+                                            <button type="submit" name="calculator_form_submit" class="btn-calculate">
+                                                <b>Quote me</b></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -448,8 +491,7 @@
                                 <i class="bx bx-chevron-up icon-close"></i>
                             </a>
                             <div id="faq-list-11" class="collapse" data-bs-parent=".faq-list">
-                                <p>For immediate assistance, you can reach us via phone or the live WhatsApp chat (by
-                                    clicking the button at the top right corner).</p>
+                                <p>For immediate assistance, you can reach us via phone or live chat.</p>
                             </div>
                         </li>
                     </ul>
@@ -490,7 +532,8 @@
                                 <i class="bi bi-phone"></i>
                                 <h4>Call or WhatsApp:</h4>
                                 <p><a style="color: var(--dark-grey);" class="email-link"
-                                      href="https://wa.me/447440770367" target="_blank" rel="noopener">+44 744 077 0367</a></p>
+                                      href="https://wa.me/447440770367" target="_blank" rel="noopener">+44 744 077
+                                    0367</a></p>
                             </div>
 
                             <div id="map-container" style="width: 100%; height: 330px;">
@@ -553,11 +596,10 @@
                                 {% endfor %}
                             </div>
                             <div class="text-center">
-                                <button type="submit">Send Message</button>
+                                <button type="submit" name="contact_form_submit">Send Message</button>
                             </div>
                         </form>
                     </div>
-
                 </div>
 
             </div>
@@ -570,6 +612,60 @@
 
 
 {% block javascript %}
+    <script src="{% static 'js/quotes/formatNumberInputs.js' %}"></script>
+    <script src="{% static 'js/quotes/displayErrors.js' %}"></script>
+    <script src="{% static 'js/quotes/googleMapsApi.js' %}"></script>
+
+    <!-------- Single parameters cargo formset -------->
+    <script defer>
+        document.addEventListener('DOMContentLoaded', function () {
+            (function ($) {
+                preventNegativeNums();
+                preventDecimalsInCount();
+                preventMoreDecimalPlaces();
+                showUnit();
+
+                $(function () {
+
+                    var $template = $('#empty-form'),
+                        $formset = $('#formset'),
+                        formCount = {{ formset.total_form_count }};
+
+                    $('body').on('click', '#add-more', function (e) {
+                        e.preventDefault();
+
+                        formCount++;
+                        var templateHtml = $template.html();
+                        templateHtml = templateHtml.replace(/__prefix__/g, formCount - 1);
+
+                        $formset.append(templateHtml);
+                        $('#id_parcel-TOTAL_FORMS').val(formCount);
+
+                        if (formCount > 1) {
+                            $('#delete-tip').show();
+                        }
+
+                        preventNegativeNums();
+                        preventDecimalsInCount();
+                        preventMoreDecimalPlaces();
+                        showUnit();
+                    });
+
+                    $('body').on('click', '#delete-tip', function (e) {
+                        e.preventDefault();
+                        $('.cargo-form').last().remove();
+                        formCount--;
+
+                        if (formCount == 1) {
+                            $('#delete-tip').hide();
+                        }
+                    });
+                });
+            })(jQuery);
+        });
+    </script>
+    <!-------- End Single parameters cargo formset -------->
+
     <script>
         document.querySelectorAll('.portfolio-lightbox').forEach(item => {
             // Temporarily remove the title attribute on hover
@@ -652,7 +748,7 @@
               "name": "How can I get in touch for urgent queries?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "For immediate assistance, you can reach us via phone or the live WhatsApp chat (by clicking the button at the top right corner)."
+                "text": "For immediate assistance, you can reach us via phone or live chat."
               }
             }
           ]

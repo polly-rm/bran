@@ -5,17 +5,19 @@ import time
 
 from io import BytesIO
 
-from django.http import HttpResponse, HttpResponseForbidden
+from django.http import HttpResponse
 from django.http import JsonResponse
 from django.contrib import messages
-from django.http import HttpResponseRedirect
-from django.views.generic import FormView, TemplateView
+from django.shortcuts import redirect
+from django.views.generic import TemplateView
 
 from bran import settings
-from bran.base.common import check_for_spam
-from bran.base.emails import email_contact_us, email_automatic_answer
-from bran.base.forms import ContactForm
-from bran.settings import CURRENT_DOMAIN
+from bran.base.common import get_driving_distance
+from bran.base.emails import email_contact_us, email_automatic_answer, email_calculator_to_admin
+from bran.base.forms import ContactForm, CalculatorForm
+from bran.settings import CURRENT_DOMAIN, GOOGLE_MAPS_DISTANCE_API_KEY
+from django_ratelimit.decorators import ratelimit
+from django.utils.decorators import method_decorator
 
 
 def generate_qr_code(request):
@@ -51,44 +53,103 @@ def autocomplete(request):
     return JsonResponse(response.json())
 
 
-class IndexTemplateView(FormView):
-    form_class = ContactForm
+@method_decorator(
+    ratelimit(key='ip', rate='30/m'),
+    name='post'
+)
+class IndexTemplateView(TemplateView):
     template_name = 'index.html'
 
-    def get_initial(self):
-        initial = {'timestamp': str(time.time())}
-        user = self.request.user
+    def get(self, request, *args, **kwargs):
+        request.session.pop('quote_data', None)
+        now = str(time.time())
 
-        if user.is_authenticated:
-            initial['email'] = user.email
-
-        return initial
+        return self.render_to_response({
+            'form': ContactForm(initial={'timestamp': now}),
+            'calculator_form': CalculatorForm(initial={'timestamp': now}),
+        })
 
     def post(self, request, *args, **kwargs):
-        form = self.get_form()
+        # SLOW BOTS
+        if getattr(request, 'limited', False):
+            time.sleep(2)
 
-        # Check for spam and return early if detected
-        spam_response = check_for_spam(request)
-        if isinstance(spam_response, HttpResponse):
-            return spam_response
+        # CONTACT FORM
+        if 'contact_form_submit' in request.POST:
+            form = ContactForm(request.POST)
+            calculator_form = CalculatorForm()
 
-        if form.is_valid():
-            return self.form_valid(form)
-        else:
-            return self.form_invalid(form)
+            if form.is_valid():
+                self.handle_contact_form(form)
+                messages.success(request, 'Your message was sent successfully!')
+                return redirect(request.path)
 
-    def form_valid(self, form):
-        name = form.cleaned_data.get('name')
-        email = form.cleaned_data.get('email')
-        subject = form.cleaned_data.get('subject')
-        message = form.cleaned_data.get('message')
+        # CALCULATOR FORM
+        elif 'calculator_form_submit' in request.POST:
+            calculator_form = CalculatorForm(request.POST)
+            form = ContactForm()
 
-        email_contact_us(name, email, subject, message)
-        email_automatic_answer(email)
-        messages.success(self.request, 'Your message was sent successfully!')
+            if calculator_form.is_valid():
+                self.handle_calculator_form(calculator_form)
+                return redirect('calculator')
 
-        return HttpResponseRedirect(self.request.path_info)
+        # invalid → re-render both forms
+        return self.render_to_response({
+            'form': form,
+            'calculator_form': calculator_form,
+        })
+
+    @staticmethod
+    def handle_contact_form(form):
+        email_contact_us(
+            form.cleaned_data['name'],
+            form.cleaned_data['email'],
+            form.cleaned_data['subject'],
+            form.cleaned_data['message'],
+        )
+        email_automatic_answer(form.cleaned_data['email'])
+
+    def handle_calculator_form(self, form):
+        quote_data = form.cleaned_data
+        self.request.session['quote_data'] = quote_data
+        email_calculator_to_admin(quote_data)
 
 
 class SameDayDeliveryTemplateView(TemplateView):
     template_name = 'same_day_delivery.html'
+
+
+class CalculatorTemplateView(TemplateView):
+    template_name = 'calculator.html'
+
+    def post(self, request, *args, **kwargs):
+        vehicle_type = request.POST.get('vehicle_type')
+
+        if vehicle_type:
+            quote_data = request.session.get('quote_data', {})
+            quote_data['vehicle_type'] = vehicle_type
+            quote_data['name'] = request.POST.get('name')
+            quote_data['size'] = request.POST.get('size')
+            quote_data['price'] = request.POST.get('price')
+            quote_data['price_vat'] = request.POST.get('price_vat')
+
+            request.session['quote_data'] = quote_data
+
+        return redirect('quotes:get-a-quote')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        quote_data = self.request.session.get('quote_data', {})
+        postcode_from = quote_data.get('postcode_from')
+        postcode_to = quote_data.get('postcode_to')
+        context['distance'] = get_driving_distance(postcode_from, postcode_to, GOOGLE_MAPS_DISTANCE_API_KEY).get(
+            'distance_miles')
+
+        return context
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.session.get('quote_data'):
+            return redirect('index')
+
+        return super().dispatch(request, *args, **kwargs)

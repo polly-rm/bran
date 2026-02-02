@@ -26,7 +26,11 @@ def get_driving_distance(origin, destination, api_key):
             distance_text = data["rows"][0]["elements"][0]["distance"]["text"]  # e.g., "45.2 miles"
             distance_text = distance_text.replace(" mi", " miles")
             duration_text = data["rows"][0]["elements"][0]["duration"]["text"]  # e.g., "1 hour 10 mins"
+            distance_meters = data["rows"][0]["elements"][0]["distance"]["value"]
+            distance_miles = round(distance_meters / 1609.344, 1)
+
             return {
+                "distance_miles": distance_miles,
                 "distance_text": distance_text,
                 "duration_text": duration_text
             }
