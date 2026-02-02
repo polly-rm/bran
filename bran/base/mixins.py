@@ -19,8 +19,11 @@ class AntiSpamFormMixin(forms.Form):
     def clean_timestamp(self):
         ts = self.cleaned_data.get('timestamp')
         try:
-            if time.time() - float(ts) < 3:
-                raise forms.ValidationError("Spam detected")
+            ts_float = float(ts)
         except (TypeError, ValueError):
+            ts_float = 0
+
+        # allow 1 second buffer for very fast submissions
+        if time.time() - ts_float < 1:
             raise forms.ValidationError("Spam detected")
         return ts
