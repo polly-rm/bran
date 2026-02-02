@@ -108,7 +108,7 @@ class IndexTemplateView(TemplateView):
     def handle_calculator_form(self, form):
         quote_data = form.cleaned_data
         self.request.session['quote_data'] = quote_data
-        email_calculator_to_admin(quote_data)
+        # email_calculator_to_admin(quote_data)
 
 
 class SameDayDeliveryTemplateView(TemplateView):
