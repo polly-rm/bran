@@ -65,14 +65,14 @@ class IndexTemplateView(TemplateView):
         now = str(time.time())
 
         return self.render_to_response({
-            'form': ContactForm(initial={'timestamp': now}),
+            'form': ContactForm(),
             'calculator_form': CalculatorForm(initial={'timestamp': now}),
         })
 
     def post(self, request, *args, **kwargs):
         # SLOW BOTS
-        if getattr(request, 'limited', False):
-            time.sleep(2)
+        # if getattr(request, 'limited', False):
+        #     time.sleep(2)
 
         # CONTACT FORM
         if 'contact_form_submit' in request.POST:
