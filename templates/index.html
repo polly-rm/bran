@@ -615,56 +615,6 @@
     <script src="{% static 'js/quotes/formatNumberInputs.js' %}"></script>
     <script src="{% static 'js/quotes/googleMapsApi.js' %}"></script>
 
-    <!-------- Single parameters cargo formset -------->
-    <script defer>
-        document.addEventListener('DOMContentLoaded', function () {
-            (function ($) {
-                preventNegativeNums();
-                preventDecimalsInCount();
-                preventMoreDecimalPlaces();
-                showUnit();
-
-                $(function () {
-
-                    var $template = $('#empty-form'),
-                        $formset = $('#formset'),
-                        formCount = {{ formset.total_form_count }};
-
-                    $('body').on('click', '#add-more', function (e) {
-                        e.preventDefault();
-
-                        formCount++;
-                        var templateHtml = $template.html();
-                        templateHtml = templateHtml.replace(/__prefix__/g, formCount - 1);
-
-                        $formset.append(templateHtml);
-                        $('#id_parcel-TOTAL_FORMS').val(formCount);
-
-                        if (formCount > 1) {
-                            $('#delete-tip').show();
-                        }
-
-                        preventNegativeNums();
-                        preventDecimalsInCount();
-                        preventMoreDecimalPlaces();
-                        showUnit();
-                    });
-
-                    $('body').on('click', '#delete-tip', function (e) {
-                        e.preventDefault();
-                        $('.cargo-form').last().remove();
-                        formCount--;
-
-                        if (formCount == 1) {
-                            $('#delete-tip').hide();
-                        }
-                    });
-                });
-            })(jQuery);
-        });
-    </script>
-    <!-------- End Single parameters cargo formset -------->
-
     <script>
         document.querySelectorAll('.portfolio-lightbox').forEach(item => {
             // Temporarily remove the title attribute on hover
