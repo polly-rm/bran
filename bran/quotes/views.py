@@ -12,6 +12,10 @@ from django_ratelimit.decorators import ratelimit
 from django.utils.decorators import method_decorator
 
 
+@method_decorator(
+    ratelimit(key='ip', rate='3/m', block=True),
+    name='post'
+)
 class GetQuote(FormView):
     form_class = QuoteForm
     template_name = 'quotes/get_a_quote.html'
@@ -20,7 +24,7 @@ class GetQuote(FormView):
 
     def get_initial(self):
         # Base initial
-        initial = {}
+        initial = {'timestamp': str(time.time())}
 
         # Prefill from session if available
         quote_data = self.request.session.get('quote_data', {})
