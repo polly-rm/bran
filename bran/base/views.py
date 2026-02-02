@@ -71,8 +71,8 @@ class IndexTemplateView(TemplateView):
 
     def post(self, request, *args, **kwargs):
         # SLOW BOTS
-        # if getattr(request, 'limited', False):
-        #     time.sleep(2)
+        if getattr(request, 'limited', False):
+            time.sleep(2)
 
         # CONTACT FORM
         if 'contact_form_submit' in request.POST:

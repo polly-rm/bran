@@ -6,7 +6,7 @@ from django_recaptcha.widgets import ReCaptchaV2Checkbox
 from bran.base.mixins import AntiSpamFormMixin
 
 
-class ContactForm(forms.Form):
+class ContactForm(AntiSpamFormMixin, forms.Form):
     name = forms.CharField(
         required=True,
         label='Your Name',
