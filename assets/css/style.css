@@ -1770,3 +1770,7 @@ body, #header, #navbar {
     color: var(--main-gold);
     background: #fff;
 }
+
+.cursor-pointer {
+    cursor: pointer;
+}

@@ -1,0 +1,47 @@
+<div class="modal fade" id="dynamicModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <p><strong>Maximum weight and size</strong></p>
+                    <p>
+                        The maximum parcel weight is <b><span id="modalWeight"></span></b> with a maximum size of
+                        <b><span id="modalSize"></span></b>. <span id="modalInfo"></span>
+                    </p>
+                </div>
+                <div>
+                    <p class="fst-italic" style="color: var(--main-gold)"><i class="bx bx-error-circle icon-help"></i>
+                        Please ensure you select the correct vehicle size when making your booking. If the driver
+                        arrives and your item(s) are too large to fit in the chosen vehicle, a cancellation fee may
+                        apply.
+                    </p>
+                    <p class="fst-italic" style="color: var(--main-gold)"><i class="bx bx-error-circle icon-help"></i>
+                        Nobody likes unexpected surcharges, which is why it’s essential to accurately weigh and measure
+                        your parcel. If the correct details are provided at the time of booking, you shouldn’t receive
+                        any unexpected charges, as these will already be included in the quoted price.
+                    </p>
+                </div>
+                <div class="mt-4">
+                    <p><strong>Waiting Times</strong></p>
+                    <p>Please note that the surcharge figures listed below are minimum rates and may vary per order.</p>
+                    <p>Free waiting time: <b>First <span class="modalTime"></span> minutes</b></p>
+                    <p>If waiting time exceeds <span class="modalTime"></span> minutes, a charge of <b>£0.50 per
+                        minute</b>
+                        will apply for the entire
+                        waiting period (not only the time exceeding <span class="modalTime"></span> minutes).</p>
+                </div>
+                <div>
+                    <p class="fst-italic" style="color: var(--main-gold)"><i class="bx bx-error-circle icon-help"></i>
+                        If the collection or delivery address is incomplete or incorrect, and the driver is required to
+                        make contact to obtain further details (resulting in additional waiting time), a surcharge may
+                        be applied.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

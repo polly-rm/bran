@@ -9,7 +9,6 @@ from django.http import HttpResponse
 from django.http import JsonResponse
 from django.contrib import messages
 from django.shortcuts import redirect
-from django.views import View
 from django.views.generic import TemplateView
 
 from bran import settings
@@ -148,3 +147,9 @@ class CalculatorTemplateView(TemplateView):
             'distance_miles')
 
         return context
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.session.get('quote_data'):
+            return redirect('index')
+
+        return super().dispatch(request, *args, **kwargs)

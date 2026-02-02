@@ -51,7 +51,12 @@
                         needs.</p>
                 </div>
 
-                <div class="col-lg-6">
+                <div class="col-lg-6 cursor-pointer"
+                     data-bs-toggle="modal"
+                     data-bs-target="#dynamicModal"
+                     data-title="Small Van"
+                     data-weight="400kg"
+                     data-size="120cm x 100cm x 100cm">
                     <div class="section-bg member d-flex align-items-center pt-3 pb-3" data-aos="zoom-in"
                          data-aos-delay="100">
                         <div class="pic">
@@ -87,7 +92,12 @@
                     </div>
                 </div>
 
-                <div class="col-lg-6 mt-4 mt-lg-0">
+                <div class="col-lg-6 mt-4 mt-lg-0 cursor-pointer"
+                     data-bs-toggle="modal"
+                     data-bs-target="#dynamicModal"
+                     data-title="SWB (Short Wheelbase) Van"
+                     data-weight="800kg"
+                     data-size="200cm x 120cm x 120cm">
                     <div class="section-bg member d-flex align-items-center pt-3 pb-3" data-aos="zoom-in"
                          data-aos-delay="200">
                         <div class="pic">
@@ -122,7 +132,12 @@
                     </div>
                 </div>
 
-                <div class="col-lg-6 mt-4">
+                <div class="col-lg-6 mt-4 cursor-pointer"
+                     data-bs-toggle="modal"
+                     data-bs-target="#dynamicModal"
+                     data-title="MWB (Medium Wheelbase) Van"
+                     data-weight="120kg"
+                     data-size="250cm x 120cm x 160cm">
                     <div class="section-bg member d-flex align-items-center pt-3 pb-3" data-aos="zoom-in"
                          data-aos-delay="300">
                         <div class="pic">
@@ -157,7 +172,13 @@
                     </div>
                 </div>
 
-                <div class="col-lg-6 mt-4">
+                <div class="col-lg-6 mt-4 cursor-pointer"
+                     data-bs-toggle="modal"
+                     data-bs-target="#dynamicModal"
+                     data-title="LWB (Long Wheelbase) Van"
+                     data-weight="1100kg"
+                     data-size="300cm x 120cm x 170cm"
+                     data-info="It can can carry up to 3 pallets.">
                     <div class="section-bg member d-flex align-items-center pt-3 pb-3" data-aos="zoom-in"
                          data-aos-delay="300">
                         <div class="pic">
@@ -192,7 +213,13 @@
                     </div>
                 </div>
 
-                <div class="col-lg-6 mt-4">
+                <div class="col-lg-6 mt-4 cursor-pointer"
+                     data-bs-toggle="modal"
+                     data-bs-target="#dynamicModal"
+                     data-title="XLWB (Extra Long Wheelbase) Van"
+                     data-weight="1500kg"
+                     data-size="400cm x 120cm x 175cm"
+                     data-info="It is the largest panel van available and can carry up to 4 pallets.">
                     <div class="section-bg member d-flex align-items-center pt-3 pb-3" data-aos="zoom-in"
                          data-aos-delay="500">
                         <div class="pic">
@@ -227,7 +254,13 @@
                     </div>
                 </div>
 
-                <div class="col-lg-6 mt-4">
+                <div class="col-lg-6 mt-4 cursor-pointer"
+                     data-bs-toggle="modal"
+                     data-bs-target="#dynamicModal"
+                     data-title="Luton Van"
+                     data-weight="1000kg"
+                     data-size="420cm x 200cm x 200cm"
+                     data-info="It is the largest van option with dedicated vehicle service and Can carry up to 6 pallets.">
                     <div class="section-bg member d-flex align-items-center pt-3 pb-3" data-aos="zoom-in"
                          data-aos-delay="600">
                         <div class="pic">
@@ -266,6 +299,8 @@
         </div>
     </section>
 
+    {% include 'base/_partials/vehicle_type_modal.html' %}
+
     <style>
         hr {
             background: #cbd6e9;
@@ -277,3 +312,8 @@
     </style>
 
 {% endblock content %}
+
+
+{% block javascript %}
+    <script src="{% static 'js/calculator/showInfoModal.js' %}"></script>
+{% endblock javascript %}
