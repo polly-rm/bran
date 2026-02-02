@@ -53,10 +53,10 @@ def autocomplete(request):
     return JsonResponse(response.json())
 
 
-# @method_decorator(
-#     ratelimit(key='ip', rate='30/m'),
-#     name='post'
-# )
+@method_decorator(
+    ratelimit(key='ip', rate='30/m'),
+    name='post'
+)
 class IndexTemplateView(TemplateView):
     template_name = 'index.html'
 
@@ -71,8 +71,8 @@ class IndexTemplateView(TemplateView):
 
     def post(self, request, *args, **kwargs):
         # SLOW BOTS
-        # if getattr(request, 'limited', False):
-        #     time.sleep(2)
+        if getattr(request, 'limited', False):
+            time.sleep(2)
 
         # CONTACT FORM
         if 'contact_form_submit' in request.POST:
