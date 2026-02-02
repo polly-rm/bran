@@ -7,16 +7,7 @@ from django_recaptcha.widgets import ReCaptchaV2Checkbox
 from bran.base.mixins import AntiSpamFormMixin
 
 
-class QuoteForm(AntiSpamFormMixin, forms.Form):
-    VEHICLE_TYPE_CHOICES = [
-        ('small_van', 'Small Van'),
-        ('swb', 'SWB'),
-        ('mwb', 'MWB'),
-        ('lwb', 'LWB'),
-        ('xlwb', 'XLWB'),
-        ('luton_van', 'Luton Van'),
-    ]
-
+class QuoteForm(forms.Form):
     name = forms.CharField(
         required=True,
         label='Name',

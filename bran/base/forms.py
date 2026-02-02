@@ -6,7 +6,7 @@ from django_recaptcha.widgets import ReCaptchaV2Checkbox
 from bran.base.mixins import AntiSpamFormMixin
 
 
-class ContactForm(AntiSpamFormMixin, forms.Form):
+class ContactForm(forms.Form):
     name = forms.CharField(
         required=True,
         label='Your Name',
@@ -55,7 +55,7 @@ class ContactForm(AntiSpamFormMixin, forms.Form):
     )
 
 
-class CalculatorForm(AntiSpamFormMixin, forms.Form):
+class CalculatorForm(forms.Form):
     postcode_from = forms.CharField(
         required=True,
         label='From',
