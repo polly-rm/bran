@@ -116,12 +116,6 @@
     {% block stylesheets %}
     {% endblock stylesheets %}
 
-    <!-- Load Google Maps API with a callback -->
-    <script>function initAutocomplete() {
-    }</script>
-    <script src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&libraries=places&callback=initAutocomplete&loading=async"
-            async defer></script>
-
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-8DRMYL34FD"></script>
     <script>
@@ -185,9 +179,6 @@
 {% endblock content %}
 
 {% include '_partials/footer.html' %}
-
-{#<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i#}
-{#        class="bi bi-arrow-up-short"></i></a>#}
 
 <!-- Jquery -->
 <script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
@@ -254,20 +245,33 @@
     });
 </script>
 
+ <!-- Load Google Maps API with a callback -->
 <script>
+    let mapsLoaded = false;
+
+    function loadGoogleMaps() {
+        if (mapsLoaded) return;
+        mapsLoaded = true;
+
+        const s = document.createElement('script');
+        s.src =
+            "https://maps.googleapis.com/maps/api/js" +
+            "?key={{ google_maps_api_key }}" +
+            "&libraries=places" +
+            "&callback=initAutocomplete" +
+            "&loading=async";
+        s.async = true;
+        s.defer = true;
+        document.head.appendChild(s);
+    }
+
     document.addEventListener("DOMContentLoaded", () => {
-        let injected = false;
         const target = document.getElementById('map-container');
         if (!target) return;
 
         const observer = new IntersectionObserver(entries => {
-            if (entries[0].isIntersecting && !injected) {
-                const s = document.createElement('script');
-                s.src = `https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&libraries=places&callback=initAutocomplete`;
-                s.async = true;
-                s.defer = true;
-                document.head.appendChild(s);
-                injected = true;
+            if (entries[0].isIntersecting) {
+                loadGoogleMaps();
                 observer.disconnect();
             }
         }, {rootMargin: '200px'});
@@ -275,7 +279,6 @@
         observer.observe(target);
     });
 </script>
-
 
 {% block javascript %}
 {% endblock javascript %}

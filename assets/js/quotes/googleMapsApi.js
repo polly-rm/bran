@@ -1,18 +1,20 @@
-$(document).ready(function () {
-    $('#id_postcode_from').on('input', function () {
-        const query = $(this).val();
-        fetch(`/api/autocomplete/?input=${query}`)
-            .then(response => response.json())
-            .then(data => {
-                const autocompleteAddressFrom = new google.maps.places.Autocomplete(document.getElementById('id_postcode_from'));
-            });
-    });
-    $('#id_postcode_to').on('input', function () {
-        const query = $(this).val();
-        fetch(`/api/autocomplete/?input=${query}`)
-            .then(response => response.json())
-            .then(data => {
-                const autocompleteAddressFrom = new google.maps.places.Autocomplete(document.getElementById('id_postcode_to'));
-            });
-    });
-});
+window.initAutocomplete = function () {
+    const from = document.getElementById('id_postcode_from');
+    const to = document.getElementById('id_postcode_to');
+
+    if (from && !from.dataset.autocomplete) {
+        new google.maps.places.Autocomplete(from, {
+            types: ['geocode'],
+            componentRestrictions: {country: 'uk'}
+        });
+        from.dataset.autocomplete = "true";
+    }
+
+    if (to && !to.dataset.autocomplete) {
+        new google.maps.places.Autocomplete(to, {
+            types: ['geocode'],
+            componentRestrictions: {country: 'uk'}
+        });
+        to.dataset.autocomplete = "true";
+    }
+};

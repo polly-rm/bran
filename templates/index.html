@@ -590,7 +590,9 @@
                                 {% endfor %}
                             </div>
                             <div class="form-group">
-                                {{ form.captcha }}
+                                <div id="captcha-container">
+                                    {{ form.captcha }}
+                                </div>
                                 {% for error in form.captcha.errors %}
                                     <div class="error">{{ error }}</div>
                                 {% endfor %}
@@ -629,6 +631,27 @@
         });
     </script>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const captchaContainer = document.getElementById('captcha-container');
+            if (!captchaContainer) return;
+
+            const observer = new IntersectionObserver(entries => {
+                if (entries[0].isIntersecting) {
+                    // Add reCAPTCHA script
+                    const s = document.createElement('script');
+                    s.src = 'https://www.google.com/recaptcha/api.js';
+                    s.async = true;
+                    s.defer = true;
+                    document.head.appendChild(s);
+
+                    observer.disconnect();
+                }
+            }, {rootMargin: '200px'});
+
+            observer.observe(captchaContainer);
+        });
+    </script>
 
     <script type="application/ld+json">
         {
