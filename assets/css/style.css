@@ -1774,3 +1774,12 @@ body, #header, #navbar {
 .cursor-pointer {
     cursor: pointer;
 }
+
+.info-icon {
+    position: absolute;
+    top: 5px;
+    left: 10px;
+    color: #37517e;
+    font-size: 1.4rem;
+    font-weight: bold;
+}
