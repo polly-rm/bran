@@ -1783,3 +1783,12 @@ body, #header, #navbar {
     font-size: 1.4rem;
     font-weight: bold;
 }
+
+#galleryCarousel img {
+    height: 530px;
+    object-fit: cover;
+}
+
+.carousel-item {
+    padding: 20px 0;
+}
