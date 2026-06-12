@@ -12,9 +12,9 @@ from django.utils.encoding import force_str
 from django.utils.http import urlsafe_base64_decode
 from django.views import View
 from django.views.generic import FormView, TemplateView
+from django.conf import settings
 
 from bran.base.emails import email_account_activation
-from bran.settings import EMAIL_HOST_USER
 from bran.users.forms import RegisterForm, LoginForm, PasswordEmailResetForm, PasswordUpdateForm, SetPasswordForm
 from bran.users.models import User
 from bran.users.utils.tokens import account_activation_token
@@ -85,7 +85,7 @@ class UserLogoutView(LoginRequiredMixin, LogoutView):
 class PasswordEmailResetView(PasswordResetView):
     form_class = PasswordEmailResetForm
     template_name = 'users/password_reset.html'
-    from_email = EMAIL_HOST_USER
+    from_email = settings.DEFAULT_FROM_EMAIL
     success_url = reverse_lazy('users:password-reset-done')
     email_template_name = 'emails/users/password_reset_email.html'
     subject_template_name = 'emails/users/password_reset_subject.html'
