@@ -1,3 +1,5 @@
+import logging
+
 from django.core.mail import EmailMessage
 from django.template.loader import get_template
 from django.utils.http import urlsafe_base64_encode
@@ -6,6 +8,8 @@ from django.conf import settings
 
 from bran.base.models import SendEmail
 from bran.users.utils.tokens import account_activation_token
+
+logger = logging.getLogger(__name__)
 
 
 # -------------------------
@@ -20,6 +24,7 @@ def send_mail(
         attachments=None,
         html=True,
         fail_silently=False,
+        reply_to=None,
 ):
     if not isinstance(to, (list, tuple)):
         to = [to]
@@ -32,6 +37,7 @@ def send_mail(
         body=message,
         to=to,
         from_email=from_email,
+        reply_to=reply_to,
     )
 
     if html:
@@ -41,7 +47,13 @@ def send_mail(
         for attachment in attachments:
             msg.attach_file(attachment)
 
-    is_sent = msg.send(fail_silently=fail_silently)
+    # A mail server error must not show a "Server Error" page to the visitor.
+    # It is logged instead (Sentry still receives it).
+    try:
+        is_sent = msg.send(fail_silently=fail_silently)
+    except Exception:
+        logger.exception("Failed to send email '%s' to %s", subject, to)
+        is_sent = 0
 
     if message_to_save:
         SendEmail.objects.create(
@@ -101,7 +113,8 @@ def email_contact_us(name, email, title, message):
         subject,
         html_content,
         settings.DEFAULT_FROM_EMAIL,
-        from_email=email,
+        from_email=settings.DEFAULT_FROM_EMAIL,
+        reply_to=[email],
         message_to_save=message,
     )
 
@@ -129,7 +142,8 @@ def email_get_quote(form_data, formset_data, distance, vehicle_name=None, price=
         subject,
         html_content,
         settings.DEFAULT_FROM_EMAIL,
-        from_email=form_data.get("email"),
+        from_email=settings.DEFAULT_FROM_EMAIL,
+        reply_to=[form_data.get("email")],
         message_to_save=f'Quote request from {form_data["email"]}',
     )
 
